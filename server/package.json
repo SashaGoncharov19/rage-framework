@@ -1,0 +1,14 @@
+{
+  "name": "rage-f-server",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "type": "module",
+  "files": ["dist/**/*"],
+  "scripts": {
+    "build": "tsup"
+  },
+  "keywords": [],
+  "author": "SashaGonncharov19",
+  "license": "MIT",
+  "description": "Server side of rage-f"
+}

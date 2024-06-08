@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "workspaces": [
+    "server"
+  ],
+  "dependencies": {
+    "@ragempcommunity/types-client": "^2.1.8",
+    "@ragempcommunity/types-server": "^2.1.8",
+    "@ragempcommunity/types-cef": "^2.1.8",
+    "rage-rpc": "^0.4.0",
+    "tsup": "^8.1.0",
+    "prettier": "^3.3.1",
+    "typescript": "^5.4.5"
+  },
+  "type": "module"
+}
