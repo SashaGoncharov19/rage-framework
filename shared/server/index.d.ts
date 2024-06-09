@@ -23,4 +23,8 @@ declare class RageFW_Server {
         eventName: EventName,
         callback: RageFW_ServerEventCallback<EventName>,
     ): void
+
+    declare registerMany<EventName extends RageFW_ServerEvent>(events: {
+        [key: EventName]: RageFW_ServerEventCallback<EventName>
+    }): void
 }

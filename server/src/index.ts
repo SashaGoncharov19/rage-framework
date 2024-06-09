@@ -8,6 +8,22 @@ class Server implements RageFW_Server {
     ): void {
         rpc.register(eventName, callback as rpc.ProcedureListener)
     }
+
+    public registerMany<EventName extends RageFW_ServerEvent>(events: {
+        [key in EventName]: RageFW_ServerEventCallback<EventName>
+    }): void {
+        Object.keys(events).forEach(eventName =>
+            // unknown[] ?
+            // rpc.register(eventName, (args: unknown[]) =>
+            //     Array.isArray(args) ? events[eventName as keyof typeof events](...args) : callback(args),
+            // ),
+            rpc.register(eventName, (args: unknown[]) =>
+                Array.isArray(args)
+                    ? events[eventName as EventName](args)
+                    : events[eventName as EventName](args),
+            ),
+        )
+    }
 }
 
 export const rage = {
@@ -18,14 +34,8 @@ rage.event.register('customServerEvent', (player, arg1, arg2) => {
     return true
 })
 
-// public registerMultiple(events: {
-//     [name: string]: (player: PlayerMp, ...args: any[]) => any
-// }): void
-//
-// registerMultiple(events: { [name: string]: (...args: any[]) => any }) {
-//     Object.entries(events).forEach(([name, callback]) =>
-//         rpc.register(name, (data: any[]) => {
-//             return Array.isArray(data) ? callback(...data) : callback(data)
-//         }),
-//     )
-// }
+rage.event.registerMany({
+    customServerEvent: (player, arg1, arg2) => {
+        return true
+    },
+})
