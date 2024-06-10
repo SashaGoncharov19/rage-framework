@@ -25,7 +25,9 @@ class Player {
     }
 }
 
-export const fw = {
+const fw = {
     event: new Client(),
     player: new Player(),
 }
+
+export default fw

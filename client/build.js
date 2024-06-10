@@ -1,9 +1,16 @@
 import { build } from 'esbuild'
-
+import { umdWrapper } from 'esbuild-plugin-umd-wrapper'
 build({
     entryPoints: ['./src/index.ts'],
-    format: 'esm',
+    bundle: true,
+    format: 'umd',
     platform: 'node',
-    target: 'node10.4',
     outdir: './dist',
-}).then(r => console.log('Successfully build.'))
+    plugins: [
+        umdWrapper({
+            libraryName: 'fw',
+        }),
+    ],
+}).then(() => {
+    console.log('Successfully build. Executing types build...')
+})

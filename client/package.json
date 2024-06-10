@@ -7,15 +7,13 @@
         "dist/**/*"
     ],
     "scripts": {
-        "build": "node --es-module-specifier-resolution=node build.js",
+        "build": "node --es-module-specifier-resolution=node build.js && pnpm types",
         "types": "dts-bundle-generator --config dts.config.json"
     },
-    "peerDependencies": {
-        "rage-fw-shared-types": "workspace:^"
-    },
     "dependencies": {
+        "@ragempcommunity/types-client": "^2.1.8",
         "rage-rpc": "^0.4.0",
-        "@ragempcommunity/types-client": "^2.1.8"
+        "rage-fw-shared-types": "workspace:^"
     },
     "keywords": [],
     "author": "SashaGoncharov19",

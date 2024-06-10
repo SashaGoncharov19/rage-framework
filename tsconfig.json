@@ -1,16 +1,14 @@
 {
   "compilerOptions": {
     "target": "ESNext",
+    "lib": ["ESNext","ES2019"],
+    "moduleResolution": "node",
     "module": "ESNext",
-    "strict": true,
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "strict": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
     "isolatedModules": true,
-    "declaration": true,
     "useUnknownInCatchVariables": false,
     "exactOptionalPropertyTypes": true,
     "typeRoots": [
