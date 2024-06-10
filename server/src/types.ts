@@ -1,4 +1,4 @@
-/// <reference types="@ragempcommunity/types-server" />
+import '@ragempcommunity/types-server'
 
 import type {
     RageFW_ICustomServerEvent,

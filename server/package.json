@@ -7,8 +7,7 @@
         "dist/**/*"
     ],
     "scripts": {
-        "build": "tsup && pnpm types",
-        "types": "dts-bundle-generator --config dts.config.json"
+        "build": "tsup"
     },
     "dependencies": {
         "@ragempcommunity/types-server": "^2.1.8",

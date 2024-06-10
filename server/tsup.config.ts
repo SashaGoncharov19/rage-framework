@@ -5,6 +5,7 @@ export default defineConfig({
     outDir: './dist',
     format: ['cjs'],
     noExternal: ['rage-rpc'],
+    dts: true,
     splitting: false,
     sourcemap: false,
     clean: true,
