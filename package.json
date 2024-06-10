@@ -1,5 +1,8 @@
 {
   "private": true,
+  "scripts": {
+    "publish": "lerna publish --force-publish"
+  },
   "dependencies": {
     "@ragempcommunity/types-cef": "^2.1.8",
     "@ragempcommunity/types-client": "^2.1.8",
