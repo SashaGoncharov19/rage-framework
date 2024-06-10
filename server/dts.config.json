@@ -6,10 +6,7 @@
   "entries": [
     {
       "filePath": "./src/index.ts",
-      "outFile": "./dist/index.d.ts",
-      "libraries": {
-        "inlinedLibraries": ["@ragempcommunity/types-server"]
-      }
+      "outFile": "./dist/index.d.ts"
     }
   ]
 }

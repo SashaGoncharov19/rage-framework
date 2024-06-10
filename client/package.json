@@ -11,11 +11,11 @@
         "types": "dts-bundle-generator --config dts.config.json"
     },
     "peerDependencies": {
-        "@ragempcommunity/types-client": "^2.1.8",
         "rage-fw-shared-types": "workspace:^"
     },
     "dependencies": {
-        "rage-rpc": "^0.4.0"
+        "rage-rpc": "^0.4.0",
+        "@ragempcommunity/types-client": "^2.1.8"
     },
     "keywords": [],
     "author": "SashaGoncharov19",
