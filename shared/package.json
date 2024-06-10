@@ -1,5 +1,5 @@
 {
-  "name": "rage-fw-shared-server",
+  "name": "rage-fw-shared",
   "version": "0.0.1",
   "type": "module",
   "main": "index.d.ts",
@@ -12,5 +12,5 @@
   "keywords": [],
   "author": "SashaGoncharov19",
   "license": "MIT",
-  "description": "Shared server types for rage-fw"
+  "description": "Shared client types for rage-fw"
 }

@@ -5,7 +5,11 @@
   "type": "module",
   "files": ["dist/**/*"],
   "scripts": {
-    "build": "tsup"
+    "build": "node --es-module-specifier-resolution=node build.js",
+    "types": "dts-bundle-generator --config dts.config.json"
+  },
+  "peerDependencies": {
+    "rage-fw-shared-types": "workspace:shared-types:*"
   },
   "keywords": [],
   "author": "SashaGoncharov19",

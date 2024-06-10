@@ -1,23 +1,19 @@
-/// <reference types="../../shared/client/index.d.ts" />
 import rpc from 'rage-rpc'
+import {
+    RageFW_ClientEventReturn,
+    RageFW_ClientEvent,
+    RageFW_ClientEventArguments,
+} from './types'
 
-class Player implements RageFW_Player {
-    public triggerClient<EventName extends RageFW_ClientEvent>(
-        player: PlayerMp,
+class Player {
+    public triggerServer<EventName extends RageFW_ClientEvent>(
         eventName: EventName,
         ...args: RageFW_ClientEventArguments<EventName>
     ): Promise<RageFW_ClientEventReturn<EventName>> {
-        return rpc.callClient(player, eventName, ...args)
+        return rpc.callServer(eventName, ...args)
     }
 }
 
 export const rage = {
     player: new Player(),
 }
-
-const bool = rage.player.triggerClient(
-    {} as PlayerMp,
-    'customClientEvent',
-    'arg1',
-    2,
-)
