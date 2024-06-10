@@ -1,5 +1,5 @@
 import rpc from 'rage-rpc'
-import {
+import type {
     RageFW_ClientEventReturn,
     RageFW_ClientEvent,
     RageFW_ClientEventArguments,

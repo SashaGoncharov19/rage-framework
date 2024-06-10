@@ -1,5 +1,5 @@
 packages:
-  - "server/*"
-  - "client/*"
-  - "shared/*"
-  - "shared-types/*"
+  - "server"
+  - "client"
+  - "shared"
+  - "shared-types"

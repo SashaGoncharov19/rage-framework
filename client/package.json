@@ -9,7 +9,7 @@
     "types": "dts-bundle-generator --config dts.config.json"
   },
   "peerDependencies": {
-    "rage-fw-shared-types": "workspace:shared-types:*"
+    "rage-fw-shared-types": "workspace:^"
   },
   "keywords": [],
   "author": "SashaGoncharov19",

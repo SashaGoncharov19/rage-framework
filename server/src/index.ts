@@ -1,5 +1,5 @@
 import rpc from 'rage-rpc'
-import { RageFW_ServerEvent, RageFW_ServerEventCallback } from './types.js'
+import type { RageFW_ServerEvent, RageFW_ServerEventCallback } from './types.js'
 
 class Server {
     public register<EventName extends RageFW_ServerEvent>(

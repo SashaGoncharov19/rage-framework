@@ -1,6 +1,6 @@
 /// <reference types="@ragempcommunity/types-server" />
 
-import { RageFW_ICustomServerEvent } from 'rage-fw-shared-types'
+import type { RageFW_ICustomServerEvent } from 'rage-fw-shared-types'
 
 export type RageFW_ServerEvent =
     | keyof RageFW_ICustomServerEvent

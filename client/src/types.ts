@@ -1,6 +1,6 @@
 /// <reference types="@ragempcommunity/types-client" />
 
-import { RageFW_ICustomClientEvent } from 'rage-fw-shared-types'
+import type { RageFW_ICustomClientEvent } from 'rage-fw-shared-types'
 
 export type RageFW_ClientEvent =
     | keyof RageFW_ICustomClientEvent
