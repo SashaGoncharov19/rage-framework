@@ -12,7 +12,9 @@ class Client {
         eventName: EventName,
         callback: RageFW_ClientServerCallback<EventName>,
     ): void {
-        rpc.register(eventName, callback as rpc.ProcedureListener)
+        rpc.register(eventName, data => {
+            return callback(...data)
+        })
     }
 }
 

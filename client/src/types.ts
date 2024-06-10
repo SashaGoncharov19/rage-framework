@@ -20,5 +20,5 @@ export type RageFW_ClientEventReturn<K extends RageFW_ClientEvent> =
 export type RageFW_ClientServerEvent = keyof RageFW_ICustomClientEvent
 
 export type RageFW_ClientServerCallback<K extends RageFW_ClientServerEvent> = (
-    args: Parameters<RageFW_ICustomClientEvent[K]>,
+    ...args: Parameters<RageFW_ICustomClientEvent[K]>
 ) => ReturnType<RageFW_ICustomClientEvent[K]>
