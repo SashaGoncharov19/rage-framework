@@ -1,19 +1,21 @@
 {
-  "name": "rage-fw-server",
-  "version": "0.0.1",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "type": "module",
-  "files": ["dist/**/*"],
-  "scripts": {
-    "build": "node --es-module-specifier-resolution=node build.js",
-    "types": "dts-bundle-generator --config dts.config.json"
-  },
-  "peerDependencies": {
-    "rage-fw-shared-types": "workspace:^"
-  },
-  "keywords": [],
-  "author": "SashaGoncharov19",
-  "license": "MIT",
-  "description": "Server side for rage-fw"
+    "name": "rage-fw-server",
+    "version": "0.0.1-alpha.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "type": "module",
+    "files": [
+        "dist/**/*"
+    ],
+    "scripts": {
+        "build": "node --es-module-specifier-resolution=node build.js",
+        "types": "dts-bundle-generator --config dts.config.json"
+    },
+    "peerDependencies": {
+        "rage-fw-shared-types": "workspace:^"
+    },
+    "keywords": [],
+    "author": "SashaGoncharov19",
+    "license": "MIT",
+    "description": "Server side for rage-fw"
 }

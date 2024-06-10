@@ -1,11 +1,11 @@
 {
-  "name": "rage-fw-shared-types",
-  "version": "0.0.1",
-  "types": "types/types/index.d.ts",
-  "files": [
-    "types/**/*"
-  ],
-  "author": "SashaGoncharov19",
-  "license": "MIT",
-  "type": "module"
+    "name": "rage-fw-shared-types",
+    "version": "0.0.1-alpha.0",
+    "types": "types/types/index.d.ts",
+    "files": [
+        "types/**/*"
+    ],
+    "author": "SashaGoncharov19",
+    "license": "MIT",
+    "type": "module"
 }
