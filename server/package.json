@@ -14,6 +14,9 @@
     "peerDependencies": {
         "rage-fw-shared-types": "workspace:^"
     },
+    "dependencies": {
+        "rage-rpc": "^0.4.0"
+    },
     "keywords": [],
     "author": "SashaGoncharov19",
     "license": "MIT",
