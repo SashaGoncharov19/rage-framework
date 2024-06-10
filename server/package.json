@@ -3,12 +3,11 @@
     "version": "0.0.10-alpha.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
-    "type": "module",
     "files": [
         "dist/**/*"
     ],
     "scripts": {
-        "build": "node --es-module-specifier-resolution=node build.js && pnpm types",
+        "build": "tsup && pnpm types",
         "types": "dts-bundle-generator --config dts.config.json"
     },
     "dependencies": {
