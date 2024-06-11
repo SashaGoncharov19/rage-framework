@@ -16,7 +16,7 @@ export type RageFW_ServerEventCallback<K extends RageFW_ServerEvent> =
               ...args: Parameters<RageFW_ICustomServerEvent[K]>
           ) => ReturnType<RageFW_ICustomServerEvent[K]>
         : K extends keyof IServerEvents
-          ? ThisifyServerEvents[K]
+          ? IServerEvents[K]
           : never
 
 export type RageFW_ClientEvent = keyof RageFW_ICustomClientEvent

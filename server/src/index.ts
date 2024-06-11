@@ -38,20 +38,21 @@ class Server {
     public registerMany<EventName extends RageFW_ServerEvent>(events: {
         [event in EventName]: RageFW_ServerEventCallback<event>
     }): void {
-        Object.entries(events).map(([eventName, callback]) => {
-            if (nativeEvents.includes(eventName)) {
-                mp.events.add(
-                    eventName as keyof IServerEvents,
-                    callback as (...arg: unknown[]) => void,
-                )
-            } else {
-                rpc.register(eventName, (args: unknown[]) => {
-                    return Array.isArray(args)
-                        ? (callback as (...arg: typeof args) => void)(...args)
-                        : (callback as (arg: typeof args) => void)(args)
-                })
-            }
-        })
+        Object.entries<RageFW_ServerEventCallback<EventName>>(events).map(
+            ([eventName, callback]) => {
+                if (this.isNativeEvent(eventName)) {
+                    mp.events.add(eventName, callback)
+                } else {
+                    rpc.register(eventName, (args: unknown[]) => {
+                        return Array.isArray(args)
+                            ? (callback as (...arg: typeof args) => void)(
+                                  ...args,
+                              )
+                            : (callback as (arg: typeof args) => void)(args)
+                    })
+                }
+            },
+        )
     }
 }
 
