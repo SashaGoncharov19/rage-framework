@@ -3,10 +3,18 @@
 import type { RageFW_ICustomServerEvent } from 'rage-fw-shared-types'
 export type { RageFW_ICustomServerEvent } from 'rage-fw-shared-types'
 
+/**
+ * Union of all available server event names
+ * These also include system events
+ */
 export type RageFW_ServerEvent =
     | keyof RageFW_ICustomServerEvent
     | keyof IServerEvents
 
+/**
+ * Array of arguments for an event, name of which you pass as a generic
+ * These also include system events
+ */
 export type RageFW_ServerEventArguments<K extends RageFW_ServerEvent> =
     K extends keyof RageFW_ICustomServerEvent
         ? Parameters<RageFW_ServerEventCallbackCustom<K>>
@@ -14,6 +22,10 @@ export type RageFW_ServerEventArguments<K extends RageFW_ServerEvent> =
           ? Parameters<RageFW_ServerEventCallbackNative<K>>
           : never
 
+/**
+ * Callback (function) for an event, name of which you pass as a generic
+ * These include system and custom events
+ */
 export type RageFW_ServerEventCallback<K extends RageFW_ServerEvent> =
     K extends keyof RageFW_ICustomServerEvent
         ? RageFW_ServerEventCallbackCustom<K>
@@ -21,6 +33,10 @@ export type RageFW_ServerEventCallback<K extends RageFW_ServerEvent> =
           ? RageFW_ServerEventCallbackNative<K>
           : never
 
+/**
+ * Return type for an event, name of which you pass as a generic
+ * These include system and custom events
+ */
 export type RageFW_ServerEventReturn<K extends RageFW_ServerEvent> =
     K extends keyof RageFW_ICustomServerEvent
         ? ReturnType<RageFW_ICustomServerEvent[K]>
@@ -28,6 +44,10 @@ export type RageFW_ServerEventReturn<K extends RageFW_ServerEvent> =
           ? ReturnType<IServerEvents[K]>
           : never
 
+/**
+ * Array of arguments for an event, name of which you pass as a generic
+ * These only include custom events
+ */
 export type RageFW_ServerEventCallbackCustom<
     K extends keyof RageFW_ICustomServerEvent = keyof RageFW_ICustomServerEvent,
 > = (
@@ -35,6 +55,10 @@ export type RageFW_ServerEventCallbackCustom<
     args: RageFW_ServerEventArguments<K>,
 ) => RageFW_ServerEventReturn<K>
 
+/**
+ * Array of arguments for an event, name of which you pass as a generic
+ * These only include system events
+ */
 export type RageFW_ServerEventCallbackNative<
     K extends keyof IServerEvents = keyof IServerEvents,
 > = IServerEvents[K]
