@@ -1,29 +1,30 @@
 import rpc from 'rage-rpc'
 import {
-    RageFW_ClientEventReturn,
+    RageFW_ClientCallback,
     RageFW_ClientEvent,
-    RageFW_ClientEventArguments,
-    RageFW_ClientServerCallback,
+    RageFW_ClientEventReturn,
     RageFW_ClientServerEvent,
+    RageFW_ClientServerEventArguments,
+    RageFW_ClientServerEventReturn,
 } from './types'
 
 class Client {
-    public register<EventName extends RageFW_ClientServerEvent>(
+    public register<EventName extends RageFW_ClientEvent>(
         eventName: EventName,
-        callback: RageFW_ClientServerCallback<EventName>,
+        callback: RageFW_ClientCallback<EventName>,
     ): void {
         rpc.register(eventName, data => {
-            return callback(...data)
+            return callback(data)
         })
     }
 }
 
 class Player {
-    public triggerServer<EventName extends RageFW_ClientEvent>(
+    public triggerServer<EventName extends RageFW_ClientServerEvent>(
         eventName: EventName,
-        ...args: RageFW_ClientEventArguments<EventName>
-    ): Promise<RageFW_ClientEventReturn<EventName>> {
-        return rpc.callServer(eventName, ...args)
+        args: RageFW_ClientServerEventArguments<EventName>,
+    ): Promise<RageFW_ClientServerEventReturn<EventName>> {
+        return rpc.callServer(eventName, args)
     }
 }
 
@@ -31,3 +32,6 @@ export const fw = {
     event: new Client(),
     player: new Player(),
 }
+
+fw.player.triggerServer('customServerEvent', ['wer'])
+fw.event.register('customClientEvent', ([arg1]) => true)

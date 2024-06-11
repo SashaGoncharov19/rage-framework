@@ -26,10 +26,7 @@ class Server {
                 args: Parameters<RageFW_ICustomServerEvent[EventName]>,
                 info,
             ) => {
-                return Array.isArray(args)
-                    ? callback(info.player as PlayerMp, ...args)
-                    : // @ts-ignore fixme spread tuple type no infer
-                      callback(info.player as PlayerMp, args)
+                callback(info.player as PlayerMp, args)
             },
         )
     }
@@ -83,7 +80,7 @@ class Player {
     public triggerClient<EventName extends RageFW_ClientEvent>(
         player: PlayerMp,
         eventName: EventName,
-        ...args: RageFW_ClientEventArguments<EventName>
+        args: RageFW_ClientEventArguments<EventName>,
     ): Promise<RageFW_ClientEventReturn<EventName>> {
         return rpc.callClient(player, eventName, args)
     }
