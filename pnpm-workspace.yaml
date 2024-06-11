@@ -1,5 +1,6 @@
 packages:
   - "server"
   - "client"
+  - "cef"
   - "shared"
   - "shared-types"
