@@ -9,7 +9,6 @@
     "composite": false,
     "target": "ES2022",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "moduleDetection": "auto",
     "module": "CommonJS",
     "resolveJsonModule": true,
