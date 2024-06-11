@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Base",
+  "exclude": [
+    "node_modules"
+  ],
+  "compilerOptions": {
+    "incremental": false,
+    "composite": false,
+    "target": "ES2022",
+    "experimentalDecorators": true,
+    "moduleDetection": "auto",
+    "module": "CommonJS",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": false,
+    "sourceMap": false,
+    "downlevelIteration": false,
+    "inlineSourceMap": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  }
+}
