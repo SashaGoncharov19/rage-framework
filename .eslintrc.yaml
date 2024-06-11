@@ -1,0 +1,31 @@
+env:
+  node: true
+  es6: true
+  es2019: true
+extends:
+  - 'eslint:recommended'
+  - 'plugin:@typescript-eslint/recommended'
+#  - 'prettier'
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaVersion: '2019'
+  sourceType: 'script'
+plugins:
+  - '@typescript-eslint'
+ignorePatterns:
+  - 'node_modules'
+rules: {
+  '@typescript-eslint/no-explicit-any': 'off',
+  '@typescript-eslint/no-unused-vars': [
+    'warn',
+    {
+      "argsIgnorePattern": '^_',
+      "varsIgnorePattern": '^_',
+      "caughtErrorsIgnorePattern": '^_'
+    }
+  ],
+  '@typescript-eslint/ban-ts-comment': 'off',
+  '@typescript-eslint/ban-types': 'off',
+  'consistent-return': 'warn',
+  'no-empty': 'off',
+}
