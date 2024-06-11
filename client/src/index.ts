@@ -1,8 +1,8 @@
 import rpc from 'rage-rpc'
-import {
-    RageFW_ClientCallback,
+
+import type {
+    RageFW_ClientEventCallback,
     RageFW_ClientEvent,
-    RageFW_ClientEventReturn,
     RageFW_ClientServerEvent,
     RageFW_ClientServerEventArguments,
     RageFW_ClientServerEventReturn,
@@ -11,7 +11,7 @@ import {
 class Client {
     public register<EventName extends RageFW_ClientEvent>(
         eventName: EventName,
-        callback: RageFW_ClientCallback<EventName>,
+        callback: RageFW_ClientEventCallback<EventName>,
     ): void {
         rpc.register(eventName, data => {
             return callback(data)

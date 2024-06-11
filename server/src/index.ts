@@ -1,15 +1,16 @@
 import rpc from 'rage-rpc'
-import {
+
+import type {
     RageFW_ClientEvent,
     RageFW_ClientEventArguments,
     RageFW_ClientEventReturn,
+    RageFW_ICustomServerEvent,
     RageFW_ServerEvent,
     RageFW_ServerEventCallback,
     RageFW_ServerEventCallbackCustom,
     RageFW_ServerEventCallbackNative,
-} from './types.js'
+} from './types'
 import { nativeEvents } from './native.events'
-import type { RageFW_ICustomServerEvent } from 'rage-fw-shared-types'
 
 class Server {
     private isNativeEvent(eventName: string): eventName is keyof IServerEvents {
