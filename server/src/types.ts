@@ -9,16 +9,15 @@ export type RageFW_ServerEvent =
     | keyof RageFW_ICustomServerEvent
     | keyof IServerEvents
 
-export type RageFW_ServerEventCallback<
-    K extends keyof RageFW_ICustomServerEvent | keyof IServerEvents,
-> = K extends keyof RageFW_ICustomServerEvent
-    ? (
-          player: PlayerMp,
-          ...args: Parameters<RageFW_ICustomServerEvent[K]>
-      ) => ReturnType<RageFW_ICustomServerEvent[K]>
-    : K extends keyof IServerEvents
-      ? ThisifyServerEvents[K]
-      : never
+export type RageFW_ServerEventCallback<K extends RageFW_ServerEvent> =
+    K extends keyof RageFW_ICustomServerEvent
+        ? (
+              player: PlayerMp,
+              ...args: Parameters<RageFW_ICustomServerEvent[K]>
+          ) => ReturnType<RageFW_ICustomServerEvent[K]>
+        : K extends keyof IServerEvents
+          ? ThisifyServerEvents[K]
+          : never
 
 export type RageFW_ClientEvent = keyof RageFW_ICustomClientEvent
 

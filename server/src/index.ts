@@ -9,14 +9,29 @@ import {
 import { nativeEvents } from './native.events'
 
 class Server {
+    private isNativeEvent(eventName: string): eventName is keyof IServerEvents {
+        return nativeEvents.includes(eventName)
+    }
+
+    public testRegister(
+        event: string,
+        callback: (player: PlayerMp, ...args: unknown[]) => void,
+    ) {
+        rpc.register(event, async (data, info) => {
+            callback(info.player as PlayerMp, ...data)
+        })
+    }
+
     public register<EventName extends RageFW_ServerEvent>(
         eventName: EventName,
         callback: RageFW_ServerEventCallback<EventName>,
     ): void {
-        if (nativeEvents.includes(eventName)) {
+        if (this.isNativeEvent(eventName)) {
             mp.events.add(eventName, callback)
         } else {
-            rpc.register(eventName, callback as rpc.ProcedureListener)
+            rpc.register(eventName, async (data: any[], info) => {
+                return callback(info.player as PlayerMp, data)
+            })
         }
     }
 
@@ -54,3 +69,9 @@ export const fw = {
     event: new Server(),
     player: new Player(),
 }
+
+fw.event.register('ggfdgfd', player => {})
+
+fw.event.registerMany({
+    trailerAttached: player => {},
+})
