@@ -1,5 +1,7 @@
 import rpc from 'rage-rpc'
 
+import Logger from './logger'
+
 import type {
     RageFW_ClientEvent,
     RageFW_ClientEventArguments,
@@ -90,4 +92,7 @@ class Player {
 export const fw = {
     event: new Server(),
     player: new Player(),
+    system: {
+        log: new Logger(),
+    },
 }
