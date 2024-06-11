@@ -51,7 +51,7 @@ class Server {
         } else {
             this.registerCustom(
                 eventName,
-                callback as RageFW_ServerEventCallbackCustom,
+                callback as unknown as RageFW_ServerEventCallbackCustom,
             )
         }
     }
@@ -69,7 +69,7 @@ class Server {
                 } else {
                     this.registerCustom(
                         eventName as keyof RageFW_ICustomServerEvent,
-                        callback as RageFW_ServerEventCallbackCustom,
+                        callback as unknown as RageFW_ServerEventCallbackCustom,
                     )
                 }
             },
