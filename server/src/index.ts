@@ -7,17 +7,19 @@ import {
     RageFW_ServerEventCallback,
 } from './types.js'
 import { nativeEvents } from './native.events'
-import type { RageFW_ICustomServerEvent } from 'rage-fw-shared-types'
 
 class Server {
     private isNativeEvent(eventName: string): eventName is keyof IServerEvents {
         return nativeEvents.includes(eventName)
     }
 
-    private isCustomEvent(
-        eventName: string,
-    ): eventName is keyof RageFW_ICustomServerEvent {
-        return !nativeEvents.includes(eventName)
+    public testRegister(
+        event: string,
+        callback: (player: PlayerMp, ...args: unknown[]) => void,
+    ) {
+        rpc.register(event, async (data, info) => {
+            callback(info.player as PlayerMp, ...data)
+        })
     }
 
     public register<EventName extends RageFW_ServerEvent>(
@@ -26,29 +28,30 @@ class Server {
     ): void {
         if (this.isNativeEvent(eventName)) {
             mp.events.add(eventName, callback)
-        } else if (this.isCustomEvent(eventName)) {
-            rpc.register(eventName, callback as rpc.ProcedureListener)
+        } else {
+            rpc.register(eventName, async (data: any[], info) => {
+                return callback(info.player as PlayerMp, data)
+            })
         }
     }
 
     public registerMany<EventName extends RageFW_ServerEvent>(events: {
         [event in EventName]: RageFW_ServerEventCallback<event>
     }): void {
-        Object.entries<RageFW_ServerEventCallback<EventName>>(events).map(
-            ([eventName, callback]) => {
-                if (this.isNativeEvent(eventName)) {
-                    mp.events.add(eventName, callback)
-                } else if (this.isCustomEvent(eventName)) {
-                    rpc.register(eventName, (args: unknown[]) => {
-                        return Array.isArray(args)
-                            ? (callback as (...arg: typeof args) => void)(
-                                  ...args,
-                              )
-                            : (callback as (arg: typeof args) => void)(args)
-                    })
-                }
-            },
-        )
+        Object.entries(events).map(([eventName, callback]) => {
+            if (nativeEvents.includes(eventName)) {
+                mp.events.add(
+                    eventName as keyof IServerEvents,
+                    callback as (...arg: unknown[]) => void,
+                )
+            } else {
+                rpc.register(eventName, (args: unknown[]) => {
+                    return Array.isArray(args)
+                        ? (callback as (...arg: typeof args) => void)(...args)
+                        : (callback as (arg: typeof args) => void)(args)
+                })
+            }
+        })
     }
 }
 
@@ -67,9 +70,8 @@ export const fw = {
     player: new Player(),
 }
 
+fw.event.register('ggfdgfd', player => {})
+
 fw.event.registerMany({
-    playerDeath: (player, arg, killer) => undefined,
-    customServerEvent(player, rofls) {
-        return true
-    },
+    trailerAttached: player => {},
 })

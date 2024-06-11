@@ -5,8 +5,6 @@ import type {
     RageFW_ICustomClientEvent,
 } from 'rage-fw-shared-types'
 
-// SERVER
-
 export type RageFW_ServerEvent =
     | keyof RageFW_ICustomServerEvent
     | keyof IServerEvents
@@ -18,10 +16,8 @@ export type RageFW_ServerEventCallback<K extends RageFW_ServerEvent> =
               ...args: Parameters<RageFW_ICustomServerEvent[K]>
           ) => ReturnType<RageFW_ICustomServerEvent[K]>
         : K extends keyof IServerEvents
-          ? IServerEvents[K]
+          ? ThisifyServerEvents[K]
           : never
-
-// CLIENT
 
 export type RageFW_ClientEvent = keyof RageFW_ICustomClientEvent
 
