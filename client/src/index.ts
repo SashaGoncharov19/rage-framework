@@ -32,6 +32,3 @@ export const fw = {
     event: new Client(),
     player: new Player(),
 }
-
-fw.player.triggerServer('customServerEvent', ['wer'])
-fw.event.register('customClientEvent', ([arg1]) => true)

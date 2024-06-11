@@ -91,10 +91,3 @@ export const fw = {
     event: new Server(),
     player: new Player(),
 }
-
-fw.event.register('customServerEvent', (player, args) => true)
-fw.event.register('playerDeath', (player, args, killer) => {})
-
-fw.event.registerMany({
-    trailerAttached: (vehicle, trailer) => undefined,
-})
