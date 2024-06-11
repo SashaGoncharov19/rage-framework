@@ -2,7 +2,7 @@
     "name": "rage-fw-client",
     "version": "0.0.15-alpha.0",
     "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "types": "dist/src/index.d.ts",
     "files": [
         "dist/**/*"
     ],
@@ -10,9 +10,11 @@
         "build": "tsup"
     },
     "dependencies": {
-        "@ragempcommunity/types-client": "^2.1.8",
         "rage-fw-shared-types": "workspace:^",
         "rage-rpc": "^0.4.0"
+    },
+    "peerDependencies": {
+        "@ragempcommunity/types-client": "^2.1.8"
     },
     "keywords": [],
     "author": "SashaGoncharov19",
