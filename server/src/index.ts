@@ -3,6 +3,9 @@ import rpc from 'rage-rpc'
 import Logger from './logger'
 
 import {
+    RageFW_CefArgs,
+    RageFW_CefEvent,
+    RageFW_CefReturn,
     RageFW_ClientEvent,
     RageFW_ClientEventArguments,
     RageFW_ClientEventReturn,
@@ -115,6 +118,14 @@ class Player {
     ): Promise<RageFW_ClientEventReturn<EventName>> {
         return rpc.callClient(player, eventName, args)
     }
+
+    public triggerBrowser<EventName extends RageFW_CefEvent>(
+        player: PlayerMp,
+        eventName: EventName,
+        args: RageFW_CefArgs<EventName>,
+    ): Promise<RageFW_CefReturn<EventName>> {
+        return rpc.callBrowsers(player, eventName, args)
+    }
 }
 
 export const fw = {
@@ -124,3 +135,7 @@ export const fw = {
         log: new Logger(),
     },
 }
+
+fw.system.log.info(
+    'Working on Rage Framework. RageFW © Powered by Entity Seven Group',
+)
