@@ -10,11 +10,11 @@
         "build": "tsup"
     },
     "dependencies": {
-        "rage-fw-shared-types": "workspace:^",
         "rage-rpc": "^0.4.0"
     },
     "peerDependencies": {
-        "@ragempcommunity/types-client": "^2.1.8"
+        "@ragempcommunity/types-client": "^2.1.8",
+        "rage-fw-shared-types": "workspace:^"
     },
     "keywords": [],
     "author": "SashaGoncharov19",
