@@ -1,6 +1,6 @@
 {
     "name": "rage-fw-client",
-    "version": "0.0.18-alpha.0",
+    "version": "0.0.19-alpha.0",
     "main": "dist/index.js",
     "types": "dist/src/index.d.ts",
     "files": [
