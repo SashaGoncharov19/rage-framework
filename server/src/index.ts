@@ -102,7 +102,7 @@ class Server {
         }
     }
 
-    private trigger<EventName extends keyof RageFW_ICustomServerEvent>(
+    public trigger<EventName extends keyof RageFW_ICustomServerEvent>(
         eventName: EventName,
         args: RageFW_ServerEventArguments<EventName>,
     ): Promise<RageFW_ServerEventReturn<EventName>> {
