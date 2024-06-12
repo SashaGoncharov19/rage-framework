@@ -59,7 +59,9 @@ class Player {
             throw new Error('You need to initialize browser first!')
         return rpc.callBrowser(this.browser, eventName, args)
     }
+}
 
+class Browser extends Player {
     public registerBrowser(browser: BrowserMp) {
         this.browser = browser
         return browser
@@ -69,6 +71,7 @@ class Player {
 export const fw = {
     event: new Client(),
     player: new Player(),
+    browser: new Browser(),
     system: {
         log: new Logger(),
     },
