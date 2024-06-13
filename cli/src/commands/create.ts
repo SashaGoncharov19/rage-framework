@@ -1,4 +1,4 @@
-import type { CommandModule, ArgumentsCamelCase } from 'yargs'
+import type { CommandModule } from 'yargs'
 import c from 'chalk'
 import { input, select } from '@inquirer/prompts'
 import clone from 'git-clone'
