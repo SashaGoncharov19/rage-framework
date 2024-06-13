@@ -48,7 +48,7 @@ export async function initProject() {
 
     clone(
         'https://git.entityseven.com/entityseven/rage-framework-example',
-        path.join(__dirname, folder),
+        path.join(process.cwd(), folder),
         {},
         err => {
             if (err) {
@@ -57,8 +57,8 @@ export async function initProject() {
             }
             console.log(c.gray('Scaffolded project into'), folder)
             console.log(
-                c.blueBright(
-                    'Working on Rage Framework. RageFW © Powered by Entity Seven Group',
+                c.gray(
+                    `Project was created ar dir: ${path.join(process.cwd(), folder)}`,
                 ),
             )
         },
