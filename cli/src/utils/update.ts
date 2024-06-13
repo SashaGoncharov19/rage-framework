@@ -18,7 +18,7 @@ export async function checkForUpdate(): Promise<void> {
                 .then(({ data }) => {
                     const latestVersion = data[0].name
 
-                    if (!(latestVersion === version))
+                    if (latestVersion !== `v${version}`)
                         notifyUserAboutUpdate(latestVersion)
                 })
                 .then(() => res()),

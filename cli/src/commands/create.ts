@@ -1,31 +1,11 @@
-import type { CommandModule, Argv, ArgumentsCamelCase } from 'yargs'
 import c from 'chalk'
 import { input, select } from '@inquirer/prompts'
 import clone from 'git-clone'
 import path from 'node:path'
 
-import { checkForUpdate } from '../utils/update'
-
-function builder(yargs: Argv) {
-    return yargs
-        .option('projectName', {
-            alias: 'p',
-            description: 'Name of the folder to scaffold a project to',
-            type: 'string',
-            demandOption: false,
-        })
-        .option('template', {
-            alias: 't',
-            description: 'Frontend framework to use for CEF',
-            type: 'string',
-            demandOption: false,
-        })
-        .middleware(async () => await checkForUpdate())
-}
-
-async function handler(args: ArgumentsCamelCase) {
-    let folder = (args.projectName as string) ?? args.p
-    let framework = (args.template as string) ?? args.t
+export async function initProject() {
+    let folder
+    let framework
 
     if (!folder) {
         folder = await input({
@@ -84,13 +64,3 @@ async function handler(args: ArgumentsCamelCase) {
         },
     )
 }
-
-const init: CommandModule = {
-    command: 'create [folderName] [template]',
-    aliases: 'c',
-    describe: 'Scaffold a template project using RageFW',
-    builder,
-    handler,
-}
-
-export default init
