@@ -1,6 +1,6 @@
 {
     "name": "rage-fw-cef",
-    "version": "0.0.26-alpha.0",
+    "version": "0.0.27-alpha.0",
     "main": "dist/index.js",
     "types": "dist/src/index.d.ts",
     "files": [
