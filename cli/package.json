@@ -1,12 +1,14 @@
 {
-  "name": "rage-framework-cli",
+  "name": "rage-fw",
   "version": "0.0.23",
   "bin": {
-    "rage-fw": "bin/index.js"
+    "rage-fw": "dist/index.js"
   },
-  "main": "bin/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "build": "tsup",
+    "start": "npx ./dist create"
   },
   "description": "CLI to scaffold a template project for RageFW",
   "keywords": [],
@@ -16,7 +18,8 @@
     "@inquirer/prompts": "^5.0.5",
     "chalk": "4.1.2",
     "git-clone": "^0.2.0",
-    "yargs": "^17.7.2"
+    "yargs": "^17.7.2",
+    "axios": "^1.7.2"
   },
   "devDependencies": {
     "@types/git-clone": "^0.2.4",
