@@ -1,6 +1,9 @@
 /// <reference types="@ragempcommunity/types-client" />
 
-import type { RageFW_ICustomServerEvent } from 'rage-fw-shared-types'
+import type {
+    RageFW_ICustomClientEvent,
+    RageFW_ICustomServerEvent,
+} from 'rage-fw-shared-types'
 
 /**
  * Union of all available server event names callable from client
@@ -26,3 +29,11 @@ export type RageFW_ClientServerEventReturn<K extends RageFW_ClientServerEvent> =
     K extends keyof RageFW_ICustomServerEvent
         ? ReturnType<RageFW_ICustomServerEvent[K]>
         : never
+
+export type _ServerEventHasArgs<
+    EventName extends keyof RageFW_ICustomServerEvent,
+> = keyof RageFW_ICustomClientEvent extends never
+    ? false
+    : Parameters<RageFW_ICustomServerEvent[EventName]>[0] extends undefined
+      ? false
+      : true

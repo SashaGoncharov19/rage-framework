@@ -3,12 +3,11 @@ import rpc from 'rage-rpc'
 import Logger from './logger'
 
 import {
-    RageFW_CefArgs,
-    RageFW_CefEvent,
-    RageFW_CefReturn,
+    _ClientEventHasArgs,
+    _ServerEventHasArgs,
     RageFW_ClientEvent,
-    RageFW_ClientEventArguments,
-    RageFW_ClientEventReturn,
+    RageFW_ServerClientEventArguments,
+    RageFW_ServerClientEventReturn,
     RageFW_ICustomServerEvent,
     RageFW_ServerEvent,
     RageFW_ServerEventArguments,
@@ -104,7 +103,9 @@ class Server {
 
     public trigger<EventName extends keyof RageFW_ICustomServerEvent>(
         eventName: EventName,
-        args: RageFW_ServerEventArguments<EventName>,
+        ...args: _ServerEventHasArgs<EventName> extends true
+            ? [RageFW_ServerEventArguments<EventName>]
+            : []
     ): Promise<RageFW_ServerEventReturn<EventName>> {
         return rpc.call<RageFW_ServerEventReturn<EventName>>(eventName, args)
     }
@@ -114,17 +115,11 @@ class Player {
     public triggerClient<EventName extends RageFW_ClientEvent>(
         player: PlayerMp,
         eventName: EventName,
-        args: RageFW_ClientEventArguments<EventName>,
-    ): Promise<RageFW_ClientEventReturn<EventName>> {
+        ...args: _ClientEventHasArgs<EventName> extends true
+            ? [RageFW_ServerClientEventArguments<EventName>]
+            : []
+    ): Promise<RageFW_ServerClientEventReturn<EventName>> {
         return rpc.callClient(player, eventName, args)
-    }
-
-    public triggerBrowser<EventName extends RageFW_CefEvent>(
-        player: PlayerMp,
-        eventName: EventName,
-        args: RageFW_CefArgs<EventName>,
-    ): Promise<RageFW_CefReturn<EventName>> {
-        return rpc.callBrowsers(player, eventName, args)
     }
 }
 
@@ -135,7 +130,3 @@ export const fw = {
         log: new Logger(),
     },
 }
-
-fw.system.log.info(
-    'Working on Rage Framework. RageFW © Powered by Entity Seven Group',
-)
