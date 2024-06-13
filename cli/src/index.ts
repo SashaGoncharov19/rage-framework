@@ -1,9 +1,6 @@
 import yargs from 'yargs'
 
 import create from './commands/create'
-import { checkForUpdate } from './utils/update'
-
-yargs.middleware(checkForUpdate)
 
 yargs
     .usage('<cmd> [args]')

@@ -4,6 +4,8 @@ import { input, select } from '@inquirer/prompts'
 import clone from 'git-clone'
 import path from 'node:path'
 
+import { checkForUpdate } from '../utils/update'
+
 function builder(yargs: Argv) {
     return yargs
         .option('projectName', {
@@ -18,6 +20,7 @@ function builder(yargs: Argv) {
             type: 'string',
             demandOption: false,
         })
+        .middleware(async () => await checkForUpdate())
 }
 
 async function handler(args: ArgumentsCamelCase) {
