@@ -3,19 +3,19 @@ import rpc from 'rage-rpc'
 import Logger from './logger'
 
 import {
-    RageFW_ClientEventCallback,
+    _CefEventHasArgs,
+    _ClientEventHasArgs,
+    _ServerEventHasArgs,
+    RageFW_CefArgs,
+    RageFW_CefEvent,
+    RageFW_CefReturn,
     RageFW_ClientEvent,
+    RageFW_ClientEventArguments,
+    RageFW_ClientEventCallback,
+    RageFW_ClientEventReturn,
     RageFW_ClientServerEvent,
     RageFW_ClientServerEventArguments,
     RageFW_ClientServerEventReturn,
-    RageFW_ClientEventArguments,
-    RageFW_ClientEventReturn,
-    _ClientEventHasArgs,
-    _ServerEventHasArgs,
-    RageFW_CefEvent,
-    RageFW_CefArgs,
-    RageFW_CefReturn,
-    _CefEventHasArgs,
 } from './types'
 
 import type { RageFW_ICustomClientEvent } from 'rage-fw-shared-types'

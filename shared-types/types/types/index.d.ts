@@ -3,5 +3,7 @@ declare module 'rage-fw-shared-types' {
 
     export interface RageFW_ICustomClientEvent {}
 
-    export interface RageFW_ICustomCefEvent {}
+    export interface RageFW_ICustomCefEvent {
+        test(test: string): void
+    }
 }
