@@ -1,6 +1,6 @@
 {
     "name": "rage-fw-server",
-    "version": "0.0.28-alpha.0",
+    "version": "0.0.29-alpha.0",
     "main": "dist/index.js",
     "types": "dist/src/index.d.ts",
     "files": [
