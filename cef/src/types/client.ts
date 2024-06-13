@@ -22,3 +22,11 @@ export type RageFW_ClientArguments<K extends RageFW_ClientEvent> = Parameters<
 export type RageFW_ClientReturn<K extends RageFW_ClientEvent> = ReturnType<
     RageFW_ICustomClientEvent[K]
 >
+
+export type _ClientEventHasArgs<
+    EventName extends keyof RageFW_ICustomClientEvent,
+> = keyof RageFW_ICustomClientEvent extends never
+    ? false
+    : Parameters<RageFW_ICustomClientEvent[EventName]>[0] extends undefined
+      ? false
+      : true

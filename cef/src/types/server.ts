@@ -22,3 +22,11 @@ export type RageFW_ServerArguments<K extends RageFW_ServerEvent> = Parameters<
 export type RageFW_ServerReturn<K extends RageFW_ServerEvent> = ReturnType<
     RageFW_ICustomServerEvent[K]
 >
+
+export type _ServerEventHasArgs<
+    EventName extends keyof RageFW_ICustomServerEvent,
+> = keyof RageFW_ICustomServerEvent extends never
+    ? false
+    : Parameters<RageFW_ICustomServerEvent[EventName]>[0] extends undefined
+      ? false
+      : true

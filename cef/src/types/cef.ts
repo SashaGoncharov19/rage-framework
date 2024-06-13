@@ -30,3 +30,10 @@ export type RageFW_CefReturn<K extends RageFW_CefEvent> = ReturnType<
 export type RageFW_CefCallback<K extends keyof RageFW_ICustomCefEvent> = (
     args: RageFW_CefArguments<K>,
 ) => RageFW_CefReturn<K>
+
+export type _CefEventHasArgs<EventName extends keyof RageFW_ICustomCefEvent> =
+    keyof RageFW_ICustomCefEvent extends never
+        ? false
+        : Parameters<RageFW_ICustomCefEvent[EventName]>[0] extends undefined
+          ? false
+          : true
