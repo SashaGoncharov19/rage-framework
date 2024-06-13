@@ -15,6 +15,7 @@ import {
     RageFW_CefEvent,
     RageFW_CefArgs,
     RageFW_CefReturn,
+    _CefEventHasArgs,
 } from './types'
 
 import type { RageFW_ICustomClientEvent } from 'rage-fw-shared-types'
@@ -59,7 +60,9 @@ class Player {
 
     public triggerBrowser<EventName extends RageFW_CefEvent>(
         eventName: EventName,
-        args: RageFW_CefArgs<EventName>,
+        ...args: _CefEventHasArgs<EventName> extends true
+            ? [RageFW_CefArgs<EventName>]
+            : []
     ): Promise<RageFW_CefReturn<EventName>> {
         if (!this.browser)
             throw new Error('You need to initialize browser first!')
