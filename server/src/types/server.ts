@@ -20,9 +20,9 @@ export type RageFW_ServerEvent =
  */
 export type RageFW_ServerEventArguments<K extends RageFW_ServerEvent> =
     K extends keyof RageFW_ICustomServerEvent
-        ? Parameters<RageFW_ServerEventCallbackCustom<K>>
+        ? Parameters<RageFW_ICustomServerEvent[K]>
         : K extends keyof IServerEvents
-          ? Parameters<RageFW_ServerEventCallbackNative<K>>
+          ? Parameters<IServerEvents[K]>
           : never
 
 /**
