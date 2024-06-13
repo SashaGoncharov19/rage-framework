@@ -6,6 +6,7 @@ import {
     RageFW_CefArgs,
     RageFW_CefEvent,
     RageFW_CefReturn,
+    _CefEventHasArgs,
     _ClientEventHasArgs,
     _ServerEventHasArgs,
     RageFW_ClientEvent,
@@ -128,7 +129,9 @@ class Player {
     public triggerBrowser<EventName extends RageFW_CefEvent>(
         player: PlayerMp,
         eventName: EventName,
-        args: RageFW_CefArgs<EventName>,
+        ...args: _CefEventHasArgs<EventName> extends true
+            ? [RageFW_CefArgs<EventName>]
+            : []
     ): Promise<RageFW_CefReturn<EventName>> {
         return rpc.callBrowsers(player, eventName, args)
     }
