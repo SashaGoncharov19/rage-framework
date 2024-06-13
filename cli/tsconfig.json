@@ -3,7 +3,7 @@
     "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
-
+    "lib": ["DOM", "ES6"],
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
@@ -16,7 +16,7 @@
     "noImplicitAny": true
   },
   "include": [
-    "src/index.ts"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules"

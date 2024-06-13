@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@microsoft/api-extractor':
         specifier: ^7.47.0
-        version: 7.47.0
+        version: 7.47.0(@types/node@20.14.2)
       '@ragempcommunity/types-cef':
         specifier: ^2.1.8
         version: 2.1.8
@@ -40,7 +40,7 @@ importers:
         version: 0.4.0
       tsup:
         specifier: ^8.1.0
-        version: 8.1.0(@microsoft/api-extractor@7.47.0)(typescript@5.4.5)
+        version: 8.1.0(@microsoft/api-extractor@7.47.0(@types/node@20.14.2))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
@@ -59,6 +59,37 @@ importers:
       rage-rpc:
         specifier: ^0.4.0
         version: 0.4.0
+
+  cli:
+    dependencies:
+      '@inquirer/prompts':
+        specifier: ^5.0.5
+        version: 5.0.5
+      chalk:
+        specifier: 4.1.2
+        version: 4.1.2
+      git-clone:
+        specifier: ^0.2.0
+        version: 0.2.0
+      yargs:
+        specifier: ^17.7.2
+        version: 17.7.2
+    devDependencies:
+      '@types/git-clone':
+        specifier: ^0.2.4
+        version: 0.2.4
+      '@types/node':
+        specifier: ^20.14.2
+        version: 20.14.2
+      '@types/yargs':
+        specifier: ^17.0.32
+        version: 17.0.32
+      prettier:
+        specifier: ^3.3.2
+        version: 3.3.2
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
 
   client:
     dependencies:
@@ -279,6 +310,54 @@ packages:
   '@hutson/parse-repository-url@3.0.2':
     resolution: {integrity: sha512-H9XAx3hc0BQHY6l+IFSWHDySypcXsvsuLhgYLUGywmJ5pswRVQJUHpOsobnLYp2ZUaUlKiKDrgWWhosOwAEM8Q==}
     engines: {node: '>=6.9.0'}
+
+  '@inquirer/checkbox@2.3.5':
+    resolution: {integrity: sha512-3V0OSykTkE/38GG1DhxRGLBmqefgzRg2EK5A375zz+XEvIWfAHcac31e+zlBDPypRHxhmXc/Oh6v9eOPbH3nAg==}
+    engines: {node: '>=18'}
+
+  '@inquirer/confirm@3.1.9':
+    resolution: {integrity: sha512-UF09aejxCi4Xqm6N/jJAiFXArXfi9al52AFaSD+2uIHnhZGtd1d6lIGTRMPouVSJxbGEi+HkOWSYaiEY/+szUw==}
+    engines: {node: '>=18'}
+
+  '@inquirer/core@8.2.2':
+    resolution: {integrity: sha512-K8SuNX45jEFlX3EBJpu9B+S2TISzMPGXZIuJ9ME924SqbdW6Pt6fIkKvXg7mOEOKJ4WxpQsxj0UTfcL/A434Ww==}
+    engines: {node: '>=18'}
+
+  '@inquirer/editor@2.1.9':
+    resolution: {integrity: sha512-5xCD7CoCh993YqXcsZPt45qkE3gl+03Yfv9vmAkptRi4nrzaUDmyhgBzndKdRG8SrKbQLBmOtztnRLGxvG/ahg==}
+    engines: {node: '>=18'}
+
+  '@inquirer/expand@2.1.9':
+    resolution: {integrity: sha512-ymnR8qu2ie/3JpOeyZ3QSGJ+ai8qqtjBwopxLjzIZm7mZVKT6SV1sURzijkOLRgGUHwPemOfYX5biqXuqhpoBg==}
+    engines: {node: '>=18'}
+
+  '@inquirer/figures@1.0.3':
+    resolution: {integrity: sha512-ErXXzENMH5pJt5/ssXV0DfWUZqly8nGzf0UcBV9xTnP+KyffE2mqyxIMBrZ8ijQck2nU0TQm40EQB53YreyWHw==}
+    engines: {node: '>=18'}
+
+  '@inquirer/input@2.1.9':
+    resolution: {integrity: sha512-1xTCHmIe48x9CG1+8glAHrVVdH+QfYhzgBUbgyoVpp5NovnXgRcjSn/SNulepxf9Ol8HDq3gzw3ZCAUr+h1Eyg==}
+    engines: {node: '>=18'}
+
+  '@inquirer/password@2.1.9':
+    resolution: {integrity: sha512-QPtVcT12Fkn0TyuZJelR7QOtc5l1d/6pB5EfkHOivTzC6QTFxRCHl+Gx7Q3E2U/kgJeCCmDov6itDFggk9nkgA==}
+    engines: {node: '>=18'}
+
+  '@inquirer/prompts@5.0.5':
+    resolution: {integrity: sha512-LV2XZzc8ls4zhUzYNSpsXcnA8djOptY4G01lFzp3Bey6E1oiZMzIU25N9cb5AOwNz6pqDXpjLwRFQmLQ8h6PaQ==}
+    engines: {node: '>=18'}
+
+  '@inquirer/rawlist@2.1.9':
+    resolution: {integrity: sha512-GuMmfa/v1ZJqEWSkUx1hMxzs5/0DCUP0S8IicV/wu8QrbjfBOh+7mIQgtsvh8IJ3sRkRcQ+9wh9CE9jiYqyMgw==}
+    engines: {node: '>=18'}
+
+  '@inquirer/select@2.3.5':
+    resolution: {integrity: sha512-IyBj8oEtmdF2Gx4FJTPtEya37MD6s0KATKsHqgmls0lK7EQbhYSq9GQlcFq6cBsYe/cgQ0Fg2cCqYYPi/d/fxQ==}
+    engines: {node: '>=18'}
+
+  '@inquirer/type@1.3.3':
+    resolution: {integrity: sha512-xTUt0NulylX27/zMx04ZYar/kr1raaiFTVvQ5feljQsiAgdm0WPj4S73/ye0fbslh+15QrIuDvfCXTek7pMY5A==}
+    engines: {node: '>=18'}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -684,17 +763,35 @@ packages:
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
 
+  '@types/git-clone@0.2.4':
+    resolution: {integrity: sha512-1ybApDpKU12dychtOp2zBe93ZwAsxVSjOqKUqH7NCDm4GXuPnjmcz2P9K2S1z+BCX2AnLmFFuB6pI6CMZ3j9sQ==}
+
   '@types/minimatch@3.0.5':
     resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
 
   '@types/minimist@1.2.5':
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
 
+  '@types/mute-stream@0.0.4':
+    resolution: {integrity: sha512-CPM9nzrCPPJHQNA9keH9CVkVI+WR5kMa+7XEs5jcGQ0VoAGnLv242w8lIVgwAEfmE4oufJRaTc9PNLQl0ioAow==}
+
+  '@types/node@20.14.2':
+    resolution: {integrity: sha512-xyu6WAMVwv6AKFLB+e/7ySZVr/0zLCzOa7rSpq6jNwpqOrUbcACDWC+53d4n2QHOnDou0fbIsg8wZu/sxrnI4Q==}
+
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
 
   '@types/triple-beam@1.3.5':
     resolution: {integrity: sha512-6WaYesThRMCl19iryMYP7/x2OVgCtbIVflDGFpWnb9irXI3UjYE4AzmYuiUKY1AJstGijoY+MgUszMgRxIYTYw==}
+
+  '@types/wrap-ansi@3.0.0':
+    resolution: {integrity: sha512-ltIpx+kM7g/MLRZfkbL7EsCEjfzCcScLpkg37eXEtx5kmrAKBkTJwd1GIAjDSL8wTpM6Hzn5YO4pSb91BEwu1g==}
+
+  '@types/yargs-parser@21.0.3':
+    resolution: {integrity: sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==}
+
+  '@types/yargs@17.0.32':
+    resolution: {integrity: sha512-xQ67Yc/laOG5uMfX/093MRlGGCIBzZMarVa+gfNKJxWAIgykYpVGkBdbqEzGDDfCrVUj6Hiff4mTZ5BA6TmAog==}
 
   '@typescript-eslint/eslint-plugin@7.13.0':
     resolution: {integrity: sha512-FX1X6AF0w8MdVFLSdqwqN/me2hyhuQg4ykN6ZpVhh1ij/80pTvDKclX1sZB9iqex8SjQfVhwMKs3JtnnMLzG9w==}
@@ -1029,6 +1126,10 @@ packages:
   cli-width@3.0.0:
     resolution: {integrity: sha512-FxqpkPPwu1HjuN93Omfm4h8uIanXofW0RxVEW3k5RKx+mJJYSthzNhp32Kzxxy3YAEZ/Dc/EWN1vZRY0+kOhbw==}
     engines: {node: '>= 10'}
+
+  cli-width@4.1.0:
+    resolution: {integrity: sha512-ouuZd4/dm2Sw5Gmqy6bGyNNNe1qt9RpmxveLSO7KcgsTnU7RXfsw+/bukWGo1abgBiMAic068rclZsO4IWmmxQ==}
+    engines: {node: '>= 12'}
 
   cliui@7.0.4:
     resolution: {integrity: sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==}
@@ -1475,6 +1576,9 @@ packages:
   get-stream@6.0.1:
     resolution: {integrity: sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg==}
     engines: {node: '>=10'}
+
+  git-clone@0.2.0:
+    resolution: {integrity: sha512-1UAkEPIFbyjHaddljUKvPhhLRnrKaImT71T7rdvSvWLXw95nLdhdi6Qmlx0KOWoV1qqvHGLq5lMLJEZM0JXk8A==}
 
   git-raw-commits@3.0.0:
     resolution: {integrity: sha512-b5OHmZ3vAgGrDn/X0kS+9qCfNKWe4K/jFnhwzVWWg0/k5eLa3060tZShrRg8Dja5kPc+YjS0Gc6y7cRr44Lpjw==}
@@ -2967,6 +3071,9 @@ packages:
     engines: {node: '>=0.8.0'}
     hasBin: true
 
+  undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+
   unique-filename@3.0.0:
     resolution: {integrity: sha512-afXhuC55wkAmZ0P18QsVE6kp8JaxrEokN2HGIoIVv2ijHQd419H0+6EigAFcIzXeMIkcIkNBpB3L/DXB3cTS/g==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
@@ -3249,6 +3356,87 @@ snapshots:
 
   '@hutson/parse-repository-url@3.0.2': {}
 
+  '@inquirer/checkbox@2.3.5':
+    dependencies:
+      '@inquirer/core': 8.2.2
+      '@inquirer/figures': 1.0.3
+      '@inquirer/type': 1.3.3
+      ansi-escapes: 4.3.2
+      chalk: 4.1.2
+
+  '@inquirer/confirm@3.1.9':
+    dependencies:
+      '@inquirer/core': 8.2.2
+      '@inquirer/type': 1.3.3
+
+  '@inquirer/core@8.2.2':
+    dependencies:
+      '@inquirer/figures': 1.0.3
+      '@inquirer/type': 1.3.3
+      '@types/mute-stream': 0.0.4
+      '@types/node': 20.14.2
+      '@types/wrap-ansi': 3.0.0
+      ansi-escapes: 4.3.2
+      chalk: 4.1.2
+      cli-spinners: 2.9.2
+      cli-width: 4.1.0
+      mute-stream: 1.0.0
+      signal-exit: 4.1.0
+      strip-ansi: 6.0.1
+      wrap-ansi: 6.2.0
+
+  '@inquirer/editor@2.1.9':
+    dependencies:
+      '@inquirer/core': 8.2.2
+      '@inquirer/type': 1.3.3
+      external-editor: 3.1.0
+
+  '@inquirer/expand@2.1.9':
+    dependencies:
+      '@inquirer/core': 8.2.2
+      '@inquirer/type': 1.3.3
+      chalk: 4.1.2
+
+  '@inquirer/figures@1.0.3': {}
+
+  '@inquirer/input@2.1.9':
+    dependencies:
+      '@inquirer/core': 8.2.2
+      '@inquirer/type': 1.3.3
+
+  '@inquirer/password@2.1.9':
+    dependencies:
+      '@inquirer/core': 8.2.2
+      '@inquirer/type': 1.3.3
+      ansi-escapes: 4.3.2
+
+  '@inquirer/prompts@5.0.5':
+    dependencies:
+      '@inquirer/checkbox': 2.3.5
+      '@inquirer/confirm': 3.1.9
+      '@inquirer/editor': 2.1.9
+      '@inquirer/expand': 2.1.9
+      '@inquirer/input': 2.1.9
+      '@inquirer/password': 2.1.9
+      '@inquirer/rawlist': 2.1.9
+      '@inquirer/select': 2.3.5
+
+  '@inquirer/rawlist@2.1.9':
+    dependencies:
+      '@inquirer/core': 8.2.2
+      '@inquirer/type': 1.3.3
+      chalk: 4.1.2
+
+  '@inquirer/select@2.3.5':
+    dependencies:
+      '@inquirer/core': 8.2.2
+      '@inquirer/figures': 1.0.3
+      '@inquirer/type': 1.3.3
+      ansi-escapes: 4.3.2
+      chalk: 4.1.2
+
+  '@inquirer/type@1.3.3': {}
+
   '@isaacs/cliui@8.0.2':
     dependencies:
       string-width: 5.1.2
@@ -3354,23 +3542,23 @@ snapshots:
       - supports-color
       - typescript
 
-  '@microsoft/api-extractor-model@7.29.2':
+  '@microsoft/api-extractor-model@7.29.2(@types/node@20.14.2)':
     dependencies:
       '@microsoft/tsdoc': 0.15.0
       '@microsoft/tsdoc-config': 0.17.0
-      '@rushstack/node-core-library': 5.4.1
+      '@rushstack/node-core-library': 5.4.1(@types/node@20.14.2)
     transitivePeerDependencies:
       - '@types/node'
 
-  '@microsoft/api-extractor@7.47.0':
+  '@microsoft/api-extractor@7.47.0(@types/node@20.14.2)':
     dependencies:
-      '@microsoft/api-extractor-model': 7.29.2
+      '@microsoft/api-extractor-model': 7.29.2(@types/node@20.14.2)
       '@microsoft/tsdoc': 0.15.0
       '@microsoft/tsdoc-config': 0.17.0
-      '@rushstack/node-core-library': 5.4.1
+      '@rushstack/node-core-library': 5.4.1(@types/node@20.14.2)
       '@rushstack/rig-package': 0.5.2
-      '@rushstack/terminal': 0.13.0
-      '@rushstack/ts-command-line': 4.22.0
+      '@rushstack/terminal': 0.13.0(@types/node@20.14.2)
+      '@rushstack/ts-command-line': 4.22.0(@types/node@20.14.2)
       lodash: 4.17.21
       minimatch: 3.0.8
       resolve: 1.22.8
@@ -3649,7 +3837,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.18.0':
     optional: true
 
-  '@rushstack/node-core-library@5.4.1':
+  '@rushstack/node-core-library@5.4.1(@types/node@20.14.2)':
     dependencies:
       ajv: 8.13.0
       ajv-draft-04: 1.0.0(ajv@8.13.0)
@@ -3659,20 +3847,24 @@ snapshots:
       jju: 1.4.0
       resolve: 1.22.8
       semver: 7.5.4
+    optionalDependencies:
+      '@types/node': 20.14.2
 
   '@rushstack/rig-package@0.5.2':
     dependencies:
       resolve: 1.22.8
       strip-json-comments: 3.1.1
 
-  '@rushstack/terminal@0.13.0':
+  '@rushstack/terminal@0.13.0(@types/node@20.14.2)':
     dependencies:
-      '@rushstack/node-core-library': 5.4.1
+      '@rushstack/node-core-library': 5.4.1(@types/node@20.14.2)
       supports-color: 8.1.1
+    optionalDependencies:
+      '@types/node': 20.14.2
 
-  '@rushstack/ts-command-line@4.22.0':
+  '@rushstack/ts-command-line@4.22.0(@types/node@20.14.2)':
     dependencies:
-      '@rushstack/terminal': 0.13.0
+      '@rushstack/terminal': 0.13.0(@types/node@20.14.2)
       '@types/argparse': 1.0.38
       argparse: 1.0.10
       string-argv: 0.3.2
@@ -3754,13 +3946,31 @@ snapshots:
 
   '@types/estree@1.0.5': {}
 
+  '@types/git-clone@0.2.4': {}
+
   '@types/minimatch@3.0.5': {}
 
   '@types/minimist@1.2.5': {}
 
+  '@types/mute-stream@0.0.4':
+    dependencies:
+      '@types/node': 20.14.2
+
+  '@types/node@20.14.2':
+    dependencies:
+      undici-types: 5.26.5
+
   '@types/normalize-package-data@2.4.4': {}
 
   '@types/triple-beam@1.3.5': {}
+
+  '@types/wrap-ansi@3.0.0': {}
+
+  '@types/yargs-parser@21.0.3': {}
+
+  '@types/yargs@17.0.32':
+    dependencies:
+      '@types/yargs-parser': 21.0.3
 
   '@typescript-eslint/eslint-plugin@7.13.0(@typescript-eslint/parser@7.13.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)':
     dependencies:
@@ -4119,6 +4329,8 @@ snapshots:
   cli-spinners@2.9.2: {}
 
   cli-width@3.0.0: {}
+
+  cli-width@4.1.0: {}
 
   cliui@7.0.4:
     dependencies:
@@ -4625,6 +4837,8 @@ snapshots:
 
   get-stream@6.0.1: {}
 
+  git-clone@0.2.0: {}
+
   git-raw-commits@3.0.0:
     dependencies:
       dargs: 7.0.0
@@ -4945,13 +5159,13 @@ snapshots:
   jake@10.9.1:
     dependencies:
       async: 3.2.5
-      chalk: 4.1.0
+      chalk: 4.1.2
       filelist: 1.0.4
       minimatch: 3.1.2
 
   jest-diff@29.7.0:
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       diff-sequences: 29.6.3
       jest-get-type: 29.6.3
       pretty-format: 29.7.0
@@ -5542,7 +5756,7 @@ snapshots:
       '@yarnpkg/parsers': 3.0.0-rc.46
       '@zkochan/js-yaml': 0.0.7
       axios: 1.7.2
-      chalk: 4.1.0
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
       cliui: 8.0.1
@@ -5617,7 +5831,7 @@ snapshots:
   ora@5.3.0:
     dependencies:
       bl: 4.1.0
-      chalk: 4.1.0
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
       is-interactive: 1.0.0
@@ -6246,7 +6460,7 @@ snapshots:
 
   tslib@2.6.3: {}
 
-  tsup@8.1.0(@microsoft/api-extractor@7.47.0)(typescript@5.4.5):
+  tsup@8.1.0(@microsoft/api-extractor@7.47.0(@types/node@20.14.2))(typescript@5.4.5):
     dependencies:
       bundle-require: 4.2.1(esbuild@0.21.5)
       cac: 6.7.14
@@ -6263,7 +6477,7 @@ snapshots:
       sucrase: 3.35.0
       tree-kill: 1.2.2
     optionalDependencies:
-      '@microsoft/api-extractor': 7.47.0
+      '@microsoft/api-extractor': 7.47.0(@types/node@20.14.2)
       typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
@@ -6309,6 +6523,8 @@ snapshots:
 
   uglify-js@3.18.0:
     optional: true
+
+  undici-types@5.26.5: {}
 
   unique-filename@3.0.0:
     dependencies:

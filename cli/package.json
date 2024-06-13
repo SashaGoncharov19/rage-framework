@@ -13,10 +13,13 @@
   "author": "rilaxik",
   "license": "ISC",
   "dependencies": {
+    "@inquirer/prompts": "^5.0.5",
     "chalk": "4.1.2",
+    "git-clone": "^0.2.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@types/git-clone": "^0.2.4",
     "@types/node": "^20.14.2",
     "@types/yargs": "^17.0.32",
     "prettier": "^3.3.2",
