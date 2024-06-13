@@ -1,31 +1,31 @@
 {
-  "name": "rage-fw",
-  "version": "0.0.23",
-  "bin": {
-    "rage-fw": "dist/index.js"
-  },
-  "main": "dist/index.js",
-  "scripts": {
-    "watch": "tsc -w",
-    "build": "tsup",
-    "start": "npx ./dist create"
-  },
-  "description": "CLI to scaffold a template project for RageFW",
-  "keywords": [],
-  "author": "rilaxik",
-  "license": "ISC",
-  "dependencies": {
-    "@inquirer/prompts": "^5.0.5",
-    "chalk": "4.1.2",
-    "git-clone": "^0.2.0",
-    "yargs": "^17.7.2",
-    "axios": "^1.7.2"
-  },
-  "devDependencies": {
-    "@types/git-clone": "^0.2.4",
-    "@types/node": "^20.14.2",
-    "@types/yargs": "^17.0.32",
-    "prettier": "^3.3.2",
-    "typescript": "^5.4.5"
-  }
+    "name": "rage-fw",
+    "version": "0.0.24-alpha.0",
+    "bin": {
+        "rage-fw": "dist/index.js"
+    },
+    "main": "dist/index.js",
+    "scripts": {
+        "watch": "tsc -w",
+        "build": "tsup",
+        "start": "npx ./dist create"
+    },
+    "description": "CLI to scaffold a template project for RageFW",
+    "keywords": [],
+    "author": "rilaxik",
+    "license": "ISC",
+    "dependencies": {
+        "@inquirer/prompts": "^5.0.5",
+        "axios": "^1.7.2",
+        "chalk": "4.1.2",
+        "git-clone": "^0.2.0",
+        "yargs": "^17.7.2"
+    },
+    "devDependencies": {
+        "@types/git-clone": "^0.2.4",
+        "@types/node": "^20.14.2",
+        "@types/yargs": "^17.0.32",
+        "prettier": "^3.3.2",
+        "typescript": "^5.4.5"
+    }
 }
