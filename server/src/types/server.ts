@@ -54,8 +54,7 @@ export type RageFW_ServerEventReturn<K extends RageFW_ServerEvent> =
 export type RageFW_ServerEventCallbackCustom<
     K extends keyof RageFW_ICustomServerEvent = keyof RageFW_ICustomServerEvent,
 > = (
-    player: PlayerMp,
-    args: RageFW_ServerEventArguments<K>,
+    payload: [player: PlayerMp, ...args: RageFW_ServerEventArguments<K>],
 ) => RageFW_ServerEventReturn<K>
 
 /**
@@ -64,7 +63,7 @@ export type RageFW_ServerEventCallbackCustom<
  */
 export type RageFW_ServerEventCallbackNative<
     K extends keyof IServerEvents = keyof IServerEvents,
-> = IServerEvents[K]
+> = (payload: Parameters<IServerEvents[K]>) => ReturnType<IServerEvents[K]>
 
 export type _ServerEventHasArgs<
     EventName extends keyof RageFW_ICustomServerEvent,
