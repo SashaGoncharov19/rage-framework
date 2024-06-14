@@ -23,4 +23,7 @@ Join our community of developers and contribute to the ongoing development of Ra
 ## Support
 Need help? Reach out via our community forums or contact us directly through our support channels. We're committed to help you as we can
 
+## License
+Licensed under **Custom Attribution-NoDerivs Software License**
+
 > *RageFW - because in the world of GTA:RP, nobody has time for type errors*
