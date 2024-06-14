@@ -17,6 +17,9 @@ At the moment automation we have only works via [pnpm](https://pnpm.io/). To sca
 
 This will give you a few options, among them, you can find ``Initialize new project``. Use that option to scaffold a new project for yourself using the preferred frontend framework
 
+## Documentation
+[Available here](https://git.entityseven.com/entityseven/rage-framework/wiki/Docs+%40+0.0.30-alpha.0.-)
+
 ## Contributing
 Join our community of developers and contribute to the ongoing development of RageFW. At the moment the only way to contribute is opening issues 
 
