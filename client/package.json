@@ -1,10 +1,11 @@
 {
     "name": "rage-fw-client",
-    "version": "0.0.20-alpha.0",
+    "version": "0.1.0",
     "main": "dist/index.js",
     "types": "dist/src/index.d.ts",
     "files": [
-        "dist/**/*"
+        "dist/**/*",
+        "readme.md"
     ],
     "scripts": {
         "build": "tsup"
