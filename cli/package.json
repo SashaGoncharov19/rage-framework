@@ -1,6 +1,6 @@
 {
     "name": "create-rage-fw",
-    "version": "0.0.30-alpha.0",
+    "version": "0.1.0",
     "bin": {
         "rage-fw": "dist/index.js"
     },
