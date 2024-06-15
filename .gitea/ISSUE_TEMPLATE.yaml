@@ -28,7 +28,7 @@ body:
   - type: textarea
     id: reproduction
     attributes:
-      label: Reproduction (Optional)
+      label: Reproduction
       description: Steps to reproduce the bug, if applicable
     validations:
       required: true
@@ -57,7 +57,7 @@ body:
   - type: textarea
     id: additional_information
     attributes:
-      label: Additional Information
+      label: Additional Information (Optional)
       description: Add any other information that might be useful in diagnosing the issue
     validations:
       required: false
