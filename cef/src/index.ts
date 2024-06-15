@@ -21,7 +21,9 @@ class Cef {
         eventName: EventName,
         callback: RageFW_CefCallback<EventName>,
     ): void {
-        rpc.register(eventName, callback)
+        if ('mp' in window) {
+            rpc.register(eventName, callback)
+        }
     }
 
     public trigger<EventName extends keyof RageFW_ICustomCefEvent>(
@@ -30,7 +32,13 @@ class Cef {
             ? [RageFW_CefArguments<EventName>]
             : []
     ): Promise<RageFW_CefReturn<EventName>> {
-        return rpc.call(eventName, args)
+        if ('mp' in window) {
+            return rpc.call(eventName, args)
+        }
+
+        return Promise.reject(
+            'RageFW was started in window which not contain global variable MP!',
+        )
     }
 
     public triggerServer<EventName extends keyof RageFW_ICustomServerEvent>(
@@ -39,7 +47,13 @@ class Cef {
             ? [RageFW_ServerArguments<EventName>]
             : []
     ): Promise<RageFW_ServerReturn<EventName>> {
-        return rpc.callServer(eventName, args)
+        if ('mp' in window) {
+            return rpc.callServer(eventName, args)
+        }
+
+        return Promise.reject(
+            'RageFW was started in window which not contain global variable MP!',
+        )
     }
 
     public triggerClient<EventName extends keyof RageFW_ICustomClientEvent>(
@@ -48,7 +62,13 @@ class Cef {
             ? [RageFW_ClientArguments<EventName>]
             : []
     ): Promise<RageFW_ClientReturn<EventName>> {
-        return rpc.callClient(eventName, args)
+        if ('mp' in window) {
+            return rpc.callClient(eventName, args)
+        }
+
+        return Promise.reject(
+            'RageFW was started in window which not contain global variable MP!',
+        )
     }
 }
 

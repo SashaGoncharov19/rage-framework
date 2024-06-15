@@ -34,7 +34,7 @@ class Server {
         rpc.register(
             eventName,
             async (args: RageFW_ServerEventArguments<EventName>, info) => {
-                callback(info.player as PlayerMp, args)
+                callback([info.player as PlayerMp, ...args])
             },
         )
     }
@@ -43,7 +43,11 @@ class Server {
         eventName: EventName,
         callback: RageFW_ServerEventCallbackNative<EventName>,
     ): void {
-        mp.events.add(eventName, callback)
+        mp.events.add(
+            eventName,
+            (...args: Parameters<IServerEvents[EventName]>) =>
+                callback([...args]),
+        )
     }
 
     public register<EventName extends RageFW_ServerEvent>(

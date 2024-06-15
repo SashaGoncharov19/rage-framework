@@ -1,6 +1,6 @@
 {
     "name": "rage-fw-shared-types",
-    "version": "0.0.20-alpha.0",
+    "version": "0.1.0",
     "types": "types/types/index.d.ts",
     "files": [
         "types/**/*"

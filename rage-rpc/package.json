@@ -1,11 +1,10 @@
 {
-    "name": "rage-fw-cef",
-    "version": "0.1.0",
+    "name": "rage-fw-rpc",
+    "version": "0.0.23-alpha.0",
     "main": "dist/index.js",
     "types": "dist/src/index.d.ts",
     "files": [
-        "dist/**/*",
-        "readme.md"
+        "dist/**/*"
     ],
     "scripts": {
         "build": "tsup"
@@ -14,11 +13,12 @@
         "rage-rpc": "^0.4.0"
     },
     "peerDependencies": {
-        "@ragempcommunity/types-cef": "^2.1.8",
+        "@ragempcommunity/types-client": "^2.1.8",
         "rage-fw-shared-types": "workspace:^"
     },
     "keywords": [],
     "author": "SashaGoncharov19",
     "license": "MIT",
-    "description": "CEF side for rage-fw"
+    "description": "Client side of rage-fw",
+    "gitHead": "053e4fd12aa120d53e11e0d2009c0df78c1a2ad0"
 }
