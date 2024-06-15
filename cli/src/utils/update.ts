@@ -20,6 +20,7 @@ export async function checkForUpdate(): Promise<void> {
 
                     if (latestVersion !== `v${version}`)
                         notifyUserAboutUpdate(latestVersion)
+                    else console.log(c.yellow(`Version: ${version}`))
                 })
                 .then(() => res()),
         )
