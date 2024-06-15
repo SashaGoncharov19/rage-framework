@@ -1,0 +1,63 @@
+name: Bug Report
+about: Create a report to help us improve
+
+rules:
+  - All issues must be reported in English
+  - Ensure you have searched for existing issues before creating a new one
+  - Provide as much detail as possible to help us resolve the issue efficiently
+
+body:
+  - type: dropdown
+    id: package_version
+    attributes:
+      label: Package Version
+      description: Select the version of the package where the bug was found
+      options:
+        - 0.1.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: bug_description
+    attributes:
+      label: Bug Description
+      description: Provide a detailed description of the bug
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction (Optional)
+      description: Steps to reproduce the bug, if applicable
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: OS Where the Bug Was Found
+      description: Select the operating system where the bug was found
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Other (please specify at the end of bug description)
+    validations:
+      required: true
+
+  - type: input
+    id: cli_version
+    attributes:
+      label: CLI Version (Optional)
+      description: Specify the CLI version if used
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_information
+    attributes:
+      label: Additional Information
+      description: Add any other information that might be useful in diagnosing the issue
+    validations:
+      required: false
