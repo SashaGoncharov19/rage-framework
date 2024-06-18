@@ -4,15 +4,15 @@ import {
     _CefEventHasArgs,
     _ClientEventHasArgs,
     _ServerEventHasArgs,
-    RageFW_CefArguments,
+    RageFW_CefArgs,
     RageFW_CefCallback,
     RageFW_CefReturn,
-    RageFW_ClientArguments,
+    RageFW_ClientArgs,
     RageFW_ClientReturn,
     RageFW_ICustomCefEvent,
     RageFW_ICustomClientEvent,
     RageFW_ICustomServerEvent,
-    RageFW_ServerArguments,
+    RageFW_ServerArgs,
     RageFW_ServerReturn,
 } from './types'
 
@@ -29,7 +29,7 @@ class Cef {
     public trigger<EventName extends keyof RageFW_ICustomCefEvent>(
         eventName: EventName,
         ...args: _CefEventHasArgs<EventName> extends true
-            ? [RageFW_CefArguments<EventName>]
+            ? [RageFW_CefArgs<EventName>]
             : []
     ): Promise<RageFW_CefReturn<EventName>> {
         if ('mp' in window) {
@@ -44,7 +44,7 @@ class Cef {
     public triggerServer<EventName extends keyof RageFW_ICustomServerEvent>(
         eventName: EventName,
         ...args: _ServerEventHasArgs<EventName> extends true
-            ? [RageFW_ServerArguments<EventName>]
+            ? [RageFW_ServerArgs<EventName>]
             : []
     ): Promise<RageFW_ServerReturn<EventName>> {
         if ('mp' in window) {
@@ -59,7 +59,7 @@ class Cef {
     public triggerClient<EventName extends keyof RageFW_ICustomClientEvent>(
         eventName: EventName,
         ...args: _ClientEventHasArgs<EventName> extends true
-            ? [RageFW_ClientArguments<EventName>]
+            ? [RageFW_ClientArgs<EventName>]
             : []
     ): Promise<RageFW_ClientReturn<EventName>> {
         if ('mp' in window) {

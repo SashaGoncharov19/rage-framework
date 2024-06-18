@@ -1,4 +1,5 @@
 import winston, { format } from 'winston'
+
 const { timestamp, printf, colorize } = format
 
 export class Logger {

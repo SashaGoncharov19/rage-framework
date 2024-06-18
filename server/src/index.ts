@@ -1,4 +1,4 @@
-import { Server, Logger, Player } from './core'
+import { Logger, Player, Server } from './core'
 
 export const fw = {
     event: new Server(),

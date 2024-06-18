@@ -7,8 +7,8 @@ import {
     RageFW_CefEvent,
     RageFW_CefReturn,
     RageFW_ClientEvent,
-    RageFW_ServerClientEventArguments,
-    RageFW_ServerClientEventReturn,
+    RageFW_ServerClientArgs,
+    RageFW_ServerClientReturn,
 } from '../types'
 
 export class Player {
@@ -16,9 +16,9 @@ export class Player {
         player: PlayerMp,
         eventName: EventName,
         ...args: _ClientEventHasArgs<EventName> extends true
-            ? [RageFW_ServerClientEventArguments<EventName>]
+            ? [RageFW_ServerClientArgs<EventName>]
             : []
-    ): Promise<RageFW_ServerClientEventReturn<EventName>> {
+    ): Promise<RageFW_ServerClientReturn<EventName>> {
         return rpc.callClient(player, eventName, args)
     }
 

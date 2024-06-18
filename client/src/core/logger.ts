@@ -1,4 +1,4 @@
-export default class Logger {
+export class Logger {
     public error(message: unknown) {
         mp.console.logError(
             `[${new Date().toLocaleTimeString()}] [ERROR] ${message}`,
