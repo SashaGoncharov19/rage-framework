@@ -1,7 +1,7 @@
 import winston, { format } from 'winston'
 const { timestamp, printf, colorize } = format
 
-export default class Logger {
+export class Logger {
     private format = printf(({ message, level, timestamp }) => {
         return `[${new Date(timestamp).toLocaleTimeString()}] [${level}]: ${message}`
     })

@@ -65,10 +65,19 @@ export type RageFW_ServerEventCallbackNative<
     K extends keyof IServerEvents = keyof IServerEvents,
 > = (payload: Parameters<IServerEvents[K]>) => ReturnType<IServerEvents[K]>
 
-export type _ServerEventHasArgs<
-    EventName extends keyof RageFW_ICustomServerEvent,
-> = keyof RageFW_ICustomClientEvent extends never
-    ? false
-    : Parameters<RageFW_ICustomServerEvent[EventName]>[0] extends undefined
-      ? false
-      : true
+export type _ServerEventHasArgs<EventName extends RageFW_ServerEvent> =
+    EventName extends keyof RageFW_ICustomServerEvent
+        ? keyof RageFW_ICustomClientEvent extends never
+            ? false
+            : Parameters<
+                    RageFW_ICustomServerEvent[EventName]
+                >[0] extends undefined
+              ? false
+              : true
+        : EventName extends keyof IServerEvents
+          ? keyof IServerEvents extends never
+              ? false
+              : Parameters<IServerEvents[EventName]>[0] extends undefined
+                ? false
+                : true
+          : false
