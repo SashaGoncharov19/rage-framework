@@ -12,38 +12,7 @@ import {
     RageFW_ServerReturn,
 } from '../types'
 
-type MiddlewarePoolServer<EventName extends RageFW_ServerEvent> = Partial<{
-    [K in EventName]: {
-        mwName: string
-        mw: MiddlewareFunction<K>
-    }
-}>
-
-export type MiddlewareFunction<EventName extends RageFW_ServerEvent> = (
-    player: PlayerMp,
-    eventName: EventName,
-    ...args: _ServerEventHasArgs<EventName> extends true
-        ? [RageFW_ServerArgs<EventName>]
-        : []
-) => void
-
 export class Server {
-    private middlewarePool: MiddlewarePoolServer<RageFW_ServerEvent> = {}
-
-    public use<EventName extends RageFW_ServerEvent>(
-        mwName: string,
-        eventName: EventName,
-        mw: MiddlewareFunction<EventName>,
-    ) {
-        this.middlewarePool = {
-            ...this.middlewarePool,
-            [eventName]: {
-                mwName,
-                mw,
-            },
-        }
-    }
-
     private isNativeEvent(eventName: string): eventName is keyof IServerEvents {
         return nativeEvents.includes(eventName)
     }
