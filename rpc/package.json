@@ -1,0 +1,22 @@
+{
+    "name": "rpc",
+    "version": "0.1.0",
+    "main": "dist/index.js",
+    "types": "dist/src/index.d.ts",
+    "scripts": {
+        "watch": "tsc -w",
+        "build": "tsup",
+        "start": "npx ./dist create"
+    },
+    "files": [
+        "dist/**/*"
+    ],
+    "description": "CLI to scaffold a template project for RageFW",
+    "keywords": [],
+    "author": "rilaxik",
+    "license": "ISC",
+    "devDependencies": {
+        "prettier": "^3.3.2",
+        "typescript": "^5.4.5"
+    }
+}
