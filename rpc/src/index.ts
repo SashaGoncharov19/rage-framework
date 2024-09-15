@@ -1,76 +1,104 @@
+import { RPC_LISTENER } from './events'
 import { Environment, utils } from './utils'
-import { EVENT_LISTENER } from './events'
 
-import { client } from './modules/client'
-import { server } from './modules/server'
-import { cef } from './modules/cef'
+import { client } from './client'
+import { server } from './server'
+import type { RPCData } from './types.ts'
 
-const environment = utils.getEnvironment()
+class FrameworkRpc {
+    private readonly _environment: Environment
+    private readonly _environmentGlobal: Record<string, Function>
 
-const state = environment === Environment.CEF ? window : global
-
-class rpc {
     constructor() {
-        if (environment === Environment.UNKNOWN) return
+        this._environment = utils.getEnvironment()
+        this._environmentGlobal =
+            utils.getEnvironment() === utils.environment.CEF
+                ? window.rpcEvents
+                : global.rpcEvents
 
-        mp.events.add(EVENT_LISTENER, async (player: any, request: string) => {
-            switch (environment) {
-                case Environment.SERVER:
-                    await server.listenEvent(player, request)
-                    break
+        mp.events.add(RPC_LISTENER, async (player: any, data: string) => {
+            switch (this._environment) {
+                case utils.environment.UNKNOWN:
+                    return
 
-                case Environment.CLIENT:
-                    request = player
+                case utils.environment.CLIENT:
+                    player = data
+                    return client.listen(player)
 
-                    await client.listenEvent(request)
-                    break
+                case utils.environment.SERVER:
+                    return server.listen(player, data)
 
-                case Environment.CEF:
-                    request = player
-
-                    await cef
+                case utils.environment.CEF:
             }
         })
     }
 
-    public register<Callback extends any[] = unknown[], Return = unknown>(
+    public register<Args extends any[] = unknown[], Return = unknown>(
         eventName: string,
-        cb: (...args: Callback) => Return,
+        cb: (...args: Args) => Return,
     ) {
-        if (environment === Environment.UNKNOWN) return
-        state[eventName] = cb
+        if (this._environment === utils.environment.UNKNOWN) return
+        this._environmentGlobal[eventName] = cb
     }
 
-    public async callClient<Args extends any[] = unknown[], Return = unknown>(
+    public callClient<Args extends any[] = unknown[], Return = unknown>(
         player: any,
         eventName: string,
         ...args: Args
     ): Promise<Return | unknown> {
-        if (environment === Environment.UNKNOWN) return
-        if (environment === Environment.SERVER) {
-            return client.executeClient(player, eventName, args)
-        }
+        return new Promise((resolve, _reject) => {
+            const uuid = utils.generateUUID()
+
+            const data: RPCData = {
+                uuid,
+                eventName,
+                from: this._environment,
+                to: utils.environment.CLIENT,
+                data: args,
+            }
+
+            player.call(RPC_LISTENER, [utils.stringifyData(data)])
+
+            const responseEventName = utils.generateResponseEventName(uuid)
+
+            const handler = (_player: any, data: string) => {
+                resolve(utils.parseData(data).data)
+                mp.events.remove(responseEventName)
+            }
+
+            mp.events.add(responseEventName, handler)
+        })
     }
 
-    public async callServer<Args extends any[] = unknown[], Return = unknown>(
+    public callServer<Args extends any[] = unknown[], Return = unknown>(
         eventName: string,
         ...args: Args
     ): Promise<Return | unknown> {
-        switch (environment) {
-            case Environment.UNKNOWN:
-                return
+        return new Promise((resolve, _reject) => {
+            const uuid = utils.generateUUID()
 
-            case Environment.SERVER:
-                return
+            const data: RPCData = {
+                uuid,
+                eventName,
+                from: this._environment,
+                to: utils.environment.CLIENT,
+                data: args,
+            }
 
-            case Environment.CEF:
-                return client
+            mp.events.callRemote(RPC_LISTENER, utils.stringifyData(data))
 
-            case Environment.CLIENT:
-                return server.executeServer(eventName, args)
-        }
+            const responseEventName = utils.generateResponseEventName(uuid)
+
+            const handler = (_player: any, data: string) => {
+                resolve(utils.parseData(data).data)
+                mp.events.remove(responseEventName)
+            }
+
+            mp.events.add(responseEventName, handler)
+        })
     }
 }
 
-const testRpc = new rpc()
-export { testRpc }
+const rpc = new FrameworkRpc()
+
+export { rpc }
