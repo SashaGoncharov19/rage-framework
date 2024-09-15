@@ -1,5 +1,5 @@
 import { Wrapper } from './wrapper'
-import { RPCState, utils } from '../utils'
+import { Environment, RPCState } from '../utils'
 import { EVENT_LISTENER } from '../events'
 
 class Server extends Wrapper {
@@ -79,6 +79,7 @@ class Server extends Wrapper {
                 uuid,
                 eventName,
                 calledFrom: this._environment,
+                calledTo: Environment.SERVER,
                 data: args,
             }
 

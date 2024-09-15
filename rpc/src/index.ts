@@ -3,6 +3,7 @@ import { EVENT_LISTENER } from './events'
 
 import { client } from './modules/client'
 import { server } from './modules/server'
+import { cef } from './modules/cef'
 
 const environment = utils.getEnvironment()
 
@@ -23,6 +24,11 @@ class rpc {
 
                     await client.listenEvent(request)
                     break
+
+                case Environment.CEF:
+                    request = player
+
+                    await cef
             }
         })
     }
@@ -50,9 +56,18 @@ class rpc {
         eventName: string,
         ...args: Args
     ): Promise<Return | unknown> {
-        if (environment === Environment.UNKNOWN) return
-        if (environment === Environment.CLIENT) {
-            return server.executeServer(eventName, args)
+        switch (environment) {
+            case Environment.UNKNOWN:
+                return
+
+            case Environment.SERVER:
+                return
+
+            case Environment.CEF:
+                return client
+
+            case Environment.CLIENT:
+                return server.executeServer(eventName, args)
         }
     }
 }

@@ -17,6 +17,7 @@ export type RPCState = {
     knownError?: string
     data?: any
     calledFrom: Environment
+    calledTo: Environment
 }
 
 class Utils {
