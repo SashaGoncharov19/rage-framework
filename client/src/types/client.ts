@@ -27,7 +27,7 @@ export type RageFW_ClientArgs<K extends RageFW_ClientEvent> =
  */
 export type RageFW_ClientCallback<K extends RageFW_ClientEvent> = (
     args: RageFW_ClientArgs<K>,
-) => RageFW_ClientReturn<K>
+) => Promise<RageFW_ClientReturn<K>>
 
 /**
  * Return type for an event, name of which you pass as a generic

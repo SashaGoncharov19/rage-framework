@@ -30,7 +30,7 @@ export type RageFW_CefReturn<K extends RageFW_CefEvent> = ReturnType<
  */
 export type RageFW_CefCallback<K extends keyof RageFW_ICustomCefEvent> = (
     args: RageFW_CefArgs<K>,
-) => RageFW_CefReturn<K>
+) => Promise<RageFW_CefReturn<K>>
 
 export type _CefEventHasArgs<EventName extends keyof RageFW_ICustomCefEvent> =
     keyof RageFW_ICustomCefEvent extends never

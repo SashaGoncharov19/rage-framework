@@ -24,7 +24,7 @@ export class Server {
         rpc.register(
             eventName,
             async (args: RageFW_ServerArgs<EventName>, info) => {
-                callback([info.player as PlayerMp, ...args])
+                await callback([info.player as PlayerMp, ...args])
             },
         )
     }

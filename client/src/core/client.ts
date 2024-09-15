@@ -7,8 +7,8 @@ export class Client {
         eventName: EventName,
         callback: RageFW_ClientCallback<EventName>,
     ): void {
-        rpc.register(eventName, data => {
-            return callback(data)
+        rpc.register(eventName, async data => {
+            return await callback(data)
         })
     }
 
