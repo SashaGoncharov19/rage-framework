@@ -37,7 +37,7 @@ class Cef {
         }
 
         return Promise.reject(
-            'RageFW was started in window which not contain global variable MP!',
+            'RageFW was started in window which does not contain MP',
         )
     }
 
@@ -52,7 +52,7 @@ class Cef {
         }
 
         return Promise.reject(
-            'RageFW was started in window which not contain global variable MP!',
+            'RageFW was started in window which does not contain MP',
         )
     }
 
@@ -67,7 +67,7 @@ class Cef {
         }
 
         return Promise.reject(
-            'RageFW was started in window which not contain global variable MP!',
+            'RageFW was started in window which does not contain MP',
         )
     }
 }
@@ -75,3 +75,6 @@ class Cef {
 export const fw = {
     event: new Cef(),
 }
+;(async () => {
+    await fw.event.triggerClient('cefReady')
+})()

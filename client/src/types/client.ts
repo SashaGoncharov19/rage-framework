@@ -36,7 +36,7 @@ export type RageFW_ClientCallback<K extends RageFW_ClientEvent> = (
 export type RageFW_ClientReturn<K extends RageFW_ClientEvent> =
     K extends keyof RageFW_ICustomClientEvent
         ? ReturnType<RageFW_ICustomClientEvent[K]>
-        : never
+        : void
 
 export type _ClientEventHasArgs<
     EventName extends keyof RageFW_ICustomClientEvent,

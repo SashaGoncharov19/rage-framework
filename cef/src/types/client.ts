@@ -4,7 +4,7 @@ export type { RageFW_ICustomClientEvent } from 'rage-fw-shared-types'
 
 /**
  * Union of all available client event names
- * These only include custom events
+ * These only include custom events and some extras from RageFW
  */
 export type RageFW_ClientEvent = keyof RageFW_ICustomClientEvent
 

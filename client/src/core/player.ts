@@ -43,7 +43,7 @@ export class Player {
             : []
     ): Promise<RageFW_CefReturn<EventName>> {
         if (!this.browser)
-            throw new Error('You need to initialize browser first!')
+            throw new Error('You need to initialize browser first')
         return rpc.callBrowser(this.browser, eventName, args)
     }
 }
