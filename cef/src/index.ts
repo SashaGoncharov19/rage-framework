@@ -17,10 +17,20 @@ import {
 } from './types'
 
 class Cef {
+    private _debugMode: boolean = false
+
+    set debug(debug: boolean) {
+        this._debugMode = debug
+    }
+
     public register<EventName extends keyof RageFW_ICustomCefEvent>(
         eventName: EventName,
         callback: RageFW_CefCallback<EventName>,
     ): void {
+        if (this._debugMode) {
+            console.log('[RPC](register):', eventName, callback)
+        }
+
         if ('mp' in window) {
             rpc.register(eventName, callback)
         }
@@ -32,6 +42,10 @@ class Cef {
             ? [RageFW_CefArgs<EventName>]
             : []
     ): Promise<RageFW_CefReturn<EventName>> {
+        if (this._debugMode) {
+            console.log('[RPC](trigger):', eventName, ...args)
+        }
+
         if ('mp' in window) {
             return rpc.call(eventName, args)
         }
@@ -47,6 +61,10 @@ class Cef {
             ? [RageFW_ServerArgs<EventName>]
             : []
     ): Promise<RageFW_ServerReturn<EventName>> {
+        if (this._debugMode) {
+            console.log('[RPC](triggerServer):', eventName, ...args)
+        }
+
         if ('mp' in window) {
             return rpc.callServer(eventName, args)
         }
@@ -62,6 +80,10 @@ class Cef {
             ? [RageFW_ClientArgs<EventName>]
             : []
     ): Promise<RageFW_ClientReturn<EventName>> {
+        if (this._debugMode) {
+            console.log('[RPC](triggerClient):', eventName, ...args)
+        }
+
         if ('mp' in window) {
             return rpc.callClient(eventName, args)
         }
