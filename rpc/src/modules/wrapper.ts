@@ -1,11 +1,14 @@
 import { Environment, Errors, RPCState, utils } from '../utils'
 
 export class Wrapper {
-    public _utils = utils
-    public _environment = utils.getEnvironment()
-    public _state = this._environment === Environment.CEF ? window : global
+    protected _utils = utils
+    protected _environment = utils.getEnvironment()
+    protected _state =
+        this._environment === Environment.CEF
+            ? window.rpcEvents
+            : global.rpcEvents
 
-    public _verifyEvent(data: string): RPCState {
+    protected _verifyEvent(data: string): RPCState {
         const rpcData = utils.prepareForExecute(data)
 
         if (!this._state[rpcData.eventName]) {
@@ -15,7 +18,7 @@ export class Wrapper {
         return rpcData
     }
 
-    public _triggerError(rpcData: RPCState, error?: any) {
+    protected _triggerError(rpcData: RPCState, error?: any) {
         const errorMessage = [
             `${rpcData.knownError}`,
             `Caller: ${rpcData.calledFrom}`,

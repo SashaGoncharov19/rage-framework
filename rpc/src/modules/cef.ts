@@ -27,7 +27,7 @@ class Cef extends Wrapper {
     public async callServer<Args extends any[] = unknown[], Return = unknown>(
         eventName: string,
         ...args: Args
-    ): Promise<Return | unknown> {}
+    ): Promise<Return | void> {}
 
     private async handleReturn(
         uuid: string,

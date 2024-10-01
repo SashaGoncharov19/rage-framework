@@ -14,10 +14,6 @@
         "dist/**/*",
         "readme.md"
     ],
-    "description": "CLI to scaffold a template project for RageFW",
-    "keywords": [],
-    "author": "rilaxik",
-    "license": "ISC",
     "dependencies": {
         "@inquirer/prompts": "^5.0.5",
         "axios": "^1.7.2",
@@ -31,5 +27,12 @@
         "@types/yargs": "^17.0.32",
         "prettier": "^3.3.2",
         "typescript": "^5.4.5"
-    }
+    },
+    "description": "CLI to scaffold a template project for RageFW",
+    "keywords": [],
+    "author": "rilaxik",
+    "contributors": [{
+        "name": "SashaGoncharov19"
+    }],
+    "license": "MIT"
 }

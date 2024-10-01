@@ -1,6 +1,6 @@
-import { CLIENT_ROUTER_LISTENER, EVENT_LISTENER } from '../events'
+import { CLIENT_ROUTER_LISTENER } from '../events'
 import { Wrapper } from './wrapper'
-import { Environment, RPCState } from '../utils'
+import { Environment } from '../utils'
 
 class Client extends Wrapper {
     constructor() {
