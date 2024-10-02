@@ -1,12 +1,14 @@
-import { CLIENT_ROUTER_LISTENER } from '../events'
+import { CLIENT_ROUTER_EVENT, EVENT_LISTENER } from '../events'
 import { Wrapper } from './wrapper'
 import { Environment } from '../utils'
 
 class Client extends Wrapper {
+    private browser: any
+
     constructor() {
         super()
 
-        mp.events.add(CLIENT_ROUTER_LISTENER, (data: string) => {
+        mp.events.add(CLIENT_ROUTER_EVENT, (data: string) => {
             const parsedData = this._utils.prepareForExecute(data)
             const environment = this._environment
 
@@ -14,14 +16,19 @@ class Client extends Wrapper {
                 switch (parsedData.calledTo) {
                     case Environment.SERVER:
                         // route to server listener
+                        this.requestToServer(data)
                         break
 
                     case Environment.CEF:
-                        // route to cef listener
+                        this.requestToBrowser(data)
                         break
                 }
             }
         })
+    }
+
+    public useBrowser(browser: any) {
+        this.browser = browser
     }
 
     private async createCallbackListener(uuid: string) {
@@ -29,6 +36,8 @@ class Client extends Wrapper {
 
         const handler = async (data: string) => {
             mp.events.remove(eventName)
+
+            //TODO: transfer to CEF/Server
         }
 
         mp.events.add(eventName, handler)
@@ -38,16 +47,18 @@ class Client extends Wrapper {
 
     private async requestToServer(data: string) {
         const { uuid } = this._utils.prepareForExecute(data)
-        const callbackEventName = await this.createCallbackListener(uuid)
+        await this.createCallbackListener(uuid)
 
-        mp.events.callRemote(callbackEventName, data)
+        mp.events.callRemote(EVENT_LISTENER, data)
     }
 
     private async requestToBrowser(data: string) {
         const { uuid } = this._utils.prepareForExecute(data)
-        const callbackEventName = await this.createCallbackListener(uuid)
+        await this.createCallbackListener(uuid)
 
-        mp.browsers.at(0).call()
+        if (!this.browser) return //TODO: Error browser not initialized
+
+        this.browser.call(EVENT_LISTENER, data)
     }
 
     // private sendResponseToServer(data: RPCState) {
