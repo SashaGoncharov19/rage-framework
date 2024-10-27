@@ -263,7 +263,7 @@ class Rpc extends Wrapper {
     }
 
     /**
-     * Calls a server-side event from server or client
+     * Calls a server-side event from browser or client
      *
      * @template Arguments - An array of argument types to be passed to the server event
      * @template EventName - A string representing the server event name or union of names
@@ -438,9 +438,9 @@ class Rpc extends Wrapper {
      * @returns {Promise<Return>} A promise resolving to the return value of the event
      *
      * @example
-     * // Calls an event on browser without specifying a player
-     * callBrowser<[], string, number>('getSomething').then(response => {
-     *   console.log(`Received: ${response}`) //             ^ number
+     * // Calls an event in current environment
+     * call<[], string, number>('getSomething').then(response => {
+     *   console.log(`Received: ${response}`) //      ^ number
      * })
      */
     public async call<
