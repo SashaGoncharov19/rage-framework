@@ -9,6 +9,9 @@ import {
     Utils,
 } from './utils'
 
+/**
+ * NOT INTENDED FOR OUT-OF-CONTEXT USE
+ */
 export class Client extends Wrapper {
     private _browser: any = null
 
@@ -24,6 +27,9 @@ export class Client extends Wrapper {
         this._browser = browser
     }
 
+    /**
+     * NOT INTENDED FOR OUT-OF-CONTEXT USE
+     */
     public _resolveEmitDestination(dataRaw: string) {
         const state = Utils.prepareExecution(dataRaw)
 
@@ -46,14 +52,17 @@ export class Client extends Wrapper {
         }
     }
 
+    // called to client
     private async emit(state: RPCState) {
         this.errorNoBrowser()
 
+        // check availability
         state = this.verifyEvent_(state)
         if (state.knownError) {
             this.triggerError_(state, state.knownError)
         }
 
+        // execute + generate response
         const responseEventName = Utils.generateResponseEventName(state.uuid)
         const response = await this.state_[state.eventName](
             ...(Array.isArray(state.data) ? state.data : []),
@@ -68,6 +77,7 @@ export class Client extends Wrapper {
             type: RPCEventType.RESPONSE,
         }
 
+        // send response
         switch (state.calledFrom) {
             case Environment.CLIENT:
                 try {
@@ -103,11 +113,13 @@ export class Client extends Wrapper {
         }
     }
 
+    // called to server
     private emitServer(dataRaw: string) {
         this.errorNoBrowser()
 
         const state = Utils.prepareExecution(dataRaw)
 
+        // if event is called from browser we will forward response through client via this
         if (state.calledFrom === Environment.BROWSER) {
             const responseEventName = Utils.generateResponseEventName(
                 state.uuid,
@@ -129,11 +141,13 @@ export class Client extends Wrapper {
         mp.events.callRemote(Events.SERVER_EVENT_LISTENER, dataRaw)
     }
 
+    // called to browser
     private emitBrowser(dataRaw: string) {
         this.errorNoBrowser()
 
         const state = Utils.prepareExecution(dataRaw)
 
+        // if event is called from server we will forward response through client via this
         if (state.calledFrom === Environment.SERVER) {
             const responseEventName = Utils.generateResponseEventName(
                 state.uuid,

@@ -8,6 +8,9 @@ import {
     Utils,
 } from './utils'
 
+/**
+ * NOT INTENDED FOR OUT-OF-CONTEXT USE
+ */
 export class Browser extends Wrapper {
     constructor(
         options: RpcWrapperConfig = {
@@ -17,6 +20,9 @@ export class Browser extends Wrapper {
         super(options)
     }
 
+    /**
+     * NOT INTENDED FOR OUT-OF-CONTEXT USE
+     */
     public _resolveEmitDestination(dataRaw: string) {
         let state = Utils.prepareExecution(dataRaw)
 
@@ -35,15 +41,18 @@ export class Browser extends Wrapper {
         mp.trigger(Events.LOCAL_EVENT_LISTENER, dataRaw)
     }
 
+    // called to browser
     private async emit(dataRaw: string) {
         let state = Utils.prepareExecution(dataRaw)
         const responseEventName = Utils.generateResponseEventName(state.uuid)
 
+        // check availability
         state = this.verifyEvent_(state)
         if (state.knownError) {
             this.triggerError_(state, state.knownError)
         }
 
+        // execute + generate response
         const response = await this.state_[state.eventName](
             ...(Array.isArray(state.data) ? state.data : []),
         )
@@ -58,6 +67,7 @@ export class Browser extends Wrapper {
         }
         const responseDataRaw = Utils.prepareTransfer(responseState)
 
+        // send response
         switch (state.calledFrom) {
             case Environment.BROWSER:
                 try {

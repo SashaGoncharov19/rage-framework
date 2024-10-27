@@ -9,6 +9,9 @@ import {
     Utils,
 } from './utils'
 
+/**
+ * NOT INTENDED FOR OUT-OF-CONTEXT USE
+ */
 export class Server extends Wrapper {
     constructor(
         options: RpcWrapperConfig = {
@@ -19,6 +22,7 @@ export class Server extends Wrapper {
 
         if (!!options.forceBrowserDevMode) return
 
+        // specific event to save player in context as it is not available on server -> server calls
         mp.events.add(
             Events.SERVER_EVENT_LISTENER,
             async (player: PlayerMp, dataRaw: string) => {
@@ -27,6 +31,9 @@ export class Server extends Wrapper {
         )
     }
 
+    /**
+     * NOT INTENDED FOR OUT-OF-CONTEXT USE
+     */
     public _resolveEmitDestination(player: PlayerMp, dataRaw: string) {
         let state = Utils.prepareExecution(dataRaw)
 
@@ -45,15 +52,18 @@ export class Server extends Wrapper {
         player.call(Events.LOCAL_EVENT_LISTENER, [dataRaw])
     }
 
+    // called to server
     private async emit(player: PlayerMp, dataRaw: string) {
         let state = Utils.prepareExecution(dataRaw)
         const responseEventName = Utils.generateResponseEventName(state.uuid)
 
+        // check availability
         state = this.verifyEvent_(state)
         if (state.knownError) {
             this.triggerError_(state, state.knownError)
         }
 
+        // execute + generate response
         const response = await this.state_[state.eventName](
             player,
             ...(Array.isArray(state.data) ? state.data : []),
@@ -68,6 +78,7 @@ export class Server extends Wrapper {
             type: RPCEventType.RESPONSE,
         }
 
+        // send response
         switch (state.calledFrom) {
             case Environment.SERVER:
                 try {
