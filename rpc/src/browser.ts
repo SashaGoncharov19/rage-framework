@@ -1,9 +1,20 @@
 import { Wrapper } from './wrapper'
-import { Environment, Events, RPCEventType, RPCState, Utils } from './utils'
+import {
+    Environment,
+    Events,
+    RPCEventType,
+    RPCState,
+    RpcWrapperConfig,
+    Utils,
+} from './utils'
 
-class Browser extends Wrapper {
-    constructor() {
-        super()
+export class Browser extends Wrapper {
+    constructor(
+        options: RpcWrapperConfig = {
+            forceBrowserDevMode: false,
+        },
+    ) {
+        super(options)
     }
 
     public _resolveEmitDestination(dataRaw: string) {
@@ -65,6 +76,3 @@ class Browser extends Wrapper {
         }
     }
 }
-
-const browser = new Browser()
-export { browser }

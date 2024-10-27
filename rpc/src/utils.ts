@@ -18,6 +18,28 @@ export enum Errors {
     EVENT_RESPONSE_TIMEOUT = 'Response was timed out after 10s of inactivity',
 }
 
+export type RPCState = {
+    eventName: string
+    uuid: string
+    calledFrom: Environment
+    calledTo: Environment
+    knownError?: string
+    data?: any
+    type: RPCEventType
+}
+
+export type PlayerMp = {
+    call: (event: string, args?: unknown[]) => void
+}
+
+export interface RpcWrapperConfig {
+    forceBrowserDevMode?: boolean
+}
+
+export interface RpcConfig extends RpcWrapperConfig {
+    debugLogs?: boolean
+}
+
 export class Utils {
     public static getEnvironment(): Environment {
         if ('joaat' in mp) return Environment.SERVER
@@ -67,23 +89,9 @@ export class Utils {
     }
 }
 
-export type RPCState = {
-    eventName: string
-    uuid: string
-    calledFrom: Environment
-    calledTo: Environment
-    knownError?: string
-    data?: any
-    type: RPCEventType
-}
-
 export enum RPCEventType {
     EVENT = 'event',
     RESPONSE = 'response',
-}
-
-export type PlayerMp = {
-    call: (event: string, args?: unknown[]) => void
 }
 
 export const nativeClientEvents = new Set([

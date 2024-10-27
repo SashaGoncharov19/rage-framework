@@ -5,12 +5,19 @@ import {
     type PlayerMp,
     RPCEventType,
     RPCState,
+    RpcWrapperConfig,
     Utils,
 } from './utils'
 
-class Server extends Wrapper {
-    constructor() {
-        super()
+export class Server extends Wrapper {
+    constructor(
+        options: RpcWrapperConfig = {
+            forceBrowserDevMode: false,
+        },
+    ) {
+        super(options)
+
+        if (!!options.forceBrowserDevMode) return
 
         mp.events.add(
             Events.SERVER_EVENT_LISTENER,
@@ -84,6 +91,3 @@ class Server extends Wrapper {
         }
     }
 }
-
-const server = new Server()
-export { server }

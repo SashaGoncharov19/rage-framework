@@ -5,14 +5,19 @@ import {
     Events,
     RPCEventType,
     RPCState,
+    RpcWrapperConfig,
     Utils,
 } from './utils'
 
-class Client extends Wrapper {
+export class Client extends Wrapper {
     private _browser: any = null
 
-    constructor() {
-        super()
+    constructor(
+        options: RpcWrapperConfig = {
+            forceBrowserDevMode: false,
+        },
+    ) {
+        super(options)
     }
 
     set browser(browser: any) {
@@ -154,6 +159,3 @@ class Client extends Wrapper {
         if (!this._browser) throw new Error(Errors.NO_BROWSER)
     }
 }
-
-const client = new Client()
-export { client }

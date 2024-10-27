@@ -5,19 +5,36 @@ import {
     Events,
     nativeClientEvents,
     nativeServerEvents,
+    type PlayerMp,
+    RpcConfig,
     RPCEventType,
     RPCState,
     Utils,
-    type PlayerMp,
 } from './utils'
 
-import { server } from './server'
-import { client } from './client'
-import { browser } from './browser'
+import { Server } from './server'
+import { Client } from './client'
+import { Browser } from './browser'
 
 class Rpc extends Wrapper {
-    constructor() {
-        super()
+    private _server: Server
+    private _client: Client
+    private _browser: Browser
+
+    constructor(
+        options: RpcConfig = {
+            forceBrowserDevMode: false,
+            debugLogs: false,
+        },
+    ) {
+        super(options)
+
+        this._server = new Server(options)
+        this._client = new Client(options)
+        this._browser = new Browser(options)
+        this.debug_ = !!options.debugLogs
+
+        if (options.forceBrowserDevMode) return
 
         if (this.environment_ === Environment.UNKNOWN)
             throw new Error(Errors.UNKNOWN_ENVIRONMENT)
@@ -27,7 +44,7 @@ class Rpc extends Wrapper {
             async (player: PlayerMp | string, dataRaw: string) => {
                 switch (this.environment_) {
                     case Environment.SERVER:
-                        server._resolveEmitDestination(
+                        this._server._resolveEmitDestination(
                             player as PlayerMp,
                             dataRaw,
                         )
@@ -35,12 +52,12 @@ class Rpc extends Wrapper {
 
                     case Environment.CLIENT:
                         dataRaw = player as string
-                        client._resolveEmitDestination(dataRaw)
+                        this._client._resolveEmitDestination(dataRaw)
                         break
 
                     case Environment.BROWSER:
                         dataRaw = player as string
-                        browser._resolveEmitDestination(dataRaw)
+                        this._browser._resolveEmitDestination(dataRaw)
                         break
 
                     default:
@@ -51,6 +68,10 @@ class Rpc extends Wrapper {
         )
     }
 
+    set browser(browser: any) {
+        this._client.browser = browser
+    }
+
     public register<
         CallbackArguments extends unknown[] = unknown[],
         CallbackReturn extends unknown = unknown,
@@ -59,6 +80,8 @@ class Rpc extends Wrapper {
         eventName: EventName,
         cb: (...args: CallbackArguments) => CallbackReturn,
     ): void {
+        this.log('register', eventName, cb)
+        if (this.forceBrowserDevMode_) return
         Utils.errorUnknownEnvironment(this.environment_)
 
         if (
@@ -76,6 +99,8 @@ class Rpc extends Wrapper {
     public unregister<EventName extends string = string>(
         eventName: EventName,
     ): void {
+        this.log('unregister', eventName)
+        if (this.forceBrowserDevMode_) return
         Utils.errorUnknownEnvironment(this.environment_)
 
         delete this.state_[eventName]
@@ -96,6 +121,20 @@ class Rpc extends Wrapper {
         eventNameOrArgs?: string | unknown[],
         args?: unknown[],
     ) {
+        _is1StParamPlayer(playerOrEventName)
+            ? this.log(
+                  'callClient',
+                  eventNameOrArgs as string,
+                  playerOrEventName,
+                  eventNameOrArgs,
+                  args,
+              )
+            : this.log(
+                  'callClient',
+                  playerOrEventName as string,
+                  eventNameOrArgs,
+              )
+        if (this.forceBrowserDevMode_) return
         Utils.errorUnknownEnvironment(this.environment_)
 
         function _is1StParamPlayer(x: unknown): x is PlayerMp {
@@ -105,8 +144,8 @@ class Rpc extends Wrapper {
             return typeof x === 'string'
         }
 
-        // client
         if (this.environment_ === Environment.CLIENT) {
+            // client
             return await this.call(
                 playerOrEventName as string,
                 args as unknown[],
@@ -163,6 +202,9 @@ class Rpc extends Wrapper {
         EventName extends string = string,
         Return extends unknown = unknown,
     >(eventName: EventName, args?: Arguments): Promise<Return> {
+        this.log('callServer', eventName, args)
+        if (this.forceBrowserDevMode_)
+            return undefined as unknown as Promise<Return>
         Utils.errorUnknownEnvironment(this.environment_)
 
         const state: RPCState = {
@@ -208,6 +250,20 @@ class Rpc extends Wrapper {
         eventNameOrArgs?: string | unknown[],
         args?: unknown[],
     ) {
+        _is1StParamPlayer(playerOrEventName)
+            ? this.log(
+                  'DEV callClient',
+                  eventNameOrArgs as string,
+                  playerOrEventName,
+                  eventNameOrArgs,
+                  args,
+              )
+            : this.log(
+                  'DEV callClient',
+                  playerOrEventName as string,
+                  eventNameOrArgs,
+              )
+        if (this.forceBrowserDevMode_) return
         Utils.errorUnknownEnvironment(this.environment_)
 
         function _is1StParamPlayer(x: unknown): x is PlayerMp {
@@ -257,6 +313,9 @@ class Rpc extends Wrapper {
         EventName extends string = string,
         Return extends unknown = unknown,
     >(eventName: EventName, args?: Arguments): Promise<Return> {
+        this.log('call', eventName, args)
+        if (this.forceBrowserDevMode_)
+            return undefined as unknown as Promise<Return>
         Utils.errorUnknownEnvironment(this.environment_)
 
         let state: RPCState = {
@@ -332,6 +391,4 @@ class Rpc extends Wrapper {
         })
     }
 }
-
-const rpc = new Rpc()
-export { rpc, client }
+export { Rpc }
