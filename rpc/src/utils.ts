@@ -41,6 +41,7 @@ export interface RpcConfig extends RpcWrapperConfig {
 }
 
 export class Utils {
+    // todo type for dev browser
     public static getEnvironment(): Environment {
         if ('joaat' in mp) return Environment.SERVER
         if (

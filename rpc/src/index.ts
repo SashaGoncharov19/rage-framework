@@ -72,6 +72,23 @@ class Rpc extends Wrapper {
         this._client.browser = browser
     }
 
+    /**
+     * Registers a callback function for a specified event
+     *
+     * @template CallbackArguments - An array of argument types that the callback function accepts
+     * @template CallbackReturn - The type of the value returned by the callback function
+     * @template EventName - A string representing the event name or union of names
+     *
+     * @param {EventName} eventName - The name of the event to register the callback for
+     * @param {(...args: CallbackArguments) => CallbackReturn} cb - The callback function that is called when the event is triggered
+     *
+     * @returns {void}
+     *
+     * @example
+     * register<[PlayerMp]>('playerJoin', (player) => {
+     *   console.log(`Connected: ${player.socialClub}`)
+     * })
+     */
     public register<
         CallbackArguments extends unknown[] = unknown[],
         CallbackReturn extends unknown = unknown,
@@ -96,6 +113,18 @@ class Rpc extends Wrapper {
         }
     }
 
+    /**
+     * Unregisters callback function for a specified event
+     *
+     * @template EventName - A string representing the event name or union of names
+     *
+     * @param {EventName} eventName - The name of the event to register the callback for
+     *
+     * @returns {void}
+     *
+     * @example
+     * unregister('playerJoin')
+     */
     public unregister<EventName extends string = string>(
         eventName: EventName,
     ): void {
@@ -106,11 +135,46 @@ class Rpc extends Wrapper {
         delete this.state_[eventName]
     }
 
+    /**
+     * Calls a client-side event from server or browser
+     *
+     * @template Arguments - An array of argument types to be passed to the client event
+     * @template EventName - A string representing the client event name or union of names
+     * @template Return - The type of the value returned by the client event
+     *
+     * @param {EventName} eventName - The name of the client event to be called
+     * @param {Arguments} [args] - Optional arguments to pass to the client event
+     * @returns {Promise<Return>} A promise resolving to the return value of the client event
+     *
+     * @example
+     * // Calls an event on client without specifying a player
+     * callClient<[], string, object>('onDataRequest').then(response => {
+     *   console.log(`Received: ${response}`) //             ^ object
+     * })
+     */
     public async callClient<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
         Return extends unknown = unknown,
     >(eventName: EventName, args?: Arguments): Promise<Return>
+    /**
+     * Calls a client-side event from server or browser
+     *
+     * @template Arguments - An array of argument types to be passed to the client event
+     * @template EventName - A string representing the client event name or union of names
+     * @template Return - The type of the value returned by the client event
+     *
+     * @param {PlayerMp} player - The player for whom the client event is called
+     * @param {EventName} eventName - The name of the client event to be called
+     * @param {Arguments} [args] - Optional arguments to pass to the client event
+     * @returns {Promise<Return>} A promise resolving to the return value of the client event
+     *
+     * @example
+     * // Calls an event on client for a specific player
+     * callClient<[string, number], string, boolean>(player, 'onPlayerAction', ['jump', 2]).then(result => {
+     *   console.log(`Action success: ${result}`) //                                              ^ boolean
+     * })
+     */
     public async callClient<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
@@ -140,6 +204,7 @@ class Rpc extends Wrapper {
         function _is1StParamPlayer(x: unknown): x is PlayerMp {
             return typeof x === 'object'
         }
+
         function _is2NdParamEventName(x: unknown): x is string {
             return typeof x === 'string'
         }
@@ -197,6 +262,23 @@ class Rpc extends Wrapper {
         }
     }
 
+    /**
+     * Calls a server-side event from server or client
+     *
+     * @template Arguments - An array of argument types to be passed to the server event
+     * @template EventName - A string representing the server event name or union of names
+     * @template Return - The type of the value returned by the server event
+     *
+     * @param {EventName} eventName - The name of the server event to be called
+     * @param {Arguments} [args] - Optional arguments to pass to the server event
+     * @returns {Promise<Return>} A promise resolving to the return value of the server event
+     *
+     * @example
+     * // Calls an event on server
+     * callServer<[], string, object>('onDataRequest').then(response => {
+     *   console.log(`Received: ${response}`) //             ^ object
+     * })
+     */
     public async callServer<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
@@ -235,11 +317,46 @@ class Rpc extends Wrapper {
         return (await this.responseHandler(state.uuid)).data
     }
 
+    /**
+     * Calls a browser-side event from server or client
+     *
+     * @template Arguments - An array of argument types to be passed to the browser event
+     * @template EventName - A string representing the browser event name or union of names
+     * @template Return - The type of the value returned by the browser event
+     *
+     * @param {EventName} eventName - The name of the browser event to be called
+     * @param {Arguments} [args] - Optional arguments to pass to the browser event
+     * @returns {Promise<Return>} A promise resolving to the return value of the browser event
+     *
+     * @example
+     * // Calls an event on browser without specifying a player
+     * callBrowser<[], string, object>('onDataRequest').then(response => {
+     *   console.log(`Received: ${response}`) //             ^ object
+     * })
+     */
     public async callBrowser<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
         Return extends unknown = unknown,
     >(eventName: EventName, args?: Arguments): Promise<Return>
+    /**
+     * Calls a browser-side event from server or client
+     *
+     * @template Arguments - An array of argument types to be passed to the browser event
+     * @template EventName - A string representing the browser event name or union of names
+     * @template Return - The type of the value returned by the browser event
+     *
+     * @param {PlayerMp} player - The player for whom the browser event is called
+     * @param {EventName} eventName - The name of the browser event to be called
+     * @param {Arguments} [args] - Optional arguments to pass to the browser event
+     * @returns {Promise<Return>} A promise resolving to the return value of the browser event
+     *
+     * @example
+     * // Calls an event on a browser for a specific player
+     * callBrowser<[string, number], string, boolean>(player, 'onPlayerAction', ['jump', 2]).then(result => {
+     *   console.log(`Action success: ${result}`) //                                              ^ boolean
+     * })
+     */
     public async callBrowser<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
@@ -269,6 +386,7 @@ class Rpc extends Wrapper {
         function _is1StParamPlayer(x: unknown): x is PlayerMp {
             return typeof x === 'object'
         }
+
         function _is2NdParamEventName(x: unknown): x is string {
             return typeof x === 'string'
         }
@@ -308,6 +426,23 @@ class Rpc extends Wrapper {
         return (await this.responseHandler(state.uuid)).data
     }
 
+    /**
+     * Calls an event in current environment
+     *
+     * @template Arguments - An array of argument types to be passed to the event
+     * @template EventName - A string representing the event name or union of names
+     * @template Return - The type of the value returned by the event
+     *
+     * @param {EventName} eventName - The name of the event to be called
+     * @param {Arguments} [args] - Optional arguments to pass to the event
+     * @returns {Promise<Return>} A promise resolving to the return value of the event
+     *
+     * @example
+     * // Calls an event on browser without specifying a player
+     * callBrowser<[], string, number>('getSomething').then(response => {
+     *   console.log(`Received: ${response}`) //             ^ number
+     * })
+     */
     public async call<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
@@ -328,20 +463,26 @@ class Rpc extends Wrapper {
             type: RPCEventType.EVENT,
         }
 
-        return this.callSelf<Return>(state)
+        return await this.callSelf<Return>(state)
     }
 
-    private callSelf<Return extends unknown = unknown>(
+    /**
+     * redirects an event in cases of it calling its own environment
+     */
+    private async callSelf<Return extends unknown = unknown>(
         state: RPCState,
-    ): Return {
+    ): Promise<Return> {
         state = this.verifyEvent_(state)
         if (state.knownError) {
             this.triggerError_(state, state.knownError)
         }
 
-        return this.state_[state.eventName](...state.data)
+        return await this.state_[state.eventName](...state.data)
     }
 
+    /**
+     * returns cross-environment response
+     */
     private async responseHandler(uuid: string): Promise<RPCState> {
         const responseEventName = Utils.generateResponseEventName(uuid)
 
@@ -391,4 +532,5 @@ class Rpc extends Wrapper {
         })
     }
 }
+
 export { Rpc }

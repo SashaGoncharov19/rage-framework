@@ -27,6 +27,7 @@ export class Wrapper {
         this.forceBrowserDevMode_ = !!options.forceBrowserDevMode
     }
 
+    // checks if event is available (registered) in current environment
     protected verifyEvent_(data: string | RPCState): RPCState {
         let rpcData =
             typeof data === 'string' ? Utils.prepareExecution(data) : data
