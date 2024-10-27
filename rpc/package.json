@@ -1,8 +1,7 @@
 {
-    "name": "rage-fw-rpc",
-    "version": "0.1.0",
-    "main": "dist/index.js",
-    "types": "dist/src/index.d.ts",
+    "name": "ragefw-rpc",
+    "description": "RageFW RPC",
+    "version": "0.2.0",
     "scripts": {
         "build": "tsup",
         "start": "npx ./dist create"
@@ -11,18 +10,26 @@
         "dist/**/*"
     ],
     "devDependencies": {
-        "prettier": "^3.3.2"
+        "@microsoft/api-extractor": "^7.47.9",
+        "prettier": "^3.3.2",
+        "tsup": "^8.3.0"
     },
     "peerDependencies": {
-        "typescript": "^5.0.0"
+        "typescript": "^5"
     },
-    "description": "RageFW RPC",
-    "keywords": [],
-    "author": "SashaGoncharov19",
-    "contributors": [{
+    "keywords": ["ragemp", "rage", "rpc", "rage-rpc", "ragerpc"],
+    "main": "dist/index.js",
+    "types": "dist/src/index.d.ts",
+    "author": {
         "name": "rilaxik",
         "email": "dev.rilaxik@gmail.com",
         "url": "https://github.com/rilaxik"
-    }],
+    },
+    "contributors": [
+        {
+            "name": "SashaGoncharov19",
+            "url": "https://github.com/SashaGoncharov19"
+        }
+    ],
     "license": "MIT"
 }

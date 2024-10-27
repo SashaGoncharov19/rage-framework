@@ -1,42 +1,44 @@
-import { EVENT_RESPONSE } from './events'
-
 export enum Environment {
-    CEF = 'CEF',
+    BROWSER = 'BROWSER',
     CLIENT = 'CLIENT',
     SERVER = 'SERVER',
     UNKNOWN = 'UNKNOWN',
 }
 
+export enum Events {
+    LOCAL_EVENT_LISTENER = '__rpc:listener',
+    SERVER_EVENT_LISTENER = '__rpc:serverListener',
+    EVENT_RESPONSE = '__rpc:response',
+}
+
 export enum Errors {
     EVENT_NOT_REGISTERED = 'Event not registered',
+    UNKNOWN_ENVIRONMENT = 'Unknown environment',
+    NO_BROWSER = 'You need to initialize browser first',
+    EVENT_RESPONSE_TIMEOUT = 'Response was timed out after 10s of inactivity',
 }
 
-export type RPCState = {
-    eventName: string
-    uuid: string
-    knownError?: string
-    data?: any
-    calledFrom: Environment
-    calledTo: Environment
-}
-
-class Utils {
-    public getEnvironment(): Environment {
-        if (mp.joaat) return Environment.SERVER
-        if (mp.game && mp.game.joaat) return Environment.CLIENT
-        if ('mp' in window) return Environment.CEF
+export class Utils {
+    public static getEnvironment(): Environment {
+        if ('joaat' in mp) return Environment.SERVER
+        if (
+            'game' in mp &&
+            'joaat' in (mp as { game: { joaat?: unknown } }).game
+        )
+            return Environment.CLIENT
+        if (window && 'mp' in window) return Environment.BROWSER
         return Environment.UNKNOWN
     }
 
-    public prepareForExecute(data: string): RPCState {
+    public static prepareExecution(data: string): RPCState {
         return JSON.parse(data)
     }
 
-    public prepareForTransfer(data: RPCState): string {
+    public static prepareTransfer(data: RPCState): string {
         return JSON.stringify(data)
     }
 
-    public generateUUID(): string {
+    public static generateUUID(): string {
         let uuid = '',
             random
 
@@ -55,9 +57,106 @@ class Utils {
         return uuid
     }
 
-    public generateResponseEventName(uuid: string): string {
-        return `${EVENT_RESPONSE}_${uuid}`
+    public static generateResponseEventName(uuid: string): string {
+        return `${Events.EVENT_RESPONSE}_${uuid}`
+    }
+
+    public static errorUnknownEnvironment(environment: Environment) {
+        if (environment === Environment.UNKNOWN)
+            throw new Error(Errors.UNKNOWN_ENVIRONMENT)
     }
 }
 
-export const utils = new Utils()
+export type RPCState = {
+    eventName: string
+    uuid: string
+    calledFrom: Environment
+    calledTo: Environment
+    knownError?: string
+    data?: any
+    type: RPCEventType
+}
+
+export enum RPCEventType {
+    EVENT = 'event',
+    RESPONSE = 'response',
+}
+
+export type PlayerMp = {
+    call: (event: string, args?: unknown[]) => void
+}
+
+export const nativeClientEvents = new Set([
+    'browserCreated',
+    'browserDomReady',
+    'browserLoadingFailed',
+    'playerEnterCheckpoint',
+    'playerExitCheckpoint',
+    'consoleCommand',
+    'click',
+    'playerChat',
+    'playerCommand',
+    'playerDeath',
+    'playerJoin',
+    'playerQuit',
+    'playerReady',
+    'playerResurrect',
+    'playerRuleTriggered',
+    'playerSpawn',
+    'playerWeaponShot',
+    'dummyEntityCreated',
+    'dummyEntityDestroyed',
+    'entityControllerChange',
+    'incomingDamage',
+    'outgoingDamage',
+    'meleeActionDamage',
+    'playerEnterVehicle',
+    'playerLeaveVehicle',
+    'playerStartTalking',
+    'playerStopTalking',
+    'entityStreamIn',
+    'entityStreamOut',
+    'render',
+    'playerCreateWaypoint',
+    'playerReachWaypoint',
+    'playerEnterColshape',
+    'playerExitColshape',
+    'explosion',
+    'projectile',
+    'uncaughtException',
+    'unhandledRejection',
+])
+
+export const nativeServerEvents = new Set([
+    'entityCreated',
+    // 'entityDestroyed',
+    'entityModelChange',
+    'incomingConnection',
+    'packagesLoaded',
+    'playerChat',
+    'playerCommand',
+    'playerDamage',
+    'playerDeath',
+    'playerEnterCheckpoint',
+    'playerEnterColshape',
+    'playerEnterVehicle',
+    'playerExitCheckpoint',
+    'playerExitColshape',
+    'playerExitVehicle',
+    'playerJoin',
+    'playerQuit',
+    'playerReachWaypoint',
+    'playerReady',
+    'playerSpawn',
+    'playerStartEnterVehicle',
+    'playerStartExitVehicle',
+    'playerStreamIn',
+    'playerStreamOut',
+    'playerWeaponChange',
+    'serverShutdown',
+    'trailerAttached',
+    'vehicleDamage',
+    'vehicleDeath',
+    'vehicleHornToggle',
+    'vehicleSirenToggle',
+])

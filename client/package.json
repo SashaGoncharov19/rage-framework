@@ -11,7 +11,7 @@
         "build": "tsup"
     },
     "dependencies": {
-        "rage-rpc": "^0.4.0"
+        "ragefw-rpc": "workspace:^"
     },
     "peerDependencies": {
         "@ragempcommunity/types-client": "^2.1.8",
