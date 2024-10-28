@@ -1,7 +1,7 @@
 {
     "name": "@entityseven/rage-fw-rpc",
     "description": "Rage FW RPC",
-    "version": "0.2.1",
+    "version": "0.2.0",
     "scripts": {
         "build": "tsup",
         "start": "npx ./dist create"
@@ -17,7 +17,13 @@
     "peerDependencies": {
         "typescript": "^5"
     },
-    "keywords": ["ragemp", "rage", "rpc", "rage-rpc", "ragerpc"],
+    "keywords": [
+        "ragemp",
+        "rage",
+        "rpc",
+        "rage-rpc",
+        "ragerpc"
+    ],
     "main": "dist/index.js",
     "types": "dist/src/index.d.ts",
     "author": {
