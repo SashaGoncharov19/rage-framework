@@ -1,16 +1,8 @@
 import { Rpc } from '@entityseven/rage-fw-rpc'
 import { RageFW_ICustomServerEvent } from '@entityseven/rage-fw-shared-types'
 
-import { nativeEvents } from '../native.events'
-import type {
-    _ServerEventHasArgs,
-    RageFW_ServerArgs,
-    RageFW_ServerCallback,
-    RageFW_ServerCallbackCustom,
-    RageFW_ServerCallbackNative,
-    RageFW_ServerEvent,
-    RageFW_ServerReturn,
-} from '../types'
+import { nativeEvents } from '../data/nativeEvents'
+import type * as T from '../types'
 
 export class Server {
     private _rpc: Rpc = new Rpc()
@@ -25,12 +17,12 @@ export class Server {
 
     private registerCustom<EventName extends keyof RageFW_ICustomServerEvent>(
         eventName: EventName,
-        callback: RageFW_ServerCallbackCustom<EventName>,
+        callback: T.RageFW_ServerCallbackCustom<EventName>,
     ): void {
         this._rpc.register(
             eventName,
             // fixme
-            async (args: RageFW_ServerArgs<EventName>, info) => {
+            async (args: T.RageFW_ServerArgs<EventName>, info) => {
                 await callback([info.player as PlayerMp, ...args])
             },
         )
@@ -38,7 +30,7 @@ export class Server {
 
     private registerNative<EventName extends keyof IServerEvents>(
         eventName: EventName,
-        callback: RageFW_ServerCallbackNative<EventName>,
+        callback: T.RageFW_ServerCallbackNative<EventName>,
     ): void {
         mp.events.add(
             eventName,
@@ -47,37 +39,37 @@ export class Server {
         )
     }
 
-    public register<EventName extends RageFW_ServerEvent>(
+    public register<EventName extends T.RageFW_ServerEvent>(
         eventName: EventName,
-        callback: RageFW_ServerCallback<EventName>,
+        callback: T.RageFW_ServerCallback<EventName>,
     ): void {
         if (this.isNativeEvent(eventName)) {
             this.registerNative(
                 eventName,
-                callback as RageFW_ServerCallbackNative,
+                callback as T.RageFW_ServerCallbackNative,
             )
         } else {
             this.registerCustom(
                 eventName,
-                callback as unknown as RageFW_ServerCallbackCustom,
+                callback as unknown as T.RageFW_ServerCallbackCustom,
             )
         }
     }
 
-    public registerMany<EventName extends RageFW_ServerEvent>(events: {
-        [event in EventName]: RageFW_ServerCallback<event>
+    public registerMany<EventName extends T.RageFW_ServerEvent>(events: {
+        [event in EventName]: T.RageFW_ServerCallback<event>
     }): void {
-        Object.entries<RageFW_ServerCallback<EventName>>(events).map(
+        Object.entries<T.RageFW_ServerCallback<EventName>>(events).map(
             ([eventName, callback]) => {
                 if (this.isNativeEvent(eventName)) {
                     this.registerNative(
                         eventName,
-                        callback as RageFW_ServerCallbackNative,
+                        callback as T.RageFW_ServerCallbackNative,
                     )
                 } else {
                     this.registerCustom(
                         eventName as keyof RageFW_ICustomServerEvent,
-                        callback as unknown as RageFW_ServerCallbackCustom,
+                        callback as unknown as T.RageFW_ServerCallbackCustom,
                     )
                 }
             },
@@ -96,7 +88,7 @@ export class Server {
         mp.events.remove(eventName)
     }
 
-    public unregister<EventName extends RageFW_ServerEvent>(
+    public unregister<EventName extends T.RageFW_ServerEvent>(
         eventName: EventName,
     ): void {
         if (this.isNativeEvent(eventName)) {
@@ -108,10 +100,10 @@ export class Server {
 
     public trigger<EventName extends keyof RageFW_ICustomServerEvent>(
         eventName: EventName,
-        ...args: _ServerEventHasArgs<EventName> extends true
-            ? [RageFW_ServerArgs<EventName>]
+        ...args: T._ServerEventHasArgs<EventName> extends true
+            ? [T.RageFW_ServerArgs<EventName>]
             : []
-    ): Promise<RageFW_ServerReturn<EventName>> {
+    ): Promise<T.RageFW_ServerReturn<EventName>> {
         return this._rpc.call(eventName, args)
     }
 }

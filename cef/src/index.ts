@@ -1,20 +1,5 @@
 import { Rpc } from '@entityseven/rage-fw-rpc'
-
-import type {
-    _CefEventHasArgs,
-    _ClientEventHasArgs,
-    _ServerEventHasArgs,
-    RageFW_CefArgs,
-    RageFW_CefCallback,
-    RageFW_CefReturn,
-    RageFW_ClientArgs,
-    RageFW_ClientReturn,
-    RageFW_ICustomCefEvent,
-    RageFW_ICustomClientEvent,
-    RageFW_ICustomServerEvent,
-    RageFW_ServerArgs,
-    RageFW_ServerReturn,
-} from './types'
+import type * as T from './types'
 
 class Cef {
     private _debugMode: boolean = false
@@ -30,9 +15,9 @@ class Cef {
         return this._rpc
     }
 
-    public register<EventName extends keyof RageFW_ICustomCefEvent>(
+    public register<EventName extends keyof T.RageFW_ICustomCefEvent>(
         eventName: EventName,
-        callback: RageFW_CefCallback<EventName>,
+        callback: T.RageFW_CefCallback<EventName>,
     ): void {
         if (this._debugMode) {
             console.log('[RPC](register):', eventName, callback)
@@ -43,12 +28,12 @@ class Cef {
         }
     }
 
-    public async trigger<EventName extends keyof RageFW_ICustomCefEvent>(
+    public async trigger<EventName extends keyof T.RageFW_ICustomCefEvent>(
         eventName: EventName,
-        ...args: _CefEventHasArgs<EventName> extends true
-            ? [RageFW_CefArgs<EventName>]
+        ...args: T._CefEventHasArgs<EventName> extends true
+            ? [T.RageFW_CefArgs<EventName>]
             : []
-    ): Promise<RageFW_CefReturn<EventName>> {
+    ): Promise<T.RageFW_CefReturn<EventName>> {
         if (this._debugMode) {
             console.log('[RPC](trigger):', eventName, ...args)
         }
@@ -63,13 +48,13 @@ class Cef {
     }
 
     public async triggerServer<
-        EventName extends keyof RageFW_ICustomServerEvent,
+        EventName extends keyof T.RageFW_ICustomServerEvent,
     >(
         eventName: EventName,
-        ...args: _ServerEventHasArgs<EventName> extends true
-            ? [RageFW_ServerArgs<EventName>]
+        ...args: T._ServerEventHasArgs<EventName> extends true
+            ? [T.RageFW_ServerArgs<EventName>]
             : []
-    ): Promise<RageFW_ServerReturn<EventName>> {
+    ): Promise<T.RageFW_ServerReturn<EventName>> {
         if (this._debugMode) {
             console.log('[RPC](triggerServer):', eventName, ...args)
         }
@@ -84,13 +69,13 @@ class Cef {
     }
 
     public async triggerClient<
-        EventName extends keyof RageFW_ICustomClientEvent,
+        EventName extends keyof T.RageFW_ICustomClientEvent,
     >(
         eventName: EventName,
-        ...args: _ClientEventHasArgs<EventName> extends true
-            ? [RageFW_ClientArgs<EventName>]
+        ...args: T._ClientEventHasArgs<EventName> extends true
+            ? [T.RageFW_ClientArgs<EventName>]
             : []
-    ): Promise<RageFW_ClientReturn<EventName>> {
+    ): Promise<T.RageFW_ClientReturn<EventName>> {
         if (this._debugMode) {
             console.log('[RPC](triggerClient):', eventName, ...args)
         }
