@@ -1,7 +1,7 @@
 {
     "name": "@entityseven/rage-fw-rpc",
     "description": "Rage FW RPC",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "scripts": {
         "build": "tsup",
         "start": "npx ./dist create"
