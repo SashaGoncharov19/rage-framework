@@ -53,27 +53,27 @@ importers:
       '@ragempcommunity/types-cef':
         specifier: ^2.1.8
         version: 2.1.8
+      rage-fw-rpc:
+        specifier: workspace:^
+        version: link:../rpc
       rage-fw-shared-types:
         specifier: workspace:^
         version: link:../shared-types
-      rage-trpc:
-        specifier: workspace:^
-        version: link:../rpc
 
   cli:
     dependencies:
       '@inquirer/prompts':
         specifier: ^5.0.5
         version: 5.0.5
-      axios:
-        specifier: ^1.7.2
-        version: 1.7.2
       chalk:
         specifier: 4.1.2
         version: 4.1.2
       git-clone:
         specifier: ^0.2.0
         version: 0.2.0
+      ky:
+        specifier: ^1.7.2
+        version: 1.7.2
       yargs:
         specifier: ^17.7.2
         version: 17.7.2
@@ -99,17 +99,17 @@ importers:
       '@ragempcommunity/types-client':
         specifier: ^2.1.8
         version: 2.1.8
+      rage-fw-rpc:
+        specifier: workspace:^
+        version: link:../rpc
       rage-fw-shared-types:
         specifier: workspace:^
         version: link:../shared-types
-      rage-trpc:
-        specifier: workspace:^
-        version: link:../rpc
 
   rpc:
     dependencies:
       typescript:
-        specifier: ^5.0.0
+        specifier: ^5
         version: 5.4.5
     devDependencies:
       '@microsoft/api-extractor':
@@ -127,12 +127,12 @@ importers:
       '@ragempcommunity/types-server':
         specifier: ^2.1.8
         version: 2.1.8
+      rage-fw-rpc:
+        specifier: workspace:^
+        version: link:../rpc
       rage-fw-shared-types:
         specifier: workspace:^
         version: link:../shared-types
-      rage-trpc:
-        specifier: workspace:^
-        version: link:../rpc
 
   shared-types: {}
 
@@ -2268,6 +2268,10 @@ packages:
 
   kuler@2.0.0:
     resolution: {integrity: sha512-Xq9nH7KlWZmXAtodXDDRE7vs6DU1gTU8zYDHDiWLSip45Egwq3plLHzPn27NgvzL2r1LMPC1vdqh98sQxtqj4A==}
+
+  ky@1.7.2:
+    resolution: {integrity: sha512-OzIvbHKKDpi60TnF9t7UUVAF1B4mcqc02z5PIvrm08Wyb+yOcz63GRvEuVxNT18a9E1SrNouhB4W2NNLeD7Ykg==}
+    engines: {node: '>=18'}
 
   lerna@8.1.3:
     resolution: {integrity: sha512-Dg/r1dGnRCXKsOUC3lol7o6ggYTA6WWiPQzZJNKqyygn4fzYGuA3Dro2d5677pajaqFnFA72mdCjzSyF16Vi2Q==}
@@ -5796,6 +5800,8 @@ snapshots:
   kind-of@6.0.3: {}
 
   kuler@2.0.0: {}
+
+  ky@1.7.2: {}
 
   lerna@8.1.3(encoding@0.1.13):
     dependencies:
