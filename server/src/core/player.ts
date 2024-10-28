@@ -1,6 +1,6 @@
-import rpc from 'rage-rpc'
+import { Rpc } from 'rage-fw-rpc'
 
-import {
+import type {
     _CefEventHasArgs,
     _ClientEventHasArgs,
     RageFW_CefArgs,
@@ -12,6 +12,12 @@ import {
 } from '../types'
 
 export class Player {
+    private _rpc: Rpc = new Rpc()
+
+    get rpc(): Rpc {
+        return this._rpc
+    }
+
     public triggerClient<EventName extends RageFW_ClientEvent>(
         player: PlayerMp,
         eventName: EventName,
@@ -19,7 +25,7 @@ export class Player {
             ? [RageFW_ServerClientArgs<EventName>]
             : []
     ): Promise<RageFW_ServerClientReturn<EventName>> {
-        return rpc.callClient(player, eventName, args)
+        return this._rpc.callClient(player, eventName, args)
     }
 
     public triggerBrowser<EventName extends RageFW_CefEvent>(
@@ -29,6 +35,6 @@ export class Player {
             ? [RageFW_CefArgs<EventName>]
             : []
     ): Promise<RageFW_CefReturn<EventName>> {
-        return rpc.callBrowsers(player, eventName, args)
+        return this._rpc.callBrowser(player, eventName, args)
     }
 }

@@ -1,6 +1,6 @@
-import rpc from 'rage-rpc'
+import { Rpc } from 'rage-fw-rpc'
 
-import {
+import type {
     _CefEventHasArgs,
     _ClientEventHasArgs,
     _ServerEventHasArgs,
@@ -18,9 +18,16 @@ import {
 
 class Cef {
     private _debugMode: boolean = false
+    private _rpc: Rpc = new Rpc()
+
+    constructor() {}
 
     set debug(debug: boolean) {
         this._debugMode = debug
+    }
+
+    get rpc(): Rpc {
+        return this._rpc
     }
 
     public register<EventName extends keyof RageFW_ICustomCefEvent>(
@@ -32,11 +39,11 @@ class Cef {
         }
 
         if ('mp' in window) {
-            rpc.register(eventName, callback)
+            this._rpc.register(eventName, callback)
         }
     }
 
-    public trigger<EventName extends keyof RageFW_ICustomCefEvent>(
+    public async trigger<EventName extends keyof RageFW_ICustomCefEvent>(
         eventName: EventName,
         ...args: _CefEventHasArgs<EventName> extends true
             ? [RageFW_CefArgs<EventName>]
@@ -47,7 +54,7 @@ class Cef {
         }
 
         if ('mp' in window) {
-            return rpc.call(eventName, args)
+            return await this._rpc.call(eventName, args)
         }
 
         return Promise.reject(
@@ -55,7 +62,9 @@ class Cef {
         )
     }
 
-    public triggerServer<EventName extends keyof RageFW_ICustomServerEvent>(
+    public async triggerServer<
+        EventName extends keyof RageFW_ICustomServerEvent,
+    >(
         eventName: EventName,
         ...args: _ServerEventHasArgs<EventName> extends true
             ? [RageFW_ServerArgs<EventName>]
@@ -66,7 +75,7 @@ class Cef {
         }
 
         if ('mp' in window) {
-            return rpc.callServer(eventName, args)
+            return await this._rpc.callServer(eventName, args)
         }
 
         return Promise.reject(
@@ -74,7 +83,9 @@ class Cef {
         )
     }
 
-    public triggerClient<EventName extends keyof RageFW_ICustomClientEvent>(
+    public async triggerClient<
+        EventName extends keyof RageFW_ICustomClientEvent,
+    >(
         eventName: EventName,
         ...args: _ClientEventHasArgs<EventName> extends true
             ? [RageFW_ClientArgs<EventName>]
@@ -85,7 +96,7 @@ class Cef {
         }
 
         if ('mp' in window) {
-            return rpc.callClient(eventName, args)
+            return await this._rpc.callClient(eventName, args)
         }
 
         return Promise.reject(

@@ -1,4 +1,4 @@
-import rpc from 'rage-rpc'
+import { Rpc } from 'rage-fw-rpc'
 import type { RageFW_ICustomClientEvent } from 'rage-fw-shared-types'
 
 import {
@@ -16,15 +16,19 @@ import {
 } from '../types'
 
 export class Player {
+    private _rpc: Rpc = new Rpc()
     public browser: BrowserMp | undefined
 
+    get rpc(): Rpc {
+        return this._rpc
+    }
     public trigger<EventName extends keyof RageFW_ICustomClientEvent>(
         eventName: EventName,
         ...args: _ClientEventHasArgs<EventName> extends true
             ? [RageFW_ClientArgs<EventName>]
             : []
     ): Promise<RageFW_ClientReturn<EventName>> {
-        return rpc.call<RageFW_ClientReturn<EventName>>(eventName, args)
+        return this._rpc.call(eventName, args)
     }
 
     public triggerServer<EventName extends RageFW_ClientServerEvent>(
@@ -33,7 +37,7 @@ export class Player {
             ? [RageFW_ClientServerArgs<EventName>]
             : []
     ): Promise<RageFW_ClientServerReturn<EventName>> {
-        return rpc.callServer(eventName, args)
+        return this._rpc.callServer(eventName, args)
     }
 
     public triggerBrowser<EventName extends RageFW_CefEvent>(
@@ -44,6 +48,6 @@ export class Player {
     ): Promise<RageFW_CefReturn<EventName>> {
         if (!this.browser)
             throw new Error('You need to initialize browser first')
-        return rpc.callBrowser(this.browser, eventName, args)
+        return this._rpc.callBrowser(this.browser, eventName, args)
     }
 }

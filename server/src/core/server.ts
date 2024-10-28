@@ -1,8 +1,8 @@
-import rpc from 'rage-rpc'
+import { Rpc } from 'rage-fw-rpc'
 import { RageFW_ICustomServerEvent } from 'rage-fw-shared-types'
 
 import { nativeEvents } from '../native.events'
-import {
+import type {
     _ServerEventHasArgs,
     RageFW_ServerArgs,
     RageFW_ServerCallback,
@@ -13,6 +13,12 @@ import {
 } from '../types'
 
 export class Server {
+    private _rpc: Rpc = new Rpc()
+
+    get rpc(): Rpc {
+        return this._rpc
+    }
+
     private isNativeEvent(eventName: string): eventName is keyof IServerEvents {
         return nativeEvents.includes(eventName)
     }
@@ -21,8 +27,9 @@ export class Server {
         eventName: EventName,
         callback: RageFW_ServerCallbackCustom<EventName>,
     ): void {
-        rpc.register(
+        this._rpc.register(
             eventName,
+            // fixme
             async (args: RageFW_ServerArgs<EventName>, info) => {
                 await callback([info.player as PlayerMp, ...args])
             },
@@ -80,7 +87,7 @@ export class Server {
     private unregisterCustom<EventName extends keyof RageFW_ICustomServerEvent>(
         eventName: EventName,
     ): void {
-        rpc.unregister(eventName)
+        this._rpc.unregister(eventName)
     }
 
     private unregisterNative<EventName extends keyof IServerEvents>(
@@ -105,6 +112,6 @@ export class Server {
             ? [RageFW_ServerArgs<EventName>]
             : []
     ): Promise<RageFW_ServerReturn<EventName>> {
-        return rpc.call<RageFW_ServerReturn<EventName>>(eventName, args)
+        return this._rpc.call(eventName, args)
     }
 }
