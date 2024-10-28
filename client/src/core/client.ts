@@ -18,7 +18,7 @@ export class Client {
     public unregister<EventName extends T.RageFW_ClientEvent>(
         eventName: EventName,
     ): Client {
-        rpc.unregister(eventName)
+        rpc.unregister<EventName>(eventName)
 
         return this
     }

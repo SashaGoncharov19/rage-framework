@@ -2,47 +2,53 @@ import { rpc } from './rpc'
 import type * as T from '../types'
 
 export class Player {
-    public browser: BrowserMp | undefined
+    private _browser: BrowserMp | undefined = undefined
 
-    public trigger<EventName extends keyof T.RageFW_ICustomClientEvent>(
+    set browser(browser: BrowserMp) {
+        this._browser = browser
+        rpc.browser = browser
+    }
+
+    public async trigger<EventName extends keyof T.RageFW_ICustomClientEvent>(
         eventName: EventName,
         ...args: T._ClientEventHasArgs<EventName> extends true
             ? [T.RageFW_ClientArgs<EventName>]
             : []
     ): Promise<T.RageFW_ClientReturn<EventName>> {
-        return rpc.call<
+        return await rpc.call<
             typeof args,
             EventName,
             T.RageFW_ClientReturn<EventName>
         >(eventName, args)
     }
 
-    public triggerServer<EventName extends T.RageFW_ServerEvent>(
+    public async triggerServer<EventName extends T.RageFW_ServerEvent>(
         eventName: EventName,
         ...args: T._ServerEventHasArgs<EventName> extends true
             ? [T.RageFW_ServerArgs<EventName>]
             : []
     ): Promise<T.RageFW_ClientServerReturn<EventName>> {
-        return rpc.callServer<
+        return await rpc.callServer<
             typeof args,
             EventName,
             T.RageFW_ClientServerReturn<EventName>
         >(eventName, args)
     }
 
-    public triggerBrowser<EventName extends T.RageFW_CefEvent>(
+    public async triggerBrowser<EventName extends T.RageFW_CefEvent>(
         eventName: EventName,
         ...args: T._CefEventHasArgs<EventName> extends true
             ? [T.RageFW_CefArgs<EventName>]
             : []
     ): Promise<T.RageFW_CefReturn<EventName>> {
-        if (!this.browser)
+        if (!this._browser)
             throw new Error('You need to initialize browser first')
-        return rpc.callBrowser<
+
+        return await rpc.callBrowser<
             typeof args,
             EventName,
             T.RageFW_CefReturn<EventName>
-        >(this.browser, eventName, args)
+        >(eventName, args)
     }
 }
 

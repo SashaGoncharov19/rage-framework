@@ -25,7 +25,7 @@ export type RageFW_ClientArgs<K extends RageFW_ClientEvent> =
 
 /**
  * Return type for an event, name of which you pass as a generic
- * These only include custom events
+ * These include custom and system events
  */
 export type RageFW_ClientReturn<K extends RageFW_ClientEvent> =
     K extends keyof RageFW_ICustomClientEvent
@@ -36,7 +36,7 @@ export type RageFW_ClientReturn<K extends RageFW_ClientEvent> =
 
 /**
  * Callback (function) for an event, name of which you pass as a generic
- * These only include custom events
+ * These include custom and system events
  */
 export type RageFW_ClientCallback<K extends RageFW_ClientEvent> = (
     ...args: RageFW_ClientArgs<K>

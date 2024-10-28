@@ -40,7 +40,7 @@ export class Browser extends Helper {
     public unregister<EventName extends T.RageFW_BrowserEvent>(
         eventName: EventName,
     ): Browser {
-        rpc.unregister(eventName)
+        rpc.unregister<EventName>(eventName)
 
         return this
     }
