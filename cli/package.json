@@ -1,5 +1,5 @@
 {
-    "name": "create-rage-fw",
+    "name": "@entityseven/create-rage-fw",
     "version": "0.1.0",
     "bin": {
         "rage-fw": "dist/index.js"

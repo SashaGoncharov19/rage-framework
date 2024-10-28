@@ -1,6 +1,6 @@
 {
-    "name": "rage-fw-rpc",
-    "description": "RageFW RPC",
+    "name": "@entityseven/rage-fw-rpc",
+    "description": "Rage FW RPC",
     "version": "0.2.1",
     "scripts": {
         "build": "tsup",

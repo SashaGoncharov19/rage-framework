@@ -1,5 +1,5 @@
 {
-    "name": "rage-fw-client",
+    "name": "@entityseven/rage-fw-client",
     "version": "0.1.0",
     "main": "dist/index.js",
     "types": "dist/src/index.d.ts",
