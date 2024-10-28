@@ -11,11 +11,11 @@
         "build": "tsup"
     },
     "dependencies": {
-        "rage-fw-rpc": "workspace:^"
+        "@entityseven/rage-fw-rpc": "latest"
     },
     "peerDependencies": {
         "@ragempcommunity/types-cef": "^2.1.8",
-        "rage-fw-shared-types": "workspace:^"
+        "@entityseven/rage-fw-shared-types": "workspace:^"
     },
     "description": "RageFW CEF side",
     "keywords": [],

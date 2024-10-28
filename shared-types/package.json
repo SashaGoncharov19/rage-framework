@@ -1,5 +1,5 @@
 {
-    "name": "rage-fw-shared-types",
+    "name": "@entityseven/rage-fw-shared-types",
     "version": "0.1.0",
     "types": "types/types/index.d.ts",
     "files": [
