@@ -13,7 +13,7 @@ You can find out more about our CLI [here](https://git.entityseven.com/entitysev
 
 At the moment automation we have only works via [pnpm](https://pnpm.io/). To scaffold a basic project with minor settings you can use our CLI:
 
-``pnpm create rage-fw``
+``pnpm create @entityseven/rage-fw``
 
 This will give you a few options, among them, you can find ``Initialize new project``. Use that option to scaffold a new project for yourself using the preferred frontend framework
 
