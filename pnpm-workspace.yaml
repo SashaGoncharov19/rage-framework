@@ -2,5 +2,6 @@ packages:
   - "server"
   - "client"
   - "cef"
+  - "rpc"
   - "cli"
   - "shared-types"

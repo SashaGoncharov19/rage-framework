@@ -1,40 +1,57 @@
 import c from 'chalk'
 import { select } from '@inquirer/prompts'
 
-import { checkForUpdate } from './utils/update'
+import { checkForUpdates } from './utils/update'
 import { initProject } from './commands/create'
 import { downloadUpdater } from './commands/download-updater'
+import { testRpc } from './commands/test-rpc'
 
 enum Actions {
     INIT_PROJECT = 'INIT_PROJECT',
+    TEST_RPC = 'TEST_RPC',
     UPDATER = 'UPDATER',
 }
 
 ;(async () => {
-    await checkForUpdate()
+    await checkForUpdates()
 
-    console.log(
-        c.blueBright('Rage FW CLI | Powered by Entity Seven Group ️ <3'),
-    )
+    console.log(c.blueBright('Rage FW CLI | Powered by Entity Seven Group ️<3'))
 
     const action = await select({
         message: c.gray('Select action:'),
         choices: [
             {
-                name: 'Initialize new project',
+                name: 'Initialize a new project',
                 value: Actions.INIT_PROJECT,
-                description: 'Initialize new project and start develop',
+                description: 'Initialize a new project and start developing',
+            },
+            {
+                name: 'Test our RPC',
+                value: Actions.TEST_RPC,
+                description:
+                    'Initialize a new skeleton project with our RPC set up',
             },
             {
                 name: 'Install RAGE:MP updater',
                 value: Actions.UPDATER,
                 description:
-                    'Use our custom updater to download and update RAGE:MP server files.',
+                    'Use our tool to download or update RAGE:MP server files in two clicks',
             },
         ],
         loop: true,
     })
 
-    if (action === Actions.INIT_PROJECT) await initProject()
-    if (action === Actions.UPDATER) await downloadUpdater()
+    switch (action) {
+        case Actions.INIT_PROJECT:
+            await initProject()
+            break
+        case Actions.TEST_RPC:
+            await testRpc()
+            break
+        case Actions.UPDATER:
+            await downloadUpdater()
+            break
+        default:
+            console.log(c.red('Something went wrong..'))
+    }
 })()

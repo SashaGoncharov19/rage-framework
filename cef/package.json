@@ -11,14 +11,19 @@
         "build": "tsup"
     },
     "dependencies": {
-        "rage-rpc": "^0.4.0"
+        "rage-fw-rpc": "workspace:^"
     },
     "peerDependencies": {
         "@ragempcommunity/types-cef": "^2.1.8",
         "rage-fw-shared-types": "workspace:^"
     },
+    "description": "RageFW CEF side",
     "keywords": [],
     "author": "SashaGoncharov19",
-    "license": "MIT",
-    "description": "CEF side for rage-fw"
+    "contributors": [{
+        "name": "rilaxik",
+        "email": "dev.rilaxik@gmail.com",
+        "url": "https://github.com/rilaxik"
+    }],
+    "license": "MIT"
 }

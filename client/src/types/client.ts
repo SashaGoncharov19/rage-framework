@@ -14,7 +14,7 @@ export type RageFW_ClientEvent =
  * Array of arguments for an event, name of which you pass as a generic
  * These include custom and system events
  */
-export type RageFW_ClientEventArguments<K extends RageFW_ClientEvent> =
+export type RageFW_ClientArgs<K extends RageFW_ClientEvent> =
     K extends keyof RageFW_ICustomClientEvent
         ? Parameters<RageFW_ICustomClientEvent[K]>
         : K extends keyof IClientEvents
@@ -25,18 +25,18 @@ export type RageFW_ClientEventArguments<K extends RageFW_ClientEvent> =
  * Callback (function) for an event, name of which you pass as a generic
  * These only include custom events
  */
-export type RageFW_ClientEventCallback<K extends RageFW_ClientEvent> = (
-    args: RageFW_ClientEventArguments<K>,
-) => RageFW_ClientEventReturn<K>
+export type RageFW_ClientCallback<K extends RageFW_ClientEvent> = (
+    args: RageFW_ClientArgs<K>,
+) => Promise<RageFW_ClientReturn<K>>
 
 /**
  * Return type for an event, name of which you pass as a generic
  * These only include custom events
  */
-export type RageFW_ClientEventReturn<K extends RageFW_ClientEvent> =
+export type RageFW_ClientReturn<K extends RageFW_ClientEvent> =
     K extends keyof RageFW_ICustomClientEvent
         ? ReturnType<RageFW_ICustomClientEvent[K]>
-        : never
+        : void
 
 export type _ClientEventHasArgs<
     EventName extends keyof RageFW_ICustomClientEvent,

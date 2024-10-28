@@ -15,17 +15,16 @@ export type RageFW_ClientServerEvent = keyof RageFW_ICustomServerEvent
  * Array of arguments for an event, name of which you pass as a generic
  * These only include custom events
  */
-export type RageFW_ClientServerEventArguments<
-    K extends RageFW_ClientServerEvent,
-> = K extends keyof RageFW_ICustomServerEvent
-    ? Parameters<RageFW_ICustomServerEvent[K]>
-    : never
+export type RageFW_ClientServerArgs<K extends RageFW_ClientServerEvent> =
+    K extends keyof RageFW_ICustomServerEvent
+        ? Parameters<RageFW_ICustomServerEvent[K]>
+        : never
 
 /**
  * Return type for an event, name of which you pass as a generic
  * These only include custom events
  */
-export type RageFW_ClientServerEventReturn<K extends RageFW_ClientServerEvent> =
+export type RageFW_ClientServerReturn<K extends RageFW_ClientServerEvent> =
     K extends keyof RageFW_ICustomServerEvent
         ? ReturnType<RageFW_ICustomServerEvent[K]>
         : never

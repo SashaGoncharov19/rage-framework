@@ -11,15 +11,20 @@
         "build": "tsup"
     },
     "dependencies": {
-        "rage-rpc": "^0.4.0"
+        "rage-fw-rpc": "workspace:^"
     },
     "peerDependencies": {
         "@ragempcommunity/types-server": "^2.1.8",
         "rage-fw-shared-types": "workspace:^"
     },
+    "description": "RageFW Server side",
     "keywords": [],
     "author": "SashaGoncharov19",
+    "contributors": [{
+        "name": "rilaxik",
+        "email": "dev.rilaxik@gmail.com",
+        "url": "https://github.com/rilaxik"
+    }],
     "license": "MIT",
-    "description": "Server side for rage-fw",
     "gitHead": "053e4fd12aa120d53e11e0d2009c0df78c1a2ad0"
 }
