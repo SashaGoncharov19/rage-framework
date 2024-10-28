@@ -1,7 +1,7 @@
 {
     "name": "@entityseven/rage-fw-rpc",
     "description": "Rage FW RPC",
-    "version": "0.2.1",
+    "version": "0.2.3",
     "scripts": {
         "build": "tsup",
         "start": "npx ./dist create"
@@ -38,5 +38,5 @@
         }
     ],
     "license": "MIT",
-    "gitHead": "2b287f06a2e43dd15fd03911b29cad39ed307b39"
+    "gitHead": "74c0215366776f18755c47eaf740518c81245e01"
 }
