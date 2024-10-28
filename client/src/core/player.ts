@@ -1,31 +1,33 @@
-import { Rpc } from '@entityseven/rage-fw-rpc'
-import type { RageFW_ICustomClientEvent } from '@entityseven/rage-fw-shared-types'
-
+import { rpc } from './rpc'
 import type * as T from '../types'
 
 export class Player {
-    private _rpc: Rpc = new Rpc()
     public browser: BrowserMp | undefined
 
-    get rpc(): Rpc {
-        return this._rpc
-    }
-    public trigger<EventName extends keyof RageFW_ICustomClientEvent>(
+    public trigger<EventName extends keyof T.RageFW_ICustomClientEvent>(
         eventName: EventName,
         ...args: T._ClientEventHasArgs<EventName> extends true
             ? [T.RageFW_ClientArgs<EventName>]
             : []
     ): Promise<T.RageFW_ClientReturn<EventName>> {
-        return this._rpc.call(eventName, args)
+        return rpc.call<
+            typeof args,
+            EventName,
+            T.RageFW_ClientReturn<EventName>
+        >(eventName, args)
     }
 
-    public triggerServer<EventName extends T.RageFW_ClientServerEvent>(
+    public triggerServer<EventName extends T.RageFW_ServerEvent>(
         eventName: EventName,
         ...args: T._ServerEventHasArgs<EventName> extends true
-            ? [T.RageFW_ClientServerArgs<EventName>]
+            ? [T.RageFW_ServerArgs<EventName>]
             : []
     ): Promise<T.RageFW_ClientServerReturn<EventName>> {
-        return this._rpc.callServer(eventName, args)
+        return rpc.callServer<
+            typeof args,
+            EventName,
+            T.RageFW_ClientServerReturn<EventName>
+        >(eventName, args)
     }
 
     public triggerBrowser<EventName extends T.RageFW_CefEvent>(
@@ -36,6 +38,14 @@ export class Player {
     ): Promise<T.RageFW_CefReturn<EventName>> {
         if (!this.browser)
             throw new Error('You need to initialize browser first')
-        return this._rpc.callBrowser(this.browser, eventName, args)
+        return rpc.callBrowser<
+            typeof args,
+            EventName,
+            T.RageFW_CefReturn<EventName>
+        >(this.browser, eventName, args)
     }
 }
+
+// new Player().trigger('customClientEvent', ['', 1])
+// new Player().triggerServer('customServerEvent', ['', 1])
+// new Player().triggerBrowser('customCefEvent', ['', 1])
