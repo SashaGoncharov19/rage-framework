@@ -1,6 +1,6 @@
 {
-    "name": "create-rage-fw",
-    "version": "0.1.0",
+    "name": "@entityseven/create-rage-fw",
+    "version": "0.1.1",
     "bin": {
         "rage-fw": "dist/index.js"
     },
@@ -14,22 +14,23 @@
         "dist/**/*",
         "readme.md"
     ],
-    "description": "CLI to scaffold a template project for RageFW",
-    "keywords": [],
-    "author": "rilaxik",
-    "license": "ISC",
     "dependencies": {
         "@inquirer/prompts": "^5.0.5",
-        "axios": "^1.7.2",
+        "ky": "^1.7.2",
         "chalk": "4.1.2",
-        "git-clone": "^0.2.0",
         "yargs": "^17.7.2"
     },
     "devDependencies": {
-        "@types/git-clone": "^0.2.4",
         "@types/node": "^20.14.2",
         "@types/yargs": "^17.0.32",
         "prettier": "^3.3.2",
         "typescript": "^5.4.5"
-    }
+    },
+    "description": "CLI to scaffold a template project for RageFW",
+    "keywords": [],
+    "author": "rilaxik",
+    "contributors": [{
+        "name": "SashaGoncharov19"
+    }],
+    "license": "MIT"
 }

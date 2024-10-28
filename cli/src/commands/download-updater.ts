@@ -1,4 +1,3 @@
-import axios from 'axios'
 import * as fs from 'node:fs'
 
 const latestReleases =
@@ -13,25 +12,33 @@ type Asset = {
 }
 
 export async function downloadUpdater(): Promise<void> {
+    const ky = await import('ky').then(ky => ky.default)
     const id = await getLatestReleaseID()
 
     const latestAssets = `https://git.entityseven.com/api/v1/repos/entityseven/rage-server-downloader/releases/${id}/assets?page=1&limit=1`
 
-    axios.get<Asset[]>(latestAssets).then(async ({ data }) => {
-        const downloadURL = data[0].browser_download_url
+    ky.get<Asset[]>(latestAssets)
+        .then(response => response.json())
+        .then(async data => {
+            const downloadURL = data[0].browser_download_url
 
-        const file = await axios.get(data[0].browser_download_url, {
-            responseType: 'arraybuffer',
+            const file = await ky.get(data[0].browser_download_url)
+            const fileData = Buffer.from(
+                file as unknown as WithImplicitCoercion<string>,
+                'binary',
+            )
+
+            const fileSplit = downloadURL.split('/')
+            const fileName = fileSplit[fileSplit.length - 1]
+
+            fs.writeFileSync(`./${fileName}`, fileData)
         })
-        const fileData = Buffer.from(file.data, 'binary')
-
-        const fileSplit = downloadURL.split('/')
-        const fileName = fileSplit[fileSplit.length - 1]
-
-        fs.writeFileSync(`./${fileName}`, fileData)
-    })
 }
 
 async function getLatestReleaseID() {
-    return axios.get<Release[]>(latestReleases).then(({ data }) => data[0].id)
+    const ky = await import('ky').then(ky => ky.default)
+    return ky
+        .get<Release[]>(latestReleases)
+        .then(response => response.json())
+        .then(data => data[0].id)
 }

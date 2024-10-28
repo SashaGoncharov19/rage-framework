@@ -1,7 +1,8 @@
 import winston, { format } from 'winston'
+
 const { timestamp, printf, colorize } = format
 
-export default class Logger {
+export class Logger {
     private format = printf(({ message, level, timestamp }) => {
         return `[${new Date(timestamp).toLocaleTimeString()}] [${level}]: ${message}`
     })
@@ -22,15 +23,15 @@ export default class Logger {
         ),
     })
 
-    public info(message: unknown) {
-        this.systemLogger.info(message)
+    public info(...message: unknown[]) {
+        this.systemLogger.info(message.join(' '))
     }
 
-    public warn(message: unknown) {
-        this.systemLogger.warn(message)
+    public warn(...message: unknown[]) {
+        this.systemLogger.warn(message.join(' '))
     }
 
-    public error(message: unknown) {
-        this.systemLogger.error(message)
+    public error(...message: unknown[]) {
+        this.systemLogger.error(message.join(' '))
     }
 }

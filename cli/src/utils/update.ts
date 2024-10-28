@@ -1,4 +1,3 @@
-import axios from 'axios'
 import c from 'chalk'
 import yargs from 'yargs'
 
@@ -10,12 +9,15 @@ type Version = {
     message: string
 }
 
-export async function checkForUpdate(): Promise<void> {
+export async function checkForUpdates(): Promise<void> {
+    const ky = await import('ky').then(ky => ky.default)
+
     return new Promise(res => {
         yargs.showVersion(version =>
-            axios
+            ky
                 .get<Version[]>(latestVersionURL)
-                .then(({ data }) => {
+                .then(response => response.json<Version[]>())
+                .then(data => {
                     const latestVersion = data[0].name
 
                     if (latestVersion !== `v${version}`)

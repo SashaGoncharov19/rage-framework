@@ -1,5 +1,6 @@
-import { RageFW_ICustomCefEvent } from 'rage-fw-shared-types'
-export { RageFW_ICustomCefEvent } from 'rage-fw-shared-types'
+import { RageFW_ICustomCefEvent } from '@entityseven/rage-fw-shared-types'
+
+export { RageFW_ICustomCefEvent } from '@entityseven/rage-fw-shared-types'
 
 /**
  * Union of all available cef event names
@@ -11,7 +12,7 @@ export type RageFW_CefEvent = keyof RageFW_ICustomCefEvent
  * Array of arguments of an event you pass as a generic
  * These only include custom cef events
  */
-export type RageFW_CefArguments<K extends RageFW_CefEvent> = Parameters<
+export type RageFW_CefArgs<K extends RageFW_CefEvent> = Parameters<
     RageFW_ICustomCefEvent[K]
 >
 
@@ -28,8 +29,8 @@ export type RageFW_CefReturn<K extends RageFW_CefEvent> = ReturnType<
  * These only include custom cef events
  */
 export type RageFW_CefCallback<K extends keyof RageFW_ICustomCefEvent> = (
-    args: RageFW_CefArguments<K>,
-) => RageFW_CefReturn<K>
+    args: RageFW_CefArgs<K>,
+) => Promise<RageFW_CefReturn<K>>
 
 export type _CefEventHasArgs<EventName extends keyof RageFW_ICustomCefEvent> =
     keyof RageFW_ICustomCefEvent extends never
