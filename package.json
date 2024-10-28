@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "publish": "pnpm build && lerna publish --force-publish",
+    "publish": "lerna publish --force-publish",
     "build": "lerna run build",
     "lint": "eslint --c .eslintrc.yaml --ext .ts client/ server/ shared-types/",
 

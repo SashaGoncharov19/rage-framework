@@ -1,5 +1,5 @@
 {
-    "name": "rage-fw-rpc",
+    "name": "@entityseven/rage-fw-rpc",
     "description": "Rage FW RPC",
     "version": "0.2.5",
     "scripts": {

@@ -2,7 +2,7 @@
 
 To make you life easier while using RageFW we created a basic CLI. At the moment automation we have only works via [pnpm](https://pnpm.io/)
 
-``pnpm create rage-fw@latest``
+``pnpm create @entityseven/rage-fw@latest``
 
 ## TL;DR
 - ``Initialize new project`` - create new template project
