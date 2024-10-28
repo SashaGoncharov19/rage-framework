@@ -1,5 +1,5 @@
-import { Rpc } from 'rage-fw-rpc'
-import type { RageFW_ICustomClientEvent } from 'rage-fw-shared-types'
+import { Rpc } from '@entityseven/rage-fw-rpc'
+import type { RageFW_ICustomClientEvent } from '@entityseven/rage-fw-shared-types'
 
 import {
     _CefEventHasArgs,

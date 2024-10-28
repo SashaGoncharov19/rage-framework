@@ -1,4 +1,4 @@
-import { Rpc } from 'rage-fw-rpc'
+import { Rpc } from '@entityseven/rage-fw-rpc'
 
 import type {
     _CefEventHasArgs,

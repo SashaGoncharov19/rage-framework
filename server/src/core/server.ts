@@ -1,5 +1,5 @@
-import { Rpc } from 'rage-fw-rpc'
-import { RageFW_ICustomServerEvent } from 'rage-fw-shared-types'
+import { Rpc } from '@entityseven/rage-fw-rpc'
+import { RageFW_ICustomServerEvent } from '@entityseven/rage-fw-shared-types'
 
 import { nativeEvents } from '../native.events'
 import type {

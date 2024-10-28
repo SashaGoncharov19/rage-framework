@@ -3,8 +3,8 @@
 import type {
     RageFW_ICustomClientEvent,
     RageFW_ICustomServerEvent,
-} from 'rage-fw-shared-types'
-export type { RageFW_ICustomServerEvent } from 'rage-fw-shared-types'
+} from '@entityseven/rage-fw-shared-types'
+export type { RageFW_ICustomServerEvent } from '@entityseven/rage-fw-shared-types'
 
 /**
  * Union of all available server event names

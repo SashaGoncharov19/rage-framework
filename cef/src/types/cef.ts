@@ -1,6 +1,6 @@
-import { RageFW_ICustomCefEvent } from 'rage-fw-shared-types'
+import { RageFW_ICustomCefEvent } from '@entityseven/rage-fw-shared-types'
 
-export { RageFW_ICustomCefEvent } from 'rage-fw-shared-types'
+export { RageFW_ICustomCefEvent } from '@entityseven/rage-fw-shared-types'
 
 /**
  * Union of all available cef event names
