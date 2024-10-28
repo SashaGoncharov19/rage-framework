@@ -25,7 +25,7 @@ export type RageFW_BrowserReturn<K extends RageFW_BrowserEvent> = ReturnType<
 /**
  *
  */
-export type _CefEventHasArgs<
+export type _BrowserEventHasArgs<
     EventName extends keyof RageFW_ICustomBrowserEvent,
 > = keyof RageFW_ICustomBrowserEvent extends never
     ? false

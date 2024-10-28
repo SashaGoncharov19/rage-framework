@@ -35,19 +35,19 @@ export class Player {
         >(eventName, args)
     }
 
-    public async triggerBrowser<EventName extends T.RageFW_CefEvent>(
+    public async triggerBrowser<EventName extends T.RageFW_BrowserEvent>(
         eventName: EventName,
-        ...args: T._CefEventHasArgs<EventName> extends true
-            ? [T.RageFW_CefArgs<EventName>]
+        ...args: T._BrowserEventHasArgs<EventName> extends true
+            ? [T.RageFW_BrowserArgs<EventName>]
             : []
-    ): Promise<T.RageFW_CefReturn<EventName>> {
+    ): Promise<T.RageFW_BrowserReturn<EventName>> {
         if (!this._browser)
             throw new Error('You need to initialize browser first')
 
         return await rpc.callBrowser<
             typeof args,
             EventName,
-            T.RageFW_CefReturn<EventName>
+            T.RageFW_BrowserReturn<EventName>
         >(eventName, args)
     }
 }

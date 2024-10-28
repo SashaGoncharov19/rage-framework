@@ -15,7 +15,7 @@ export class Player {
     public async triggerBrowser<EventName extends T.RageFW_BrowserEvent>(
         player: PlayerMp,
         eventName: EventName,
-        ...args: T._CefEventHasArgs<EventName> extends true
+        ...args: T._BrowserEventHasArgs<EventName> extends true
             ? [T.RageFW_BrowserArgs<EventName>]
             : []
     ): Promise<T.RageFW_BrowserReturn<EventName>> {
