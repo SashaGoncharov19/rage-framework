@@ -1,7 +1,6 @@
 import { Rpc } from '@entityseven/rage-fw-rpc'
 
 export const rpc = new Rpc({
-    forceBrowserDevMode:
-        process.env.RageFW_forceBrowserDevMode === 'true' ?? false,
+    forceBrowserDevMode: process.env.RageFW_forceBrowserDevMode === 'true',
     debugLogs: false,
 })

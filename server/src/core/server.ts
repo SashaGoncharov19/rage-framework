@@ -1,16 +1,24 @@
 import { rpc } from './rpc'
+import { Middleware } from './middleware'
 import type * as T from '../types'
 
 export class Server {
     public register<EventName extends T.RageFW_ServerEvent>(
         eventName: EventName,
         callback: T.RageFW_ServerCallback<EventName>,
+        options?: {
+            middlewares?: T.RageFW_MiddlewareOptions<EventName>
+        },
     ): Server {
         rpc.register<
             Parameters<typeof callback>,
-            ReturnType<typeof callback>,
+            ReturnType<typeof callback> | Promise<unknown>,
             EventName
-        >(eventName, async (...data) => await callback(...data))
+        >(eventName, async (...data) => {
+            if (!options?.middlewares) return await callback(...data)
+
+            await Middleware.process(options.middlewares, callback, data)
+        })
 
         return this
     }
