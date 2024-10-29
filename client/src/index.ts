@@ -1,4 +1,4 @@
-import { Client, Logger, Player } from './core'
+import { Client, Logger, Player, rpc } from './core'
 
 export const fw = {
     event: new Client(),
@@ -6,4 +6,5 @@ export const fw = {
     system: {
         log: new Logger(),
     },
+    rpc,
 }

@@ -1,6 +1,6 @@
 {
-    "name": "@entityseven/rage-fw-cef",
-    "version": "0.1.0",
+    "name": "@entityseven/rage-fw-browser",
+    "version": "0.1.2",
     "main": "dist/index.js",
     "types": "dist/src/index.d.ts",
     "files": [

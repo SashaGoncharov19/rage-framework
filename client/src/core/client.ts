@@ -1,33 +1,29 @@
-import { Rpc } from '@entityseven/rage-fw-rpc'
-
-import type {
-    RageFW_ClientArgs,
-    RageFW_ClientCallback,
-    RageFW_ClientEvent,
-} from '../types'
+import { rpc } from './rpc'
+import type * as T from '../types'
 
 export class Client {
-    private _rpc: Rpc = new Rpc()
+    public register<EventName extends T.RageFW_ClientEvent>(
+        eventName: EventName,
+        callback: T.RageFW_ClientCallback<EventName>,
+    ): Client {
+        rpc.register<
+            Parameters<typeof callback>,
+            ReturnType<typeof callback>,
+            EventName
+        >(eventName, async (...data) => await callback(...data))
 
-    get rpc(): Rpc {
-        return this._rpc
+        return this
     }
 
-    public register<EventName extends RageFW_ClientEvent>(
+    public unregister<EventName extends T.RageFW_ClientEvent>(
         eventName: EventName,
-        callback: RageFW_ClientCallback<EventName>,
-    ): void {
-        this._rpc.register(
-            eventName,
-            async (data: RageFW_ClientArgs<EventName>) => {
-                return await callback(data)
-            },
-        )
-    }
+    ): Client {
+        rpc.unregister<EventName>(eventName)
 
-    public unregister<EventName extends RageFW_ClientEvent>(
-        eventName: EventName,
-    ): void {
-        this._rpc.unregister(eventName)
+        return this
     }
 }
+
+// new Client()
+//     .register('customClientEvent', async (a, b) => true)
+//     .unregister('customClientEvent')

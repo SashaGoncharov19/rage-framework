@@ -9,13 +9,13 @@ import type {
  * Union of all available server event names callable from client
  * These only include custom events
  */
-export type RageFW_ClientServerEvent = keyof RageFW_ICustomServerEvent
+export type RageFW_ServerEvent = keyof RageFW_ICustomServerEvent
 
 /**
  * Array of arguments for an event, name of which you pass as a generic
  * These only include custom events
  */
-export type RageFW_ClientServerArgs<K extends RageFW_ClientServerEvent> =
+export type RageFW_ServerArgs<K extends RageFW_ServerEvent> =
     K extends keyof RageFW_ICustomServerEvent
         ? Parameters<RageFW_ICustomServerEvent[K]>
         : never
@@ -24,7 +24,7 @@ export type RageFW_ClientServerArgs<K extends RageFW_ClientServerEvent> =
  * Return type for an event, name of which you pass as a generic
  * These only include custom events
  */
-export type RageFW_ClientServerReturn<K extends RageFW_ClientServerEvent> =
+export type RageFW_ClientServerReturn<K extends RageFW_ServerEvent> =
     K extends keyof RageFW_ICustomServerEvent
         ? ReturnType<RageFW_ICustomServerEvent[K]>
         : never

@@ -1,3 +1,3 @@
-export * from './cef'
+export * from './browser'
 export * from './client'
 export * from './server'
