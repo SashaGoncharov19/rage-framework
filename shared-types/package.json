@@ -1,6 +1,6 @@
 {
     "name": "@entityseven/rage-fw-shared-types",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "types": "types/types/index.d.ts",
     "files": [
         "types/**/*"

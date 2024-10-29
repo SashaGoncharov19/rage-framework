@@ -5,10 +5,10 @@
     "build": "lerna run build",
     "lint": "eslint --c .eslintrc.yaml --ext .ts client/ server/ shared-types/",
 
-    "rebuild:cef": "cd cef && pnpm build",
+    "rebuild:browser": "cd browser && pnpm build",
     "rebuild:client": "cd client && pnpm build",
     "rebuild:server": "cd server && pnpm build",
-    "rebuild": "pnpm rebuild:cef && pnpm rebuild:client && pnpm rebuild:server"
+    "rebuild": "pnpm rebuild:browser && pnpm rebuild:client && pnpm rebuild:server"
   },
   "dependencies": {
     "@microsoft/api-extractor": "^7.47.0",
