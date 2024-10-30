@@ -1,6 +1,6 @@
 {
     "name": "@entityseven/rage-fw-browser",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "main": "dist/index.js",
     "types": "dist/src/index.d.ts",
     "files": [
@@ -14,16 +14,19 @@
         "@entityseven/rage-fw-rpc": "latest"
     },
     "peerDependencies": {
-        "@ragempcommunity/types-cef": "^2.1.8",
-        "@entityseven/rage-fw-shared-types": "workspace:^"
+        "@entityseven/rage-fw-shared-types": "workspace:^",
+        "@ragempcommunity/types-cef": "^2.1.8"
     },
     "description": "RageFW CEF side",
     "keywords": [],
     "author": "SashaGoncharov19",
-    "contributors": [{
-        "name": "rilaxik",
-        "email": "dev.rilaxik@gmail.com",
-        "url": "https://github.com/rilaxik"
-    }],
-    "license": "MIT"
+    "contributors": [
+        {
+            "name": "rilaxik",
+            "email": "dev.rilaxik@gmail.com",
+            "url": "https://github.com/rilaxik"
+        }
+    ],
+    "license": "MIT",
+    "gitHead": "ffd542c1deddb3033e16e0dae7557313ae09b05f"
 }
