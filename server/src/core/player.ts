@@ -1,40 +1,68 @@
-import { Rpc } from 'rage-fw-rpc'
+import { rpc } from './rpc'
+import type * as T from '../types'
 
-import type {
-    _CefEventHasArgs,
-    _ClientEventHasArgs,
-    RageFW_CefArgs,
-    RageFW_CefEvent,
-    RageFW_CefReturn,
-    RageFW_ClientEvent,
-    RageFW_ServerClientArgs,
-    RageFW_ServerClientReturn,
-} from '../types'
-
+/** Handles event manipulations that require player to be present in context */
 export class Player {
-    private _rpc: Rpc = new Rpc()
-
-    get rpc(): Rpc {
-        return this._rpc
-    }
-
-    public triggerClient<EventName extends RageFW_ClientEvent>(
+    /**
+     * Triggers a client event from the server with arguments from shared types
+     *
+     * Formerly known as ``callClient`` or ``emitClient``
+     *
+     * @param {PlayerMp} player - Player object as an event target
+     * @param eventName - The name of the client event to trigger
+     * @param [args] - Arguments for the client event, if present
+     * @returns {Promise} resolving to the client's response for the event
+     *
+     * @example
+     * // Triggering a client event without arguments
+     * fw.player.triggerClient("clientEventName")
+     *
+     * @example
+     * // Triggering a client event with arguments
+     * fw.player.triggerClient("clientEventName", ["message to client"])
+     *
+     * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
+     */
+    public async triggerClient<EventName extends T.RageFW_ClientEvent>(
         player: PlayerMp,
         eventName: EventName,
-        ...args: _ClientEventHasArgs<EventName> extends true
-            ? [RageFW_ServerClientArgs<EventName>]
+        ...args: T._ClientEventHasArgs<EventName> extends true
+            ? [T.RageFW_ClientArgs<EventName>]
             : []
-    ): Promise<RageFW_ServerClientReturn<EventName>> {
-        return this._rpc.callClient(player, eventName, args)
+    ): Promise<T.RageFW_ClientReturn<EventName>> {
+        return await rpc.callClient(player, eventName, args)
     }
 
-    public triggerBrowser<EventName extends RageFW_CefEvent>(
+    /**
+     * Triggers a browser event from the server with arguments from shared types
+     *
+     * Formerly known as ``callBrowser`` or ``emitBrowser``
+     *
+     * @param {PlayerMp} player - Player object as an event target
+     * @param eventName - The name of the browser event to trigger
+     * @param [args] - Arguments for the browser event, if present
+     * @returns {Promise} resolving to the browser's response for the event
+     *
+     * @example
+     * // Triggering a browser event without arguments
+     * fw.player.triggerBrowser("browserEventName")
+     *
+     * @example
+     * // Triggering a browser event with arguments
+     * fw.player.triggerBrowser("browserEventName", ["message to browser"])
+     *
+     * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
+     */
+    public async triggerBrowser<EventName extends T.RageFW_BrowserEvent>(
         player: PlayerMp,
         eventName: EventName,
-        ...args: _CefEventHasArgs<EventName> extends true
-            ? [RageFW_CefArgs<EventName>]
+        ...args: T._BrowserEventHasArgs<EventName> extends true
+            ? [T.RageFW_BrowserArgs<EventName>]
             : []
-    ): Promise<RageFW_CefReturn<EventName>> {
-        return this._rpc.callBrowser(player, eventName, args)
+    ): Promise<T.RageFW_BrowserReturn<EventName>> {
+        return await rpc.callBrowser(player, eventName, args)
     }
 }
+
+// new Player().triggerBrowser({} as PlayerMp, 'customCefEvent', ['', 1])
+// new Player().triggerClient({} as PlayerMp, 'customClientEvent', ['', 1])

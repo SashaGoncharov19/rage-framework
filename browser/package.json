@@ -1,5 +1,5 @@
 {
-    "name": "@entityseven/rage-fw-server",
+    "name": "@entityseven/rage-fw-browser",
     "version": "0.2.0",
     "main": "dist/index.js",
     "types": "dist/src/index.d.ts",
@@ -15,9 +15,9 @@
     },
     "peerDependencies": {
         "@entityseven/rage-fw-shared-types": "workspace:^",
-        "@ragempcommunity/types-server": "^2.1.8"
+        "@ragempcommunity/types-cef": "^2.1.8"
     },
-    "description": "RageFW Server side",
+    "description": "RageFW CEF side",
     "keywords": [],
     "author": "SashaGoncharov19",
     "contributors": [

@@ -1,6 +1,6 @@
 {
-    "name": "rage-fw-client",
-    "version": "0.1.0",
+    "name": "@entityseven/rage-fw-client",
+    "version": "0.2.0",
     "main": "dist/index.js",
     "types": "dist/src/index.d.ts",
     "files": [
@@ -11,20 +11,22 @@
         "build": "tsup"
     },
     "dependencies": {
-        "rage-fw-rpc": "workspace:^"
+        "@entityseven/rage-fw-rpc": "latest"
     },
     "peerDependencies": {
-        "@ragempcommunity/types-client": "^2.1.8",
-        "rage-fw-shared-types": "workspace:^"
+        "@entityseven/rage-fw-shared-types": "workspace:^",
+        "@ragempcommunity/types-client": "^2.1.8"
     },
     "description": "RageFW Client side",
     "keywords": [],
     "author": "SashaGoncharov19",
-    "contributors": [{
-        "name": "rilaxik",
-        "email": "dev.rilaxik@gmail.com",
-        "url": "https://github.com/rilaxik"
-    }],
+    "contributors": [
+        {
+            "name": "rilaxik",
+            "email": "dev.rilaxik@gmail.com",
+            "url": "https://github.com/rilaxik"
+        }
+    ],
     "license": "MIT",
-    "gitHead": "053e4fd12aa120d53e11e0d2009c0df78c1a2ad0"
+    "gitHead": "ffd542c1deddb3033e16e0dae7557313ae09b05f"
 }

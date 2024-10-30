@@ -14,11 +14,16 @@ yarn add rage-fw-rpc
 
 Import installed package and initialize rpc:
 ```ts
-    // lib/rpc.js
+// lib/rpc.js
 
-    import { Rpc } from 'rage-fw-rpc'
-    export const rpc = new Rpc(/* options */)
+import { Rpc } from 'rage-fw-rpc'
+export const rpc = new Rpc(/* options */)
 ```
+
+# Motivation
+The idea was to create an extensible package, with various features to simplify the development process and provide as much comfort as possible. It should also be using similar architecture as the framework it was specially built for
+
+Inspired by usage of [rage-rpc](https://github.com/micaww/rage-rpc)
 
 # Features
 - Type-safe events via [TS generics](https://www.typescriptlang.org/docs/handbook/2/generics.html), avoiding type wrappers
@@ -28,7 +33,7 @@ Import installed package and initialize rpc:
 - Actual human-readable errors
 
 # Docs
-*Extended version with details coming soon*
+## [Extended version available here](https://git.entityseven.com/entityseven/rage-framework/wiki/RPC%400.2.5)
 
 ## register
 Registers a callback function for a specified event

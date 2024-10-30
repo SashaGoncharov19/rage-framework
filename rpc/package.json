@@ -1,7 +1,7 @@
 {
-    "name": "rage-fw-rpc",
-    "description": "RageFW RPC",
-    "version": "0.2.1",
+    "name": "@entityseven/rage-fw-rpc",
+    "description": "Rage FW RPC",
+    "version": "0.2.5",
     "scripts": {
         "build": "tsup",
         "start": "npx ./dist create"
@@ -17,7 +17,13 @@
     "peerDependencies": {
         "typescript": "^5"
     },
-    "keywords": ["ragemp", "rage", "rpc", "rage-rpc", "ragerpc"],
+    "keywords": [
+        "ragemp",
+        "rage",
+        "rpc",
+        "rage-rpc",
+        "ragerpc"
+    ],
     "main": "dist/index.js",
     "types": "dist/src/index.d.ts",
     "author": {
@@ -31,5 +37,6 @@
             "url": "https://github.com/SashaGoncharov19"
         }
     ],
-    "license": "MIT"
+    "license": "MIT",
+    "gitHead": "04eb7240735c4a0e4855ebabbe8d5b326819fa76"
 }

@@ -1,6 +1,6 @@
-import type { RageFW_ICustomClientEvent } from 'rage-fw-shared-types'
+import type { RageFW_ICustomClientEvent } from '@entityseven/rage-fw-shared-types'
 
-export type { RageFW_ICustomClientEvent } from 'rage-fw-shared-types'
+export type { RageFW_ICustomClientEvent } from '@entityseven/rage-fw-shared-types'
 
 /**
  * Union of all available client event names

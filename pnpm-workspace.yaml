@@ -1,7 +1,5 @@
 packages:
   - "server"
   - "client"
-  - "cef"
-  - "rpc"
-  - "cli"
+  - "browser"
   - "shared-types"

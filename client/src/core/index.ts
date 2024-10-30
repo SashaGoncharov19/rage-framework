@@ -1,3 +1,5 @@
 export * from './client'
-export * from './player'
 export * from './logger'
+export * from './middleware'
+export * from './player'
+export * from './rpc'
