@@ -1,6 +1,6 @@
 {
     "name": "@entityseven/rage-fw-shared-types",
-    "version": "0.2.1-0.2.0-alpha.1.0",
+    "version": "0.2.1-0.2.0-alpha.2.0",
     "types": "types/types/index.d.ts",
     "files": [
         "types/**/*"
@@ -8,5 +8,5 @@
     "author": "SashaGoncharov19",
     "license": "MIT",
     "type": "module",
-    "gitHead": "053e4fd12aa120d53e11e0d2009c0df78c1a2ad0"
+    "gitHead": "ffd542c1deddb3033e16e0dae7557313ae09b05f"
 }
