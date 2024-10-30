@@ -5,15 +5,15 @@
         "rage-fw": "dist/index.js"
     },
     "main": "dist/index.js",
+    "files": [
+        "dist/**/*",
+        "readme.md"
+    ],
     "scripts": {
         "watch": "tsc -w",
         "build": "tsup",
         "start": "npx ./dist create"
     },
-    "files": [
-        "dist/**/*",
-        "readme.md"
-    ],
     "dependencies": {
         "@inquirer/prompts": "^5.0.5",
         "ky": "^1.7.2",
@@ -26,11 +26,15 @@
         "prettier": "^3.3.2",
         "typescript": "^5.4.5"
     },
-    "description": "CLI to scaffold a template project for RageFW",
-    "keywords": [],
-    "author": "rilaxik",
-    "contributors": [{
-        "name": "SashaGoncharov19"
-    }],
+    "description": "CLI to scaffold a preview for Rage-FW",
+    "keywords": ["create-rage-fw","ragefw-cli", "ragefw", "rage-fw", "ragemp", "rage:mp", "rage", "gta5"],
+    "author": "Entity Seven Group",
+    "contributors": [
+        {
+            "name": "Danya H",
+            "email": "dev.rilaxik@gmail.com",
+            "url": "https://github.com/rilaxik/"
+        }
+    ],
     "license": "MIT"
 }

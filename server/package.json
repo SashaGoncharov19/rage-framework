@@ -5,28 +5,34 @@
     "types": "dist/src/index.d.ts",
     "files": [
         "dist/**/*",
-        "readme.md"
+        "readme.md",
+        "LICENSE"
     ],
     "scripts": {
         "build": "tsup"
     },
     "dependencies": {
-        "@entityseven/rage-fw-rpc": "latest"
+        "@entityseven/rage-fw-rpc": "0.2.5"
     },
     "peerDependencies": {
-        "@entityseven/rage-fw-shared-types": "workspace:^",
+        "@entityseven/rage-fw-shared-types": "0.2.0",
         "@ragempcommunity/types-server": "^2.1.8"
     },
-    "description": "RageFW Server side",
-    "keywords": [],
-    "author": "SashaGoncharov19",
+    "description": "Package used on a server-side of your Rage:MP Server",
+    "keywords": ["rage-fw-server", "ragefw", "rage-fw", "ragemp", "rage:mp", "rage", "gta5"],
+    "author": "Entity Seven Group",
     "contributors": [
         {
-            "name": "rilaxik",
+            "name": "Danya H",
             "email": "dev.rilaxik@gmail.com",
-            "url": "https://github.com/rilaxik"
+            "url": "https://github.com/rilaxik/"
+        },
+        {
+            "name": "Oleksandr Honcharov",
+            "email": "0976053529@ukr.net",
+            "url": "https://github.com/SashaGoncharov19/"
         }
     ],
-    "license": "MIT",
+    "license": "Custom-Attribution-NoDerivs",
     "gitHead": "ffd542c1deddb3033e16e0dae7557313ae09b05f"
 }

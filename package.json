@@ -1,5 +1,4 @@
 {
-  "private": true,
   "scripts": {
     "publish": "lerna publish --force-publish",
     "build": "lerna run build",
@@ -26,5 +25,20 @@
     "typescript": "^5.4.5",
     "winston": "^3.13.0"
   },
-  "type": "module"
+  "private": true,
+  "type": "module",
+  "license": "SEE INDIVIDUALLY FOR EACH PACKAGE",
+  "author": "Entity Seven Group",
+  "contributors": [
+    {
+      "name": "Danya H",
+      "email": "dev.rilaxik@gmail.com",
+      "url": "https://github.com/rilaxik/"
+    },
+    {
+      "name": "Oleksandr Honcharov",
+      "email": "0976053529@ukr.net",
+      "url": "https://github.com/SashaGoncharov19/"
+    }
+  ]
 }
