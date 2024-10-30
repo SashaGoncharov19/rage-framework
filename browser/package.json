@@ -1,6 +1,6 @@
 {
     "name": "@entityseven/rage-fw-browser",
-    "version": "0.2.1-0.2.0-alpha.2.0",
+    "version": "0.2.0",
     "main": "dist/index.js",
     "types": "dist/src/index.d.ts",
     "files": [
