@@ -1,42 +1,44 @@
 {
-    "name": "@entityseven/rage-fw-rpc",
-    "description": "Rage FW RPC",
-    "version": "0.2.5",
-    "scripts": {
-        "build": "tsup",
-        "start": "npx ./dist create"
-    },
-    "files": [
-        "dist/**/*"
-    ],
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.47.9",
-        "prettier": "^3.3.2",
-        "tsup": "^8.3.0"
-    },
-    "peerDependencies": {
-        "typescript": "^5"
-    },
-    "keywords": [
-        "ragemp",
-        "rage",
-        "rpc",
-        "rage-rpc",
-        "ragerpc"
-    ],
-    "main": "dist/index.js",
-    "types": "dist/src/index.d.ts",
-    "author": {
-        "name": "rilaxik",
-        "email": "dev.rilaxik@gmail.com",
-        "url": "https://github.com/rilaxik"
-    },
-    "contributors": [
-        {
-            "name": "SashaGoncharov19",
-            "url": "https://github.com/SashaGoncharov19"
-        }
-    ],
-    "license": "MIT",
-    "gitHead": "04eb7240735c4a0e4855ebabbe8d5b326819fa76"
+  "name": "@entityseven/rage-fw-rpc",
+  "version": "0.2.5",
+  "main": "dist/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "start": "npx ./dist create"
+  },
+  "files": [
+    "dist/**/*",
+    "readme.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.47.9",
+    "prettier": "^3.3.2",
+    "tsup": "^8.3.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "description": "Rage-FW RPC (Remote procedure caller) for Rage:MP",
+  "keywords": [
+    "ragefw",
+    "rage-fw",
+    "ragemp",
+    "rage",
+    "rpc",
+    "rage-rpc",
+    "ragerpc",
+    "gta5"
+  ],
+  "author": "Entity Seven Group",
+  "contributors": [
+    {
+      "name": "Danya H",
+      "email": "dev.rilaxik@gmail.com",
+      "url": "https://github.com/rilaxik/"
+    }
+  ],
+  "license": "MIT",
+  "gitHead": "04eb7240735c4a0e4855ebabbe8d5b326819fa76"
 }

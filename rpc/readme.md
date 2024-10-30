@@ -3,13 +3,13 @@ is an all-in package with asynchronous RPC implementation for RageMP servers in 
 
 # Installation
 ``` shell 
-npm i rage-fw-rpc
+npm i @entityseven/rage-fw-rpc
 ```
 ```shell 
-pnpm i rage-fw-rpc
+pnpm i @entityseven/rage-fw-rpc
 ```
 ```shell 
-yarn add rage-fw-rpc
+yarn add @entityseven/rage-fw-rpc
 ```
 
 Import installed package and initialize rpc:
