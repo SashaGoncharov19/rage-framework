@@ -13,10 +13,16 @@ export class Browser extends Helper {
         super()
     }
 
+    /**
+     * Setter. Enables console debug logs for events
+     */
     set debugLogs(debug: boolean) {
         this.debugLogs_ = debug
     }
 
+    /**
+     * Setter. Provides an ability to specify custom logger function to get special formatting. Using this enables ``debugLogs``
+     */
     set customLogger(
         fn: (method: string, eventName: string, ...args: unknown[]) => unknown,
     ) {
