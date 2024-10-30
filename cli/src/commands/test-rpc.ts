@@ -5,14 +5,14 @@ import { cloneBranch } from '../utils/cloner'
 
 const choices = {
     'rpc-react-18': {
-        name: 'Vite + React 18 + TypeScript',
+        name: 'React 18',
         value: 'rpc-react-18',
-        description: 'Vite + React 18 + TypeScript as a frontend',
+        description: 'Vite + React 18 + TypeScript as a front-end',
     },
     'rpc-svelte-5': {
-        name: 'Vite + Svelte 5 + TypeScript',
+        name: 'Svelte 5',
         value: 'rpc-svelte-5',
-        description: 'Vite + Svelte 5 + TypeScript as a frontend',
+        description: 'Vite + Svelte 5 + TypeScript as a front-end',
     },
 } as const
 
@@ -31,13 +31,13 @@ export async function testRpc() {
 
     if (!framework) {
         framework = await select({
-            message: c.gray('Select frontend:'),
+            message: c.gray('Select front-end:'),
             default: 'rpc-react-18',
             loop: true,
             choices: Object.values(choices),
         })
     } else {
-        console.log(c.gray('Frontend:'), framework)
+        console.log(c.gray('Front-end:'), framework)
     }
 
     console.log(
@@ -63,5 +63,6 @@ export async function testRpc() {
         })
         .catch(e => {
             console.log(c.red('Error occured: \n', e))
+            console.log(c.red('Please open an issue if you see this'))
         })
 }

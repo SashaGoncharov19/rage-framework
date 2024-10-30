@@ -12,10 +12,19 @@ enum Actions {
     UPDATER = 'UPDATER',
 }
 
+process.on('exit', () => {
+    console.log(c.blueBright('\n\nRage FW CLI | Exiting..'))
+    process.exit(0)
+})
+
+process.on('SIGINT', () => {
+    console.log(c.blueBright('\n\nRage FW CLI | Exiting..'))
+    process.exit(0)
+})
 ;(async () => {
     await checkForUpdates()
 
-    console.log(c.blueBright('Rage FW CLI | Powered by Entity Seven Group ️<3'))
+    console.log(c.blueBright('Rage FW CLI | Powered by Entity Seven Group <3'))
 
     const action = await select({
         message: c.gray('Select action:'),
@@ -26,16 +35,16 @@ enum Actions {
                 description: 'Initialize a new project and start developing',
             },
             {
-                name: 'Test our RPC',
+                name: 'Test our Rpc',
                 value: Actions.TEST_RPC,
                 description:
-                    'Initialize a new skeleton project with our RPC set up',
+                    'Initialize a new skeleton project with our Rpc all set',
             },
             {
                 name: 'Install RAGE:MP updater',
                 value: Actions.UPDATER,
                 description:
-                    'Use our tool to download or update RAGE:MP server files in two clicks',
+                    'Use our tool to download or update RAGE:MP server files in just two clicks',
             },
         ],
         loop: true,
@@ -53,5 +62,6 @@ enum Actions {
             break
         default:
             console.log(c.red('Something went wrong..'))
+            console.log(c.red('Please open an issue if you see this'))
     }
 })()

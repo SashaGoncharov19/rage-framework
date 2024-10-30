@@ -18,19 +18,19 @@ export async function initProject() {
 
     if (!framework) {
         framework = await select({
-            message: c.gray('Select frontend:'),
+            message: c.gray('Select front-end:'),
             default: 'react-18',
             loop: true,
             choices: [
                 {
-                    name: 'React + TypeScript (Vite)',
+                    name: 'React 18',
                     value: 'react-18',
-                    description: 'React + TypeScript (Vite) as a frontend',
+                    description: 'React 18 + TypeScript (Vite) as a front-end',
                 },
             ],
         })
     } else {
-        console.log(c.gray('Frontend:'), framework)
+        console.log(c.gray('Front-end:'), framework)
     }
 
     console.log(
@@ -38,7 +38,7 @@ export async function initProject() {
         folder,
         c.gray('with'),
         framework,
-        c.gray('as a frontend..'),
+        c.gray('as a front-end..'),
     )
 
     cloneBranch(
@@ -56,5 +56,6 @@ export async function initProject() {
         })
         .catch(e => {
             console.log(c.red('Error occured: \n', e))
+            console.log(c.red('Please open an issue if you see this'))
         })
 }
