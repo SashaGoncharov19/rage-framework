@@ -14,17 +14,19 @@
         "@entityseven/rage-fw-rpc": "latest"
     },
     "peerDependencies": {
-        "@ragempcommunity/types-server": "^2.1.8",
-        "@entityseven/rage-fw-shared-types": "workspace:^"
+        "@entityseven/rage-fw-shared-types": "workspace:^",
+        "@ragempcommunity/types-server": "^2.1.8"
     },
     "description": "RageFW Server side",
     "keywords": [],
     "author": "SashaGoncharov19",
-    "contributors": [{
-        "name": "rilaxik",
-        "email": "dev.rilaxik@gmail.com",
-        "url": "https://github.com/rilaxik"
-    }],
+    "contributors": [
+        {
+            "name": "rilaxik",
+            "email": "dev.rilaxik@gmail.com",
+            "url": "https://github.com/rilaxik"
+        }
+    ],
     "license": "MIT",
     "gitHead": "053e4fd12aa120d53e11e0d2009c0df78c1a2ad0"
 }

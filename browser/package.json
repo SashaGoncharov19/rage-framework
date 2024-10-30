@@ -14,16 +14,18 @@
         "@entityseven/rage-fw-rpc": "latest"
     },
     "peerDependencies": {
-        "@ragempcommunity/types-cef": "^2.1.8",
-        "@entityseven/rage-fw-shared-types": "workspace:^"
+        "@entityseven/rage-fw-shared-types": "workspace:^",
+        "@ragempcommunity/types-cef": "^2.1.8"
     },
     "description": "RageFW CEF side",
     "keywords": [],
     "author": "SashaGoncharov19",
-    "contributors": [{
-        "name": "rilaxik",
-        "email": "dev.rilaxik@gmail.com",
-        "url": "https://github.com/rilaxik"
-    }],
+    "contributors": [
+        {
+            "name": "rilaxik",
+            "email": "dev.rilaxik@gmail.com",
+            "url": "https://github.com/rilaxik"
+        }
+    ],
     "license": "MIT"
 }
