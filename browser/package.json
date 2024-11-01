@@ -8,11 +8,15 @@
     "readme.md",
     "LICENSE"
   ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "scripts": {
     "build": "tsup"
   },
   "dependencies": {
-    "@entityseven/rage-fw-rpc": "0.2.5"
+    "@entityseven/rage-fw-rpc": "0.2.5",
+    "zod": "^3.23.8"
   },
   "peerDependencies": {
     "@entityseven/rage-fw-shared-types": "0.2.0",
