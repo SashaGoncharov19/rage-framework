@@ -4,8 +4,8 @@ export class Middleware {
     constructor() {}
 
     private static async execute<EventName extends T.RageFW_ClientEvent>(
-        middlewares: T.RageFW_MiddlewareFunction<EventName>[],
         args: T.RageFW_ClientArgs<EventName>,
+        middlewares: T.RageFW_MiddlewareFunction<EventName>[],
     ): Promise<T.RageFW_MiddlewareResponseInternal> {
         for (let i = 0; i < middlewares.length; i++) {
             const result = await middlewares[i](...args)
@@ -22,25 +22,25 @@ export class Middleware {
     }
 
     public static async process<EventName extends T.RageFW_ClientEvent>(
-        middlewareOptions: T.RageFW_MiddlewareOptions<EventName>,
-        callback: T.RageFW_ClientCallback<EventName>,
         args: T.RageFW_ClientArgs<EventName>,
-    ) {
+        middlewareOptions?: T.RageFW_MiddlewareOptions<EventName>,
+    ): Promise<boolean> {
+        if (!middlewareOptions) return true
+
         if (Array.isArray(middlewareOptions)) {
             const middlewaresResponse = await Middleware.execute(
-                middlewareOptions,
                 args,
+                middlewareOptions,
             )
-
-            if (middlewaresResponse.success) return await callback(...args)
+            return middlewaresResponse.success
         } else {
             const middlewaresResponse = await Middleware.execute(
-                middlewareOptions.executables,
                 args,
+                middlewareOptions.executables,
             )
 
             if (middlewaresResponse.success) {
-                return await callback(...args)
+                return true
             } else {
                 middlewareOptions.onError(
                     middlewaresResponse.message ??
@@ -48,6 +48,7 @@ export class Middleware {
                             middlewaresResponse.id +
                             ' failed',
                 )
+                return false
             }
         }
     }

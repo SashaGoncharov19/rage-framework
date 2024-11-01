@@ -1,11 +1,7 @@
-import { Helper } from './helper'
 import { rpc } from './rpc'
+import { Helper } from './helper'
+import { Validation } from './validation'
 import type * as T from '../types'
-import {
-    RageFW_BrowserEvent,
-    RageFW_ClientEvent,
-    RageFW_ServerEvent,
-} from '../types'
 
 /** Browser-side interactions */
 export class Browser extends Helper {
@@ -34,6 +30,8 @@ export class Browser extends Helper {
      *
      * @param eventName - The name of the event to register
      * @param callback - The callback function to be executed when the event is triggered
+     * @param [options] - Optional settings for callback execution
+     * @param [options.validation] - Validation schema to be checked before the callback executes
      * @returns {Browser} The current browser instance, enabling method chaining
      *
      * @example
@@ -47,14 +45,27 @@ export class Browser extends Helper {
     public register<EventName extends T.RageFW_BrowserEvent>(
         eventName: EventName,
         callback: T.RageFW_BrowserCallback<EventName>,
+        options?: {
+            validation?: T.RageFW_ValidationOptions
+        },
     ): Browser {
         this.log_('register', eventName, callback)
 
         rpc.register<
             Parameters<typeof callback>,
-            ReturnType<typeof callback>,
+            ReturnType<typeof callback> | Promise<unknown>,
             EventName
-        >(eventName, async (...data) => await callback(...data))
+        >(eventName, async (...data) => {
+            if (!options?.validation) return await callback(...data)
+
+            const validationSuccess = Validation.process(
+                data,
+                options?.validation,
+            )
+            if (!validationSuccess) return
+
+            return await callback(...data)
+        })
 
         return this
     }

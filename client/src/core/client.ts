@@ -1,5 +1,6 @@
 import { rpc } from './rpc'
 import { Middleware } from './middleware'
+import { Validation } from './validation'
 import type * as T from '../types'
 
 /** Client-side interactions */
@@ -10,6 +11,7 @@ export class Client {
      * @param eventName - The name of the event to register
      * @param callback - The callback function to be executed when the event is triggered
      * @param [options] - Optional settings for callback execution
+     * @param [options.validation] - Validation schema to be checked before the callback executes
      * @param [options.middlewares] - Middleware functions to be checked before the callback executes
      * @returns {Client} The current client instance, enabling method chaining
      *
@@ -44,6 +46,7 @@ export class Client {
         eventName: EventName,
         callback: T.RageFW_ClientCallback<EventName>,
         options?: {
+            validation?: T.RageFW_ValidationOptions
             middlewares?: T.RageFW_MiddlewareOptions<EventName>
         },
     ): Client {
@@ -52,9 +55,22 @@ export class Client {
             ReturnType<typeof callback> | Promise<unknown>,
             EventName
         >(eventName, async (...data) => {
-            if (!options?.middlewares) return await callback(...data)
+            if (!options?.middlewares && !options?.validation)
+                return await callback(...data)
 
-            await Middleware.process(options.middlewares, callback, data)
+            const validationSuccess = Validation.process(
+                data,
+                options?.validation,
+            )
+            if (!validationSuccess) return
+
+            const middlewaresSuccess = await Middleware.process(
+                data,
+                options?.middlewares,
+            )
+            if (!middlewaresSuccess) return
+
+            return await callback(...data)
         })
 
         return this
