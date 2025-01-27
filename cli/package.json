@@ -27,7 +27,7 @@
         "prettier": "^3.3.2",
         "typescript": "^5.4.5"
     },
-    "description": "CLI to scaffold a preview for Rage-FW",
+    "description": "CLI to scaffold a preview for Rage FW",
     "keywords": ["create-rage-fw","ragefw-cli", "ragefw", "rage-fw", "ragemp", "rage:mp", "rage", "gta5"],
     "author": "Entity Seven Group",
     "contributors": [

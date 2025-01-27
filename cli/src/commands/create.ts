@@ -3,9 +3,22 @@ import { input, select } from '@inquirer/prompts'
 import path from 'node:path'
 import { cloneBranch } from '../utils/cloner'
 
+const choices = {
+    'react-18': {
+        name: 'React 18',
+        value: 'react-18',
+        description: 'React 18 + TypeScript (Vite) as a front-end',
+    },
+    'svelte-5': {
+        name: 'Svelte 5',
+        value: 'svelte-5',
+        description: 'Svelte 5 + TypeScript (Vite) as a front-end',
+    },
+} as const
+
 export async function initProject() {
-    let folder
-    let framework
+    let folder: string | undefined
+    let framework: keyof typeof choices | undefined
 
     if (!folder) {
         folder = await input({
@@ -21,23 +34,17 @@ export async function initProject() {
             message: c.gray('Select front-end:'),
             default: 'react-18',
             loop: true,
-            choices: [
-                {
-                    name: 'React 18',
-                    value: 'react-18',
-                    description: 'React 18 + TypeScript (Vite) as a front-end',
-                },
-            ],
+            choices: Object.values(choices),
         })
     } else {
-        console.log(c.gray('Front-end:'), framework)
+        console.log(c.gray('Front-end:'), choices[framework].name)
     }
 
     console.log(
         c.gray('\nScaffolding template project into'),
         folder,
         c.gray('with'),
-        framework,
+        choices[framework].name,
         c.gray('as a front-end..'),
     )
 
@@ -50,12 +57,12 @@ export async function initProject() {
             console.log(c.gray('Scaffolded project into'), folder)
             console.log(
                 c.gray(
-                    `Project was created ar dir: ${path.join(process.cwd(), folder)}`,
+                    `Project was created in: ${path.join(process.cwd(), folder)}`,
                 ),
             )
         })
         .catch(e => {
-            console.log(c.red('Error occured: \n', e))
+            console.log(c.red('Error occurred: \n', e))
             console.log(c.red('Please open an issue if you see this'))
         })
 }

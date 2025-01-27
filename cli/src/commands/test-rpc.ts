@@ -17,8 +17,8 @@ const choices = {
 } as const
 
 export async function testRpc() {
-    let folder
-    let framework
+    let folder: string | undefined
+    let framework: keyof typeof choices | undefined
 
     if (!folder) {
         folder = await input({
@@ -37,7 +37,7 @@ export async function testRpc() {
             choices: Object.values(choices),
         })
     } else {
-        console.log(c.gray('Front-end:'), framework)
+        console.log(c.gray('Front-end:'), choices[framework].name)
     }
 
     console.log(
@@ -45,7 +45,7 @@ export async function testRpc() {
         folder,
         c.gray('with'),
         choices[framework].name,
-        c.gray('as a frontend..'),
+        c.gray('as a frontend'),
     )
 
     cloneBranch(
@@ -62,7 +62,7 @@ export async function testRpc() {
             )
         })
         .catch(e => {
-            console.log(c.red('Error occured: \n', e))
+            console.log(c.red('Error occurred: \n', e))
             console.log(c.red('Please open an issue if you see this'))
         })
 }
