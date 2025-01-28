@@ -1,0 +1,33 @@
+{
+  "dependencyTypes": ["prod", "peer", "dev"],
+  "versionGroups": [
+    {
+      "label": "Ensure @ragempcommunity/types-* always match",
+      "packages": ["**"],
+      "dependencies": ["@ragempcommunity/types-cef","@ragempcommunity/types-client", "@ragempcommunity/types-server"],
+      "pinVersion": "sameRange",
+      "range": "^"
+    },
+    {
+      "label": "Use workspace protocol when developing local packages",
+      "packages": ["**"],
+      "dependencies": ["@entityseven/rage-fw-shared-types", "@entityseven/rage-fw-rpc"]
+      "pinVersion": "workspace:*",
+      "range": ""
+    },
+    {
+      "label": "Ensure @types/node match same version (for tsup)",
+      "packages": ["**"],
+      "dependencies": ["@types/node"],
+      "pinVersion": "sameRange",
+      "range": ""
+    },
+    {
+      "label": "Ensure newest breaking Typescript version",
+      "packages": ["**"],
+      "dependencies": ["typescript"],
+      "pinVersion": "sameRange",
+      "range": "^"
+    }
+  ]
+}

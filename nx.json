@@ -1,0 +1,16 @@
+{
+  "targetDefaults": {
+    "build": {
+      "cache": true,
+      "dependsOn": [
+        "^install"
+      ],
+      "outputs": [
+        "{projectRoot}/browser/dist",
+        "{projectRoot}/client/dist",
+        "{projectRoot}/server/dist",
+        "{projectRoot}/rpc/dist"
+      ]
+    }
+  }
+}
