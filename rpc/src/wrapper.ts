@@ -29,7 +29,7 @@ export class Wrapper {
 
     // checks if event is available (registered) in current environment
     protected verifyEvent_(data: string | RPCState): RPCState {
-        let rpcData =
+        const rpcData =
             typeof data === 'string' ? Utils.prepareExecution(data) : data
 
         if (!this.state_[rpcData.eventName]) {

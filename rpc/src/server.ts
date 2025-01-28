@@ -1,8 +1,8 @@
 import { Wrapper } from './wrapper'
 import {
+    type PlayerMp,
     Environment,
     Events,
-    type PlayerMp,
     RPCEventType,
     RPCState,
     RpcWrapperConfig,
@@ -20,7 +20,7 @@ export class Server extends Wrapper {
     ) {
         super(options)
 
-        if (!!options.forceBrowserDevMode) return
+        if (options.forceBrowserDevMode) return
 
         // specific event to save player in context as it is not available on server -> server calls
         mp.events.add(
@@ -35,7 +35,7 @@ export class Server extends Wrapper {
      * NOT INTENDED FOR OUT-OF-CONTEXT USE
      */
     public _resolveEmitDestination(player: PlayerMp, dataRaw: string) {
-        let state = Utils.prepareExecution(dataRaw)
+        const state = Utils.prepareExecution(dataRaw)
 
         switch (state.calledTo) {
             case Environment.SERVER:

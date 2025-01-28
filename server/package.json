@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@entityseven/rage-fw-rpc": "0.2.5",
-    "zod": "^3.23.8"
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/node": "catalog:"

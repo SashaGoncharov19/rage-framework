@@ -24,7 +24,7 @@ export class Browser extends Wrapper {
      * NOT INTENDED FOR OUT-OF-CONTEXT USE
      */
     public _resolveEmitDestination(dataRaw: string) {
-        let state = Utils.prepareExecution(dataRaw)
+        const state = Utils.prepareExecution(dataRaw)
 
         switch (state.calledTo) {
             case Environment.BROWSER:

@@ -91,7 +91,7 @@ class Rpc extends Wrapper {
      */
     public register<
         CallbackArguments extends unknown[] = unknown[],
-        CallbackReturn extends unknown = unknown,
+        CallbackReturn = unknown,
         EventName extends string = string,
     >(
         eventName: EventName,
@@ -155,7 +155,7 @@ class Rpc extends Wrapper {
     public async callClient<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
-        Return extends unknown = unknown,
+        Return = unknown,
     >(eventName: EventName, args?: Arguments): Promise<Return>
     /**
      * Calls a client-side event from server or browser
@@ -178,7 +178,7 @@ class Rpc extends Wrapper {
     public async callClient<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
-        Return extends unknown = unknown,
+        Return = unknown,
     >(player: PlayerMp, eventName: EventName, args?: Arguments): Promise<Return>
     public async callClient(
         playerOrEventName: PlayerMp | string,
@@ -282,7 +282,7 @@ class Rpc extends Wrapper {
     public async callServer<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
-        Return extends unknown = unknown,
+        Return = unknown,
     >(eventName: EventName, args?: Arguments): Promise<Return> {
         this.log('callServer', eventName, args)
         if (this.forceBrowserDevMode_)
@@ -337,7 +337,7 @@ class Rpc extends Wrapper {
     public async callBrowser<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
-        Return extends unknown = unknown,
+        Return = unknown,
     >(eventName: EventName, args?: Arguments): Promise<Return>
     /**
      * Calls a browser-side event from server or client
@@ -360,7 +360,7 @@ class Rpc extends Wrapper {
     public async callBrowser<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
-        Return extends unknown = unknown,
+        Return = unknown,
     >(player: PlayerMp, eventName: EventName, args?: Arguments): Promise<Return>
     public async callBrowser(
         playerOrEventName: PlayerMp | string,
@@ -446,14 +446,14 @@ class Rpc extends Wrapper {
     public async call<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
-        Return extends unknown = unknown,
+        Return = unknown,
     >(eventName: EventName, args?: Arguments): Promise<Return> {
         this.log('call', eventName, args)
         if (this.forceBrowserDevMode_)
             return undefined as unknown as Promise<Return>
         Utils.errorUnknownEnvironment(this.environment_)
 
-        let state: RPCState = {
+        const state: RPCState = {
             uuid: Utils.generateUUID(),
             eventName,
             calledTo: this.environment_,
@@ -469,9 +469,7 @@ class Rpc extends Wrapper {
     /**
      * redirects an event in cases of it calling its own environment
      */
-    private async callSelf<Return extends unknown = unknown>(
-        state: RPCState,
-    ): Promise<Return> {
+    private async callSelf<Return = unknown>(state: RPCState): Promise<Return> {
         state = this.verifyEvent_(state)
         if (state.knownError) {
             this.triggerError_(state, state.knownError)
