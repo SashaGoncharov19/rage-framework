@@ -53,9 +53,6 @@ importers:
       prettier:
         specifier: ^3.3.1
         version: 3.4.2
-      rage-rpc:
-        specifier: ^0.4.0
-        version: 0.4.0
       tsup:
         specifier: ^8.1.0
         version: 8.3.6(@microsoft/api-extractor@7.49.1(@types/node@14.10.1))(typescript@5.7.3)(yaml@2.7.0)
@@ -2529,9 +2526,6 @@ packages:
   quick-lru@4.0.1:
     resolution: {integrity: sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==}
     engines: {node: '>=8'}
-
-  rage-rpc@0.4.0:
-    resolution: {integrity: sha512-HF+95tUM/RWOXSDW2lsirQmdhiNZsaDnZLAzaUo0wJmsZ37qmy8BzyVkOx2oboMCS+mJmXvZhMKcKA10rptjeQ==}
 
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
@@ -5776,8 +5770,6 @@ snapshots:
   queue-microtask@1.2.3: {}
 
   quick-lru@4.0.1: {}
-
-  rage-rpc@0.4.0: {}
 
   react-is@18.3.1: {}
 
