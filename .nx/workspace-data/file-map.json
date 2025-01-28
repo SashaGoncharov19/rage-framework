@@ -6,56 +6,16 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": ".syncpackrc",
-        "hash": "13719523772355468859"
-      },
-      {
-        "file": "nx.json",
-        "hash": "9446346482472849254"
-      },
-      {
-        "file": "cli/pnpm-lock.yaml",
-        "hash": "17187343980520924484"
-      },
-      {
-        "file": ".prettierrc.yaml",
-        "hash": "17309111231433830353"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "466019069558237198"
-      },
-      {
-        "file": "cli/src/utils/cloner.ts",
-        "hash": "1132274951157266930"
-      },
-      {
-        "file": "cli/package.json",
-        "hash": "3111660507833056649"
-      },
-      {
-        "file": "readme.md",
-        "hash": "1902671373761520170"
-      },
-      {
-        "file": "cli/LICENSE",
-        "hash": "1507993085755105257"
-      },
-      {
-        "file": "cli/tsup.config.ts",
-        "hash": "13827088844122432138"
-      },
-      {
         "file": "LICENSE",
         "hash": "3851877826332079922"
       },
       {
-        "file": "cli/src/commands/download-updater.ts",
-        "hash": "11440367832134551579"
+        "file": "cli/readme.md",
+        "hash": "16218391603489013576"
       },
       {
-        "file": "cli/src/commands/create.ts",
-        "hash": "2930999059286089181"
+        "file": "pnpm-workspace.yaml",
+        "hash": "7023137976272453398"
       },
       {
         "file": "cli/src/index.ts",
@@ -66,15 +26,27 @@
         "hash": "449396566283249838"
       },
       {
-        "file": "cli/src/utils/update.ts",
-        "hash": "17254076707872483328"
+        "file": "cli/tsconfig.json",
+        "hash": "12144877836401991171"
       },
       {
-        "file": "lerna.json",
-        "hash": "9008042841666655823"
+        "file": "nx.json",
+        "hash": "9446346482472849254"
       },
       {
-        "file": ".eslintrc.yaml",
+        "file": "cli/package.json",
+        "hash": "3111660507833056649"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "13322631129280839479"
+      },
+      {
+        "file": ".gitea/ISSUE_TEMPLATE.yaml",
+        "hash": "6189181406018576855"
+      },
+      {
+        "file": ".oldeslintrc.yaml",
         "hash": "10112531714126869677"
       },
       {
@@ -82,32 +54,64 @@
         "hash": "14631295638127641855"
       },
       {
-        "file": ".gitea/ISSUE_TEMPLATE.yaml",
-        "hash": "6189181406018576855"
+        "file": "eslint.config.js",
+        "hash": "6623060945532673300"
+      },
+      {
+        "file": "cli/src/utils/cloner.ts",
+        "hash": "1132274951157266930"
+      },
+      {
+        "file": "cli/pnpm-lock.yaml",
+        "hash": "17187343980520924484"
+      },
+      {
+        "file": "cli/src/commands/download-updater.ts",
+        "hash": "11440367832134551579"
+      },
+      {
+        "file": "cli/src/utils/update.ts",
+        "hash": "17254076707872483328"
+      },
+      {
+        "file": "cli/tsup.config.ts",
+        "hash": "13827088844122432138"
+      },
+      {
+        "file": "cli/src/commands/create.ts",
+        "hash": "2930999059286089181"
+      },
+      {
+        "file": "readme.md",
+        "hash": "1902671373761520170"
       },
       {
         "file": "cli/src/commands/test-rpc.ts",
         "hash": "14383022690595309411"
       },
       {
-        "file": "cli/tsconfig.json",
-        "hash": "12144877836401991171"
+        "file": ".syncpackrc",
+        "hash": "13719523772355468859"
       },
       {
-        "file": "tsconfig.json",
-        "hash": "13322631129280839479"
-      },
-      {
-        "file": "pnpm-workspace.yaml",
-        "hash": "7023137976272453398"
+        "file": "cli/LICENSE",
+        "hash": "1507993085755105257"
       },
       {
         "file": "cli/.prettierrc.yaml",
         "hash": "14222459966692279673"
       },
       {
-        "file": "cli/readme.md",
-        "hash": "16218391603489013576"
+        "file": ".gitignore",
+        "hash": "466019069558237198"
+      },
+      {
+        "file": "lerna.json",
+        "hash": "9008042841666655823"
+      },
+      {
+        "file": ".prettierrc.yaml",
+        "hash": "17309111231433830353"
       }
     ],
     "projectFileMap": {

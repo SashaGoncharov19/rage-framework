@@ -185,29 +185,20 @@ class Rpc extends Wrapper {
         eventNameOrArgs?: string | unknown[],
         args?: unknown[],
     ) {
-        _is1StParamPlayer(playerOrEventName)
-            ? this.log(
-                  'callClient',
-                  eventNameOrArgs as string,
-                  playerOrEventName,
-                  eventNameOrArgs,
-                  args,
-              )
-            : this.log(
-                  'callClient',
-                  playerOrEventName as string,
-                  eventNameOrArgs,
-              )
+        if (_is1StParamPlayer(playerOrEventName)) {
+            this.log(
+                'callClient',
+                eventNameOrArgs as string,
+                playerOrEventName,
+                eventNameOrArgs,
+                args,
+            )
+        } else {
+            this.log('callClient', playerOrEventName as string, eventNameOrArgs)
+        }
+
         if (this.forceBrowserDevMode_) return
         Utils.errorUnknownEnvironment(this.environment_)
-
-        function _is1StParamPlayer(x: unknown): x is PlayerMp {
-            return typeof x === 'object'
-        }
-
-        function _is2NdParamEventName(x: unknown): x is string {
-            return typeof x === 'string'
-        }
 
         if (this.environment_ === Environment.CLIENT) {
             // client
@@ -259,6 +250,14 @@ class Rpc extends Wrapper {
 
             mp.trigger(Events.LOCAL_EVENT_LISTENER, dataRaw)
             return (await this.responseHandler(state.uuid)).data
+        }
+
+        function _is1StParamPlayer(x: unknown): x is PlayerMp {
+            return typeof x === 'object'
+        }
+
+        function _is2NdParamEventName(x: unknown): x is string {
+            return typeof x === 'string'
         }
     }
 
@@ -367,29 +366,24 @@ class Rpc extends Wrapper {
         eventNameOrArgs?: string | unknown[],
         args?: unknown[],
     ) {
-        _is1StParamPlayer(playerOrEventName)
-            ? this.log(
-                  'DEV callClient',
-                  eventNameOrArgs as string,
-                  playerOrEventName,
-                  eventNameOrArgs,
-                  args,
-              )
-            : this.log(
-                  'DEV callClient',
-                  playerOrEventName as string,
-                  eventNameOrArgs,
-              )
+        if (_is1StParamPlayer(playerOrEventName)) {
+            this.log(
+                'DEV callClient',
+                eventNameOrArgs as string,
+                playerOrEventName,
+                eventNameOrArgs,
+                args,
+            )
+        } else {
+            this.log(
+                'DEV callClient',
+                playerOrEventName as string,
+                eventNameOrArgs,
+            )
+        }
+
         if (this.forceBrowserDevMode_) return
         Utils.errorUnknownEnvironment(this.environment_)
-
-        function _is1StParamPlayer(x: unknown): x is PlayerMp {
-            return typeof x === 'object'
-        }
-
-        function _is2NdParamEventName(x: unknown): x is string {
-            return typeof x === 'string'
-        }
 
         const state: RPCState = {
             uuid: Utils.generateUUID(),
@@ -424,6 +418,14 @@ class Rpc extends Wrapper {
         }
 
         return (await this.responseHandler(state.uuid)).data
+
+        function _is1StParamPlayer(x: unknown): x is PlayerMp {
+            return typeof x === 'object'
+        }
+
+        function _is2NdParamEventName(x: unknown): x is string {
+            return typeof x === 'string'
+        }
     }
 
     /**

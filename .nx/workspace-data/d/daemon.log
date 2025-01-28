@@ -328,3 +328,49 @@
 [NX Daemon Server] - 2025-01-28T21:03:34.968Z - [WATCHER]: Processing file changes in outputs
 [NX Daemon Server] - 2025-01-28T21:03:39.693Z - [WATCHER]: Processing file changes in outputs
 [NX Daemon Server] - 2025-01-28T21:03:42.830Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2025-01-28T21:07:25.853Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2025-01-28T21:07:42.031Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2025-01-28T21:07:42.032Z - [WATCHER]: 1 file(s) created or restored, 0 file(s) modified, 1 file(s) deleted
+[NX Daemon Server] - 2025-01-28T21:07:42.140Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2025-01-28T21:07:42.140Z - [REQUEST]: .oldeslintrc.yaml
+[NX Daemon Server] - 2025-01-28T21:07:42.140Z - [REQUEST]: .eslintrc.yaml
+[NX Daemon Server] - 2025-01-28T21:07:42.145Z - Time taken for 'hash changed files from watcher' 0.3180000002030283ms
+[NX Daemon Server] - 2025-01-28T21:07:42.162Z - Time taken for 'build-project-configs' 14.27530000009574ms
+[NX Daemon Server] - 2025-01-28T21:07:42.184Z - [SYNC]: collect registered sync generators
+[NX Daemon Server] - 2025-01-28T21:07:42.185Z - [SYNC]: project graph hash is the same, not collecting task sync generators
+[NX Daemon Server] - 2025-01-28T21:07:42.185Z - [SYNC]: nx.json hash is the same, not collecting global sync generators
+[NX Daemon Server] - 2025-01-28T21:07:42.185Z - Time taken for 'total execution time for createProjectGraph()' 20.54340000008233ms
+[NX Daemon Server] - 2025-01-28T21:09:14.009Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2025-01-28T21:09:14.010Z - [WATCHER]: eslint.config.js was modified
+[NX Daemon Server] - 2025-01-28T21:09:14.210Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2025-01-28T21:09:14.210Z - [REQUEST]: eslint.config.js
+[NX Daemon Server] - 2025-01-28T21:09:14.210Z - [REQUEST]: 
+[NX Daemon Server] - 2025-01-28T21:09:14.214Z - Time taken for 'hash changed files from watcher' 0.22069999994710088ms
+[NX Daemon Server] - 2025-01-28T21:09:14.224Z - Time taken for 'build-project-configs' 9.737299999920651ms
+[NX Daemon Server] - 2025-01-28T21:09:14.238Z - [SYNC]: collect registered sync generators
+[NX Daemon Server] - 2025-01-28T21:09:14.239Z - [SYNC]: project graph hash is the same, not collecting task sync generators
+[NX Daemon Server] - 2025-01-28T21:09:14.239Z - [SYNC]: nx.json hash is the same, not collecting global sync generators
+[NX Daemon Server] - 2025-01-28T21:09:14.239Z - Time taken for 'total execution time for createProjectGraph()' 10.550400000065565ms
+[NX Daemon Server] - 2025-01-28T21:09:37.019Z - [WATCHER]: _tmp_18004_21f1dd632cb13e0ffbcd4df63c0df122 was deleted
+[NX Daemon Server] - 2025-01-28T21:09:37.020Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2025-01-28T21:09:37.435Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2025-01-28T21:09:37.435Z - [REQUEST]: 
+[NX Daemon Server] - 2025-01-28T21:09:37.435Z - [REQUEST]: _tmp_18004_21f1dd632cb13e0ffbcd4df63c0df122
+[NX Daemon Server] - 2025-01-28T21:09:37.439Z - Time taken for 'hash changed files from watcher' 0.2675000000745058ms
+[NX Daemon Server] - 2025-01-28T21:09:37.448Z - Time taken for 'build-project-configs' 8.281700000166893ms
+[NX Daemon Server] - 2025-01-28T21:09:37.464Z - [SYNC]: collect registered sync generators
+[NX Daemon Server] - 2025-01-28T21:09:37.464Z - [SYNC]: project graph hash is the same, not collecting task sync generators
+[NX Daemon Server] - 2025-01-28T21:09:37.465Z - [SYNC]: nx.json hash is the same, not collecting global sync generators
+[NX Daemon Server] - 2025-01-28T21:09:37.465Z - Time taken for 'total execution time for createProjectGraph()' 12.658899999922141ms
+[NX Daemon Server] - 2025-01-28T21:09:40.932Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2025-01-28T21:09:40.933Z - [WATCHER]: pnpm-lock.yaml.4131020564 was modified
+[NX Daemon Server] - 2025-01-28T21:09:41.043Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2025-01-28T21:09:41.044Z - [WATCHER]: Stopping the watcher for D:\hub\rage-framework (sources)
+[NX Daemon Server] - 2025-01-28T21:09:41.044Z - [WATCHER]: Stopping the watcher for D:\hub\rage-framework (outputs)
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+
+> NX runtime error err=cannot send event from fs watcher: sending into a closed channel
+
+[NX Daemon Server] - 2025-01-28T21:09:41.108Z - Server stopped because: "LOCK_FILES_CHANGED"

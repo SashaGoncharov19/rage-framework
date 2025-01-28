@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "esnext",
     "module": "commonjs",
     "moduleResolution": "node",
-    "lib": ["DOM", "ES6"],
+    "lib": ["DOM", "esnext"],
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,

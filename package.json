@@ -4,37 +4,37 @@
     "!cli"
   ],
   "scripts": {
-    "lint": "eslint --c .eslintrc.yaml --ext .ts browser/ client/ server/ shared-types/",
-
+    "lint": "eslint . --config eslint.config.ts",
     "_____build": "echo build",
     "build:browser": "cd browser && pnpm build",
     "build:client": "cd client && pnpm build",
     "build:server": "cd server && pnpm build",
     "build:rpc": "cd rpc pnpm build",
     "build": "pnpm rebuild:browser && pnpm rebuild:client && pnpm rebuild:server",
-
     "_____deps": "echo must be ran before lerna commands",
     "deps:check": "syncpack list-mismatches",
     "deps:fix": "syncpack fix-mismatches",
-
     "_____lerna": "echo publish",
     "lerna:system": "lerna info && lerna list",
     "lerna:version": "lerna version --no-private",
+    "lerna:pre": "pnpm run lint && pnpm run deps:check",
     "lerna:build": "lerna run build"
   },
   "dependencies": {
+    "@eslint/js": "^9.19.0",
     "@microsoft/api-extractor": "^7.49.1",
     "@ragempcommunity/types-cef": "^2.1.8",
     "@ragempcommunity/types-client": "^2.1.8",
     "@ragempcommunity/types-server": "^2.1.8",
-    "@typescript-eslint/eslint-plugin": "^7.13.0",
-    "@typescript-eslint/parser": "^7.13.0",
     "cli": "^1.0.1",
     "eslint": "^9.19.0",
+    "globals": "^15.14.0",
+    "jiti": "^2.4.2",
     "lerna": "^8.1.9",
     "prettier": "^3.4.2",
     "tsup": "^8.3.6",
     "typescript": "^5.7.3",
+    "typescript-eslint": "^8.22.0",
     "winston": "^3.17.0"
   },
   "engines": {

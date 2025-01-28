@@ -1,11 +1,6 @@
 import { Helper } from './helper'
 import { rpc } from './rpc'
 import type * as T from '../types'
-import {
-    RageFW_BrowserEvent,
-    RageFW_ClientEvent,
-    RageFW_ServerEvent,
-} from '../types'
 
 /** Browser-side interactions */
 export class Browser extends Helper {
