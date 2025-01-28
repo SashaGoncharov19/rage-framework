@@ -1,0 +1,421 @@
+{
+  "version": "6.0",
+  "nxVersion": "20.4.0",
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "nonProjectFiles": [
+      {
+        "file": ".syncpackrc",
+        "hash": "13719523772355468859"
+      },
+      {
+        "file": "nx.json",
+        "hash": "9446346482472849254"
+      },
+      {
+        "file": "cli/pnpm-lock.yaml",
+        "hash": "17187343980520924484"
+      },
+      {
+        "file": ".prettierrc.yaml",
+        "hash": "17309111231433830353"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "466019069558237198"
+      },
+      {
+        "file": "cli/src/utils/cloner.ts",
+        "hash": "1132274951157266930"
+      },
+      {
+        "file": "cli/package.json",
+        "hash": "3111660507833056649"
+      },
+      {
+        "file": "readme.md",
+        "hash": "1902671373761520170"
+      },
+      {
+        "file": "cli/LICENSE",
+        "hash": "1507993085755105257"
+      },
+      {
+        "file": "cli/tsup.config.ts",
+        "hash": "13827088844122432138"
+      },
+      {
+        "file": "LICENSE",
+        "hash": "3851877826332079922"
+      },
+      {
+        "file": "cli/src/commands/download-updater.ts",
+        "hash": "11440367832134551579"
+      },
+      {
+        "file": "cli/src/commands/create.ts",
+        "hash": "2930999059286089181"
+      },
+      {
+        "file": "cli/src/index.ts",
+        "hash": "16870627862244864272"
+      },
+      {
+        "file": "pnpm-lock.yaml",
+        "hash": "449396566283249838"
+      },
+      {
+        "file": "cli/src/utils/update.ts",
+        "hash": "17254076707872483328"
+      },
+      {
+        "file": "lerna.json",
+        "hash": "9008042841666655823"
+      },
+      {
+        "file": ".eslintrc.yaml",
+        "hash": "10112531714126869677"
+      },
+      {
+        "file": "package.json",
+        "hash": "14631295638127641855"
+      },
+      {
+        "file": ".gitea/ISSUE_TEMPLATE.yaml",
+        "hash": "6189181406018576855"
+      },
+      {
+        "file": "cli/src/commands/test-rpc.ts",
+        "hash": "14383022690595309411"
+      },
+      {
+        "file": "cli/tsconfig.json",
+        "hash": "12144877836401991171"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "13322631129280839479"
+      },
+      {
+        "file": "pnpm-workspace.yaml",
+        "hash": "7023137976272453398"
+      },
+      {
+        "file": "cli/.prettierrc.yaml",
+        "hash": "14222459966692279673"
+      },
+      {
+        "file": "cli/readme.md",
+        "hash": "16218391603489013576"
+      }
+    ],
+    "projectFileMap": {
+      "@entityseven/rage-fw-browser": [
+        {
+          "file": "browser/LICENSE",
+          "hash": "9830167294304212237"
+        },
+        {
+          "file": "browser/package.json",
+          "hash": "8394336659605379646",
+          "deps": [
+            "@entityseven/rage-fw-shared-types",
+            "npm:@ragempcommunity/types-cef",
+            "npm:typescript",
+            "npm:@types/node",
+            "@entityseven/rage-fw-rpc"
+          ]
+        },
+        {
+          "file": "browser/readme.md",
+          "hash": "6784772156454526638"
+        },
+        {
+          "file": "browser/src/core/browser.ts",
+          "hash": "10009864015750364307"
+        },
+        {
+          "file": "browser/src/core/helper.ts",
+          "hash": "16517722629531985457"
+        },
+        {
+          "file": "browser/src/core/index.ts",
+          "hash": "18164198928683611675"
+        },
+        {
+          "file": "browser/src/core/rpc.ts",
+          "hash": "9519301954074409646"
+        },
+        {
+          "file": "browser/src/index.ts",
+          "hash": "18040406898247939535"
+        },
+        {
+          "file": "browser/src/types/browser.ts",
+          "hash": "13468197454536495262"
+        },
+        {
+          "file": "browser/src/types/client.ts",
+          "hash": "13557429918052813179"
+        },
+        {
+          "file": "browser/src/types/index.ts",
+          "hash": "6260220750609320042"
+        },
+        {
+          "file": "browser/src/types/server.ts",
+          "hash": "13131068453376579715"
+        },
+        {
+          "file": "browser/tsconfig.json",
+          "hash": "14297308517805023912"
+        },
+        {
+          "file": "browser/tsup.config.ts",
+          "hash": "16689115104994349313"
+        }
+      ],
+      "@entityseven/rage-fw-shared-types": [
+        {
+          "file": "shared-types/LICENSE",
+          "hash": "14463895369240724148"
+        },
+        {
+          "file": "shared-types/package.json",
+          "hash": "13177243656489706574"
+        },
+        {
+          "file": "shared-types/readme.md",
+          "hash": "3257693895969571940"
+        },
+        {
+          "file": "shared-types/types/types/index.d.ts",
+          "hash": "18373304961881856136"
+        }
+      ],
+      "@entityseven/rage-fw-rpc": [
+        {
+          "file": "rpc/.prettierrc.yaml",
+          "hash": "14222459966692279673"
+        },
+        {
+          "file": "rpc/LICENSE",
+          "hash": "1507993085755105257"
+        },
+        {
+          "file": "rpc/index.d.ts",
+          "hash": "13476386923588110951"
+        },
+        {
+          "file": "rpc/package.json",
+          "hash": "2726171849136238360",
+          "deps": [
+            "npm:typescript",
+            "npm:@types/node"
+          ]
+        },
+        {
+          "file": "rpc/readme.md",
+          "hash": "17726864455644137560"
+        },
+        {
+          "file": "rpc/src/browser.ts",
+          "hash": "10760242538683633981"
+        },
+        {
+          "file": "rpc/src/client.ts",
+          "hash": "4979339141366720878"
+        },
+        {
+          "file": "rpc/src/index.ts",
+          "hash": "14029206864504852225"
+        },
+        {
+          "file": "rpc/src/server.ts",
+          "hash": "2711426930830177028"
+        },
+        {
+          "file": "rpc/src/utils.ts",
+          "hash": "4568122399599156842"
+        },
+        {
+          "file": "rpc/src/wrapper.ts",
+          "hash": "16618263225580598982"
+        },
+        {
+          "file": "rpc/tsconfig.json",
+          "hash": "8261161459009218106"
+        },
+        {
+          "file": "rpc/tsup.config.ts",
+          "hash": "2161793031369605898"
+        }
+      ],
+      "@entityseven/rage-fw-server": [
+        {
+          "file": "server/LICENSE",
+          "hash": "9830167294304212237"
+        },
+        {
+          "file": "server/package.json",
+          "hash": "6004332410691816215",
+          "deps": [
+            "@entityseven/rage-fw-shared-types",
+            "npm:@ragempcommunity/types-server",
+            "npm:typescript",
+            "npm:@types/node",
+            "@entityseven/rage-fw-rpc",
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "server/readme.md",
+          "hash": "3705642702728283598"
+        },
+        {
+          "file": "server/src/core/index.ts",
+          "hash": "4619088953770171501"
+        },
+        {
+          "file": "server/src/core/logger.ts",
+          "hash": "7025360456831463395"
+        },
+        {
+          "file": "server/src/core/middleware.ts",
+          "hash": "9029153851835799179"
+        },
+        {
+          "file": "server/src/core/player.ts",
+          "hash": "646640399873855317"
+        },
+        {
+          "file": "server/src/core/rpc.ts",
+          "hash": "9716036782015846138"
+        },
+        {
+          "file": "server/src/core/server.ts",
+          "hash": "6249953495453629660"
+        },
+        {
+          "file": "server/src/data/nativeEvents.ts",
+          "hash": "8734820093303622792"
+        },
+        {
+          "file": "server/src/index.ts",
+          "hash": "6725152021010613153"
+        },
+        {
+          "file": "server/src/types/browser.ts",
+          "hash": "9902395004151881622"
+        },
+        {
+          "file": "server/src/types/client.ts",
+          "hash": "17401029848475306040"
+        },
+        {
+          "file": "server/src/types/index.ts",
+          "hash": "11615606045704199032"
+        },
+        {
+          "file": "server/src/types/middleware.ts",
+          "hash": "15504233768206130683"
+        },
+        {
+          "file": "server/src/types/server.ts",
+          "hash": "12180897328661038971"
+        },
+        {
+          "file": "server/tsconfig.json",
+          "hash": "12269433865326198421"
+        },
+        {
+          "file": "server/tsup.config.ts",
+          "hash": "16689115104994349313"
+        }
+      ],
+      "@entityseven/rage-fw-client": [
+        {
+          "file": "client/LICENSE",
+          "hash": "9830167294304212237"
+        },
+        {
+          "file": "client/package.json",
+          "hash": "7671149151701632021",
+          "deps": [
+            "@entityseven/rage-fw-shared-types",
+            "npm:@ragempcommunity/types-client",
+            "npm:typescript",
+            "npm:@types/node",
+            "@entityseven/rage-fw-rpc",
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "client/readme.md",
+          "hash": "4325406592838224661"
+        },
+        {
+          "file": "client/src/core/client.ts",
+          "hash": "8772011607925425550"
+        },
+        {
+          "file": "client/src/core/index.ts",
+          "hash": "14359302072116059486"
+        },
+        {
+          "file": "client/src/core/logger.ts",
+          "hash": "1392569423019756721"
+        },
+        {
+          "file": "client/src/core/middleware.ts",
+          "hash": "9312588993748562168"
+        },
+        {
+          "file": "client/src/core/player.ts",
+          "hash": "16403642367083183429"
+        },
+        {
+          "file": "client/src/core/rpc.ts",
+          "hash": "9716036782015846138"
+        },
+        {
+          "file": "client/src/data/keys.ts",
+          "hash": "4970966175919914552"
+        },
+        {
+          "file": "client/src/index.ts",
+          "hash": "7504560440612327032"
+        },
+        {
+          "file": "client/src/types/browser.ts",
+          "hash": "4594561225616283705"
+        },
+        {
+          "file": "client/src/types/client.ts",
+          "hash": "10642873317397961667"
+        },
+        {
+          "file": "client/src/types/index.ts",
+          "hash": "11615606045704199032"
+        },
+        {
+          "file": "client/src/types/middleware.ts",
+          "hash": "4334930242322593693"
+        },
+        {
+          "file": "client/src/types/server.ts",
+          "hash": "13053104819399812773"
+        },
+        {
+          "file": "client/tsconfig.json",
+          "hash": "9579073419844235185"
+        },
+        {
+          "file": "client/tsup.config.ts",
+          "hash": "16689115104994349313"
+        }
+      ]
+    }
+  }
+}

@@ -1,4 +1,5 @@
 {
+  "private": false,
   "name": "@entityseven/rage-fw-browser",
   "version": "0.2.0",
   "files": [
@@ -22,15 +23,15 @@
     "build": "tsup"
   },
   "dependencies": {
-    "@entityseven/rage-fw-rpc": "0.2.5"
+    "@entityseven/rage-fw-rpc": "workspace:*"
   },
   "devDependencies": {
-    "@types/node": "catalog:"
+    "@types/node": "22.12.0"
   },
   "peerDependencies": {
-    "@entityseven/rage-fw-shared-types": "0.2.0",
-    "@ragempcommunity/types-cef": "catalog:",
-    "typescript": "^5"
+    "@entityseven/rage-fw-shared-types": "workspace:*",
+    "@ragempcommunity/types-cef": "^2.1.8",
+    "typescript": "^5.7.3"
   },
   "description": "Package used on a browser-side of your Rage:MP Server",
   "keywords": [
