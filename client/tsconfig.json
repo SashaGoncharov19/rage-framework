@@ -20,6 +20,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["./node_modules/@ragempcommunity/types-client/index.d.ts"]
   }
 }

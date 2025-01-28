@@ -3,3 +3,11 @@ packages:
   - "client"
   - "browser"
   - "shared-types"
+  - "rpc"
+  - "!cli"
+
+catalog:
+  "@types/node": "14.10.1"
+  "@ragempcommunity/types-cef": "^2.1.8"
+  "@ragempcommunity/types-client": "^2.1.8"
+  "@ragempcommunity/types-server": "^2.1.8"

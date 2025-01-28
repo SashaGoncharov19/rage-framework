@@ -22,10 +22,10 @@
         "yargs": "^17.7.2"
     },
     "devDependencies": {
-        "@types/node": "^20.14.2",
+        "@types/node": "^22.12.0",
         "@types/yargs": "^17.0.32",
         "prettier": "^3.3.2",
-        "typescript": "^5.4.5"
+        "typescript": "^5.7.3"
     },
     "description": "CLI to scaffold a preview for Rage FW",
     "keywords": ["create-rage-fw","ragefw-cli", "ragefw", "rage-fw", "ragemp", "rage:mp", "rage", "gta5"],

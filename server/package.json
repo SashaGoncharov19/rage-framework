@@ -17,9 +17,13 @@
     "@entityseven/rage-fw-rpc": "0.2.5",
     "zod": "^3.23.8"
   },
+  "devDependencies": {
+    "@types/node": "catalog:"
+  },
   "peerDependencies": {
     "@entityseven/rage-fw-shared-types": "0.2.0",
-    "@ragempcommunity/types-server": "^2.1.8"
+    "@ragempcommunity/types-server": "catalog:",
+    "typescript": "^5"
   },
   "description": "Package used on a server-side of your Rage:MP Server",
   "keywords": [

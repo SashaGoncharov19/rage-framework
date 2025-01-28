@@ -4,8 +4,8 @@ const { timestamp, printf, colorize } = format
 
 /** Used to log in a server console */
 export class Logger {
-    private format = printf(({ message, level, timestamp }) => {
-        return `[${new Date(timestamp).toLocaleTimeString()}] [${level}]: ${message}`
+    private format = printf(({ message, level }) => {
+        return `[${new Date().toLocaleTimeString()}] [${level}]: ${message}`
     })
 
     private systemLogger = winston.createLogger({
