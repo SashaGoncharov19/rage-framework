@@ -1,12 +1,13 @@
 {
-    "name": "@entityseven/rage-fw-shared-types",
-    "version": "0.2.0",
-    "types": "types/types/index.d.ts",
     "files": [
         "types/**/*",
         "readme.md",
-        "LICENSE"
+        "LICENSE",
+        "package.json"
     ],
+    "types": "types/types/index.d.ts",
+    "name": "@entityseven/rage-fw-shared-types",
+    "version": "0.2.0",
     "description": "Package used among all environments of your Rage-FW based server",
     "keywords": ["rage-fw-shared-types", "rage-fw-shared","ragefw", "rage-fw", "ragemp", "rage:mp", "rage", "gta5"],
     "type": "module",
@@ -23,6 +24,6 @@
             "url": "https://github.com/SashaGoncharov19/"
         }
     ],
-    "license": "Custom-Attribution-NoDerivs",
+    "license": "Custom-Attribution-NoDerives",
     "gitHead": "ffd542c1deddb3033e16e0dae7557313ae09b05f"
 }

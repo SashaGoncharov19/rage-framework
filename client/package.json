@@ -1,14 +1,22 @@
 {
   "name": "@entityseven/rage-fw-client",
   "version": "0.2.0",
-  "main": "dist/index.js",
   "files": [
     "dist/**/*",
     "readme.md",
-    "LICENSE"
+    "LICENSE",
+    "package.json"
   ],
+  "main": "src/index.ts",
   "exports": {
     ".": "./src/index.ts"
+  },
+  "publishConfig": {
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+      ".": "./dist/index.js"
+    }
   },
   "scripts": {
     "build": "tsup"

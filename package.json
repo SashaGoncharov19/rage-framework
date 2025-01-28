@@ -1,12 +1,20 @@
 {
+  "workspaces": [
+    "server",
+    "client",
+    "browser",
+    "shared-types",
+    "rpc",
+    "!cli"
+  ],
   "scripts": {
-    "publish": "lerna publish --force-publish",
-    "build": "lerna run build",
     "lint": "eslint --c .eslintrc.yaml --ext .ts client/ server/ shared-types/",
     "rebuild:browser": "cd browser && pnpm build",
     "rebuild:client": "cd client && pnpm build",
     "rebuild:server": "cd server && pnpm build",
-    "rebuild": "pnpm rebuild:browser && pnpm rebuild:client && pnpm rebuild:server"
+    "rebuild:rpc": "cd rpc pnpm build",
+    "rebuild": "pnpm rebuild:browser && pnpm rebuild:client && pnpm rebuild:server",
+    "test": ""
   },
   "dependencies": {
     "@microsoft/api-extractor": "^7.49.1",
@@ -26,6 +34,9 @@
   "engines": {
     "node": ">=14",
     "pnpm": ">=10"
+  },
+  "pnpm": {
+    "requiredScripts": ["build"]
   },
   "private": true,
   "type": "module",
