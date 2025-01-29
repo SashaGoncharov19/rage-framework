@@ -1,7 +1,7 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "RPC",
   "compilerOptions": {
-    "target": "es2022",
-    "module": "commonjs",
     "moduleResolution": "node",
     "lib": [
       "es2022",
@@ -10,20 +10,9 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-
-    "esModuleInterop": true,
-
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": true,
-    "skipLibCheck": true
   },
   "include": [
-    "src/**/*",
     "./index.d.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "extends": ["../tsconfig.ragefw.json"]
 }

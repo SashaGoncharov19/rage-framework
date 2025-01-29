@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "incremental": false,
+    "composite": false,
+
+    "target": "es2022",
+    "moduleDetection": "auto",
+    "module": "commonjs",
+
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+
+    "declaration": false,
+    "declarationMap": false,
+    "downlevelIteration": false,
+    "inlineSourceMap": false,
+    "sourceMap": false
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".tsup"
+  ]
+}
