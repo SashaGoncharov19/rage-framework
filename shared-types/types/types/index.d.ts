@@ -1,14 +1,13 @@
 declare module '@entityseven/rage-fw-shared-types' {
     export interface RageFW_ICustomServerEvent {
-        customServerEvent(arg1: string, arg2: number): boolean
+        // customServerEvent(arg1: string, arg2: number): boolean // example event
     }
 
     export interface RageFW_ICustomClientEvent {
-        cefReady(): void
-        customClientEvent(arg1: string, arg2: number): boolean
+        // customClientEvent(arg1: string, arg2: number): boolean // example event
     }
 
     export interface RageFW_ICustomBrowserEvent {
-        customCefEvent(arg1: string, arg2: number): boolean
+        // customCefEvent(arg1: string, arg2: number): boolean // example event
     }
 }

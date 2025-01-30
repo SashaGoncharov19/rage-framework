@@ -3,10 +3,18 @@ import type { RageFW_ICustomClientEvent } from '@entityseven/rage-fw-shared-type
 export type { RageFW_ICustomClientEvent } from '@entityseven/rage-fw-shared-types'
 
 /**
- * Union of all available client event names
- * These only include custom events and some extras from RageFW
+ * Union of all internal client event names
+ * These only include internal events
  */
-export type RageFW_ClientEvent = keyof RageFW_ICustomClientEvent
+export type RageFW_InternalEvent = 'cefReady'
+
+/**
+ * Union of all available client event names
+ * These only include custom events and some internals for RageFW
+ */
+export type RageFW_ClientEvent =
+    | keyof RageFW_ICustomClientEvent
+    | RageFW_InternalEvent
 
 /**
  * Array of arguments of event you pass as a generic
