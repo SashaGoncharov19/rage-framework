@@ -1,6 +1,6 @@
-import { Client, Logger, Player, rpc } from './core'
+import { FW_Client, FW_Logger, FW_Player, rpc } from './core'
 
-export type { RageFW_MiddlewareFunction } from './types'
+export type { FW_MiddlewareFunction } from './types'
 
 /**
  * Package used on a client-side of your Rage:MP Server
@@ -9,13 +9,13 @@ export type { RageFW_MiddlewareFunction } from './types'
  */
 export const fw = {
     /** Client-side interactions */
-    event: new Client(),
+    event: new FW_Client(),
     /** Handles event manipulations that require player to be present in context */
-    player: new Player(),
+    player: new FW_Player(),
     /** Handles functions used to interact with the client environment */
     system: {
         /** Used to log in a client in-game console */
-        log: new Logger(),
+        log: new FW_Logger(),
     },
     /** ``rage-fw-rpc`` instance used under the hood. It is highly recommended to use this one if you need it instead of creating a new instance */
     rpc,
