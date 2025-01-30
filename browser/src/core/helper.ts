@@ -1,4 +1,4 @@
-export class Helper {
+export class FW_Helper {
     protected debugLogs_: boolean = false
     protected customLogger_:
         | undefined

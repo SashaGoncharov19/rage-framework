@@ -1,9 +1,9 @@
 import { rpc } from './rpc'
-import { Middleware } from './middleware'
+import { FW_Middleware } from './middleware'
 import type * as T from '../types'
 
 /** Client-side interactions */
-export class Client {
+export class FW_Client {
     /**
      * Registers a client event with an associated callback
      *
@@ -11,7 +11,7 @@ export class Client {
      * @param callback - The callback function to be executed when the event is triggered
      * @param [options] - Optional settings for callback execution
      * @param [options.middlewares] - Middleware functions to be checked before the callback executes
-     * @returns {Client} The current client instance, enabling method chaining
+     * @returns {FW_Client} The current client instance, enabling method chaining
      *
      * @example
      * // Registering an event
@@ -40,13 +40,13 @@ export class Client {
      *
      * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
      */
-    public register<EventName extends T.RageFW_ClientEvent>(
+    public register<EventName extends T.FW_ClientEvent>(
         eventName: EventName,
-        callback: T.RageFW_ClientCallback<EventName>,
+        callback: T.FW_ClientCallback<EventName>,
         options?: {
-            middlewares?: T.RageFW_MiddlewareOptions<EventName>
+            middlewares?: T.FW_MiddlewareOptions<EventName>
         },
-    ): Client {
+    ): FW_Client {
         rpc.register<
             Parameters<typeof callback>,
             ReturnType<typeof callback> | Promise<unknown>,
@@ -54,7 +54,7 @@ export class Client {
         >(eventName, async (...data) => {
             if (!options?.middlewares) return await callback(...data)
 
-            await Middleware.process(options.middlewares, callback, data)
+            await FW_Middleware.process(options.middlewares, callback, data)
         })
 
         return this
@@ -72,15 +72,11 @@ export class Client {
      *
      * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
      */
-    public unregister<EventName extends T.RageFW_ClientEvent>(
+    public unregister<EventName extends T.FW_ClientEvent>(
         eventName: EventName,
-    ): Client {
+    ): FW_Client {
         rpc.unregister<EventName>(eventName)
 
         return this
     }
 }
-
-// new Client()
-//     .register('customClientEvent', async (a, b) => true)
-//     .unregister('customClientEvent')

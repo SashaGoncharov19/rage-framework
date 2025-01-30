@@ -2,7 +2,7 @@ import { rpc } from './rpc'
 import type * as T from '../types'
 
 /** Handles event manipulations that require player to be present in context */
-export class Player {
+export class FW_Player {
     /**
      * Triggers a client event from the server with arguments from shared types
      *
@@ -23,13 +23,13 @@ export class Player {
      *
      * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
      */
-    public async triggerClient<EventName extends T.RageFW_ClientEvent>(
+    public async triggerClient<EventName extends T.FW_ClientEvent>(
         player: PlayerMp,
         eventName: EventName,
         ...args: T._ClientEventHasArgs<EventName> extends true
-            ? [T.RageFW_ClientArgs<EventName>]
+            ? [T.FW_ClientArgs<EventName>]
             : []
-    ): Promise<T.RageFW_ClientReturn<EventName>> {
+    ): Promise<T.FW_ClientReturn<EventName>> {
         return await rpc.callClient(player, eventName, args)
     }
 
@@ -53,16 +53,13 @@ export class Player {
      *
      * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
      */
-    public async triggerBrowser<EventName extends T.RageFW_BrowserEvent>(
+    public async triggerBrowser<EventName extends T.FW_BrowserEvent>(
         player: PlayerMp,
         eventName: EventName,
         ...args: T._BrowserEventHasArgs<EventName> extends true
-            ? [T.RageFW_BrowserArgs<EventName>]
+            ? [T.FW_BrowserArgs<EventName>]
             : []
-    ): Promise<T.RageFW_BrowserReturn<EventName>> {
+    ): Promise<T.FW_BrowserReturn<EventName>> {
         return await rpc.callBrowser(player, eventName, args)
     }
 }
-
-// new Player().triggerBrowser({} as PlayerMp, 'customCefEvent', ['', 1])
-// new Player().triggerClient({} as PlayerMp, 'customClientEvent', ['', 1])

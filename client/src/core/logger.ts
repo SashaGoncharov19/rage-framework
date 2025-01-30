@@ -1,7 +1,7 @@
 /**
  * Used to log to a client in-game console
  */
-export class Logger {
+export class FW_Logger {
     /**
      * Informational logs. Colored in white
      *

@@ -3,7 +3,7 @@ import winston, { format } from 'winston'
 const { timestamp, printf, colorize } = format
 
 /** Used to log in a server console */
-export class Logger {
+export class FW_Logger {
     private format = printf(({ message, level }) => {
         return `[${new Date().toLocaleTimeString()}] [${level}]: ${message}`
     })

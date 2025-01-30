@@ -1,24 +1,22 @@
 /// <reference types="@ragempcommunity/types-client" />
 
-import type { RageFW_ICustomClientEvent } from '@entityseven/rage-fw-shared-types'
+import type { FW_ICustomClientEvent } from '@entityseven/rage-fw-shared-types'
 
-export type { RageFW_ICustomClientEvent } from '@entityseven/rage-fw-shared-types'
+export type { FW_ICustomClientEvent } from '@entityseven/rage-fw-shared-types'
 
 /**
  * Union of all available client event names
  * These include custom and system events
  */
-export type RageFW_ClientEvent =
-    | keyof RageFW_ICustomClientEvent
-    | keyof IClientEvents
+export type FW_ClientEvent = keyof FW_ICustomClientEvent | keyof IClientEvents
 
 /**
  * Array of arguments for an event, name of which you pass as a generic
  * These include custom and system events
  */
-export type RageFW_ClientArgs<K extends RageFW_ClientEvent> =
-    K extends keyof RageFW_ICustomClientEvent
-        ? Parameters<RageFW_ICustomClientEvent[K]>
+export type FW_ClientArgs<K extends FW_ClientEvent> =
+    K extends keyof FW_ICustomClientEvent
+        ? Parameters<FW_ICustomClientEvent[K]>
         : K extends keyof IClientEvents
           ? Parameters<IClientEvents[K]>
           : never
@@ -27,9 +25,9 @@ export type RageFW_ClientArgs<K extends RageFW_ClientEvent> =
  * Return type for an event, name of which you pass as a generic
  * These include custom and system events
  */
-export type RageFW_ClientReturn<K extends RageFW_ClientEvent> =
-    K extends keyof RageFW_ICustomClientEvent
-        ? ReturnType<RageFW_ICustomClientEvent[K]>
+export type FW_ClientReturn<K extends FW_ClientEvent> =
+    K extends keyof FW_ICustomClientEvent
+        ? ReturnType<FW_ICustomClientEvent[K]>
         : K extends keyof IClientEvents
           ? ReturnType<IClientEvents[K]>
           : void
@@ -38,17 +36,16 @@ export type RageFW_ClientReturn<K extends RageFW_ClientEvent> =
  * Callback (function) for an event, name of which you pass as a generic
  * These include custom and system events
  */
-export type RageFW_ClientCallback<K extends RageFW_ClientEvent> = (
-    ...args: RageFW_ClientArgs<K>
-) => Promise<RageFW_ClientReturn<K>>
+export type FW_ClientCallback<K extends FW_ClientEvent> = (
+    ...args: FW_ClientArgs<K>
+) => Promise<FW_ClientReturn<K>>
 
 /**
  *
  */
-export type _ClientEventHasArgs<
-    EventName extends keyof RageFW_ICustomClientEvent,
-> = keyof RageFW_ICustomClientEvent extends never
-    ? false
-    : Parameters<RageFW_ICustomClientEvent[EventName]>[0] extends undefined
-      ? false
-      : true
+export type _ClientEventHasArgs<EventName extends keyof FW_ICustomClientEvent> =
+    keyof FW_ICustomClientEvent extends never
+        ? false
+        : Parameters<FW_ICustomClientEvent[EventName]>[0] extends undefined
+          ? false
+          : true

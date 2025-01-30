@@ -1,3 +1,5 @@
+/// <reference types="@ragempcommunity/types-cef" />
+
 import { Wrapper } from './wrapper'
 import {
     Environment,

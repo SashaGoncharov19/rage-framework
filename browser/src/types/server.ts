@@ -1,33 +1,32 @@
-import type { RageFW_ICustomServerEvent } from '@entityseven/rage-fw-shared-types'
+import type { FW_ICustomServerEvent } from '@entityseven/rage-fw-shared-types'
 
-export type { RageFW_ICustomServerEvent } from '@entityseven/rage-fw-shared-types'
+export type { FW_ICustomServerEvent } from '@entityseven/rage-fw-shared-types'
 
 /**
  * Union of all available server event names
  * These only include custom events
  */
-export type RageFW_ServerEvent = keyof RageFW_ICustomServerEvent
+export type FW_ServerEvent = keyof FW_ICustomServerEvent
 
 /**
  * Array of arguments of event you pass as a generic
  * These only include custom server events
  */
-export type RageFW_ServerArgs<K extends RageFW_ServerEvent> = Parameters<
-    RageFW_ICustomServerEvent[K]
+export type FW_ServerArgs<K extends FW_ServerEvent> = Parameters<
+    FW_ICustomServerEvent[K]
 >
 
 /**
  * Return type of event you pass as a generic
  * These only include custom server events
  */
-export type RageFW_ServerReturn<K extends RageFW_ServerEvent> = ReturnType<
-    RageFW_ICustomServerEvent[K]
+export type FW_ServerReturn<K extends FW_ServerEvent> = ReturnType<
+    FW_ICustomServerEvent[K]
 >
 
-export type _ServerEventHasArgs<
-    EventName extends keyof RageFW_ICustomServerEvent,
-> = keyof RageFW_ICustomServerEvent extends never
-    ? false
-    : Parameters<RageFW_ICustomServerEvent[EventName]>[0] extends undefined
-      ? false
-      : true
+export type _ServerEventHasArgs<EventName extends keyof FW_ICustomServerEvent> =
+    keyof FW_ICustomServerEvent extends never
+        ? false
+        : Parameters<FW_ICustomServerEvent[EventName]>[0] extends undefined
+          ? false
+          : true

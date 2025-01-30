@@ -12,7 +12,7 @@
     "sourceMap": true,
   },
   "include": [
-    "./index.d.ts"
+    "src"
   ],
   "extends": ["../tsconfig.ragefw.json"]
 }

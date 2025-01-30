@@ -1,3 +1,5 @@
+/// <reference types="@ragempcommunity/types-client" />
+
 import { Wrapper } from './wrapper'
 import {
     Environment,

@@ -1,3 +1,5 @@
+/// <reference types="@ragempcommunity/types-server" />
+
 import { Wrapper } from './wrapper'
 import {
     type PlayerMp,

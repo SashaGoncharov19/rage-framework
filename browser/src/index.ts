@@ -1,4 +1,4 @@
-import { Browser, rpc } from './core'
+import { FW_Browser, rpc } from './core'
 
 /**
  * Package used on a browser-side of your Rage:MP Server
@@ -7,10 +7,12 @@ import { Browser, rpc } from './core'
  */
 export const fw = {
     /** Browser-side interactions */
-    event: new Browser(),
+    event: new FW_Browser(),
     /** ``rage-fw-rpc`` instance used under the hood. It is highly recommended to use this one if you need it instead of creating a new instance */
     rpc,
 }
 ;(async () => {
-    await fw.event.triggerClient('cefReady')
+    await fw.event.triggerClient(
+        'cefReady' as Parameters<typeof fw.event.triggerClient>[0],
+    )
 })()

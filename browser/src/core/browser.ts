@@ -1,9 +1,9 @@
-import { Helper } from './helper'
+import { FW_Helper } from './helper'
 import { rpc } from './rpc'
 import type * as T from '../types'
 
 /** Browser-side interactions */
-export class Browser extends Helper {
+export class FW_Browser extends FW_Helper {
     constructor() {
         super()
     }
@@ -29,7 +29,7 @@ export class Browser extends Helper {
      *
      * @param eventName - The name of the event to register
      * @param callback - The callback function to be executed when the event is triggered
-     * @returns {Browser} The current browser instance, enabling method chaining
+     * @returns {FW_Browser} The current browser instance, enabling method chaining
      *
      * @example
      * // Registering an event
@@ -39,10 +39,10 @@ export class Browser extends Helper {
      *
      * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
      */
-    public register<EventName extends T.RageFW_BrowserEvent>(
+    public register<EventName extends T.FW_BrowserEvent>(
         eventName: EventName,
-        callback: T.RageFW_BrowserCallback<EventName>,
-    ): Browser {
+        callback: T.FW_BrowserCallback<EventName>,
+    ): FW_Browser {
         this.log_('register', eventName, callback)
 
         rpc.register<
@@ -58,7 +58,7 @@ export class Browser extends Helper {
      * Unregisters a browser event, removing the associated callback
      *
      * @param eventName - The name of the event to unregister
-     * @returns {Browser} The current browser instance, enabling method chaining
+     * @returns {FW_Browser} The current browser instance, enabling method chaining
      *
      * @example
      * // Unregistering an event
@@ -66,9 +66,9 @@ export class Browser extends Helper {
      *
      * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
      */
-    public unregister<EventName extends T.RageFW_BrowserEvent>(
+    public unregister<EventName extends T.FW_BrowserEvent>(
         eventName: EventName,
-    ): Browser {
+    ): FW_Browser {
         rpc.unregister<EventName>(eventName)
 
         return this
@@ -93,18 +93,18 @@ export class Browser extends Helper {
      *
      * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
      */
-    public async trigger<EventName extends T.RageFW_BrowserEvent>(
+    public async trigger<EventName extends T.FW_BrowserEvent>(
         eventName: EventName,
         ...args: T._BrowserEventHasArgs<EventName> extends true
-            ? [T.RageFW_BrowserArgs<EventName>]
+            ? [T.FW_BrowserArgs<EventName>]
             : []
-    ): Promise<T.RageFW_BrowserReturn<EventName>> {
+    ): Promise<T.FW_BrowserReturn<EventName>> {
         this.log_('[RPC](trigger):', eventName, ...args)
 
         return await rpc.call<
             typeof args,
             EventName,
-            T.RageFW_BrowserReturn<EventName>
+            T.FW_BrowserReturn<EventName>
         >(eventName, args)
     }
 
@@ -127,18 +127,18 @@ export class Browser extends Helper {
      *
      * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
      */
-    public async triggerServer<EventName extends T.RageFW_ServerEvent>(
+    public async triggerServer<EventName extends T.FW_ServerEvent>(
         eventName: EventName,
         ...args: T._ServerEventHasArgs<EventName> extends true
-            ? [T.RageFW_ServerArgs<EventName>]
+            ? [T.FW_ServerArgs<EventName>]
             : []
-    ): Promise<T.RageFW_ServerReturn<EventName>> {
+    ): Promise<T.FW_ServerReturn<EventName>> {
         this.log_('[RPC](triggerServer):', eventName, ...args)
 
         return await rpc.callServer<
             typeof args,
             EventName,
-            T.RageFW_ServerReturn<EventName>
+            T.FW_ServerReturn<EventName>
         >(eventName, args)
     }
 
@@ -161,18 +161,18 @@ export class Browser extends Helper {
      *
      * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
      */
-    public async triggerClient<EventName extends T.RageFW_ClientEvent>(
+    public async triggerClient<EventName extends T.FW_ClientEvent>(
         eventName: EventName,
         ...args: T._ClientEventHasArgs<EventName> extends true
-            ? [T.RageFW_ClientArgs<EventName>]
+            ? [T.FW_ClientArgs<EventName>]
             : []
-    ): Promise<T.RageFW_ClientReturn<EventName>> {
+    ): Promise<T.FW_ClientReturn<EventName>> {
         this.log_('[RPC](triggerClient):', eventName, ...args)
 
         return await rpc.callClient<
             typeof args,
             EventName,
-            T.RageFW_ClientReturn<EventName>
+            T.FW_ClientReturn<EventName>
         >(eventName, args)
     }
 }

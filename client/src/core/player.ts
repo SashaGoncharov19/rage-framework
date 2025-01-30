@@ -2,7 +2,7 @@ import { rpc } from './rpc'
 import type * as T from '../types'
 
 /** Handles event manipulations that require player to be present in context */
-export class Player {
+export class FW_Player {
     private _browser: BrowserMp | undefined = undefined
 
     /**
@@ -32,16 +32,16 @@ export class Player {
      *
      * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
      */
-    public async trigger<EventName extends keyof T.RageFW_ICustomClientEvent>(
+    public async trigger<EventName extends keyof T.FW_ICustomClientEvent>(
         eventName: EventName,
         ...args: T._ClientEventHasArgs<EventName> extends true
-            ? [T.RageFW_ClientArgs<EventName>]
+            ? [T.FW_ClientArgs<EventName>]
             : []
-    ): Promise<T.RageFW_ClientReturn<EventName>> {
+    ): Promise<T.FW_ClientReturn<EventName>> {
         return await rpc.call<
             typeof args,
             EventName,
-            T.RageFW_ClientReturn<EventName>
+            T.FW_ClientReturn<EventName>
         >(eventName, args)
     }
 
@@ -64,16 +64,16 @@ export class Player {
      *
      * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
      */
-    public async triggerServer<EventName extends T.RageFW_ServerEvent>(
+    public async triggerServer<EventName extends T.FW_ServerEvent>(
         eventName: EventName,
         ...args: T._ServerEventHasArgs<EventName> extends true
-            ? [T.RageFW_ServerArgs<EventName>]
+            ? [T.FW_ServerArgs<EventName>]
             : []
-    ): Promise<T.RageFW_ClientServerReturn<EventName>> {
+    ): Promise<T.FW_ClientServerReturn<EventName>> {
         return await rpc.callServer<
             typeof args,
             EventName,
-            T.RageFW_ClientServerReturn<EventName>
+            T.FW_ClientServerReturn<EventName>
         >(eventName, args)
     }
 
@@ -96,19 +96,19 @@ export class Player {
      *
      * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
      */
-    public async triggerBrowser<EventName extends T.RageFW_BrowserEvent>(
+    public async triggerBrowser<EventName extends T.FW_BrowserEvent>(
         eventName: EventName,
         ...args: T._BrowserEventHasArgs<EventName> extends true
-            ? [T.RageFW_BrowserArgs<EventName>]
+            ? [T.FW_BrowserArgs<EventName>]
             : []
-    ): Promise<T.RageFW_BrowserReturn<EventName>> {
+    ): Promise<T.FW_BrowserReturn<EventName>> {
         if (!this._browser)
             throw new Error('You need to initialize browser first')
 
         return await rpc.callBrowser<
             typeof args,
             EventName,
-            T.RageFW_BrowserReturn<EventName>
+            T.FW_BrowserReturn<EventName>
         >(eventName, args)
     }
 }

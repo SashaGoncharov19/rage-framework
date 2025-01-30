@@ -1,12 +1,12 @@
 import type * as T from '../types'
 
-export class Middleware {
+export class FW_Middleware {
     constructor() {}
 
-    private static async execute<EventName extends T.RageFW_ClientEvent>(
-        middlewares: T.RageFW_MiddlewareFunction<EventName>[],
-        args: T.RageFW_ClientArgs<EventName>,
-    ): Promise<T.RageFW_MiddlewareResponseInternal> {
+    private static async execute<EventName extends T.FW_ClientEvent>(
+        middlewares: T.FW_MiddlewareFunction<EventName>[],
+        args: T.FW_ClientArgs<EventName>,
+    ): Promise<T.FW_MiddlewareResponseInternal> {
         for (let i = 0; i < middlewares.length; i++) {
             const result = await middlewares[i](...args)
 
@@ -21,20 +21,20 @@ export class Middleware {
         }
     }
 
-    public static async process<EventName extends T.RageFW_ClientEvent>(
-        middlewareOptions: T.RageFW_MiddlewareOptions<EventName>,
-        callback: T.RageFW_ClientCallback<EventName>,
-        args: T.RageFW_ClientArgs<EventName>,
+    public static async process<EventName extends T.FW_ClientEvent>(
+        middlewareOptions: T.FW_MiddlewareOptions<EventName>,
+        callback: T.FW_ClientCallback<EventName>,
+        args: T.FW_ClientArgs<EventName>,
     ) {
         if (Array.isArray(middlewareOptions)) {
-            const middlewaresResponse = await Middleware.execute(
+            const middlewaresResponse = await FW_Middleware.execute(
                 middlewareOptions,
                 args,
             )
 
             if (middlewaresResponse.success) return await callback(...args)
         } else {
-            const middlewaresResponse = await Middleware.execute(
+            const middlewaresResponse = await FW_Middleware.execute(
                 middlewareOptions.executables,
                 args,
             )
