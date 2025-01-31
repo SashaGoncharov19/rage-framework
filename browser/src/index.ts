@@ -11,8 +11,3 @@ export const fw = {
     /** ``rage-fw-rpc`` instance used under the hood. It is highly recommended to use this one if you need it instead of creating a new instance */
     rpc,
 }
-;(async () => {
-    await fw.event.triggerClient(
-        'cefReady' as Parameters<typeof fw.event.triggerClient>[0],
-    )
-})()

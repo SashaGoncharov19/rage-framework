@@ -5,7 +5,7 @@ const { timestamp, printf, colorize } = format
 /** Used to log in a server console */
 export class FW_Logger {
     private format = printf(({ message, level }) => {
-        return `[${new Date().toLocaleTimeString()}] [${level}]: ${message}`
+        return `[${new Date().toLocaleTimeString(undefined, { hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: 2 })}] [${level}]: ${message}`
     })
 
     private systemLogger = winston.createLogger({

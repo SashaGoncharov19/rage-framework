@@ -10,7 +10,7 @@ export class FW_Logger {
      */
     public info(...message: unknown[]) {
         mp.console.logInfo(
-            `[${new Date().toLocaleTimeString()}] [INFO] ${message.join(' ')}`,
+            `[${new Date().toLocaleTimeString(undefined, { hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: 2 })}] [INFO] ${message.join(' ')}`,
         )
     }
 
@@ -22,7 +22,7 @@ export class FW_Logger {
      */
     public warn(...message: unknown[]) {
         mp.console.logWarning(
-            `[${new Date().toLocaleTimeString()}] [WARN] ${message.join(' ')}`,
+            `[${new Date().toLocaleTimeString(undefined, { hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: 2 })}] [WARN] ${message.join(' ')}`,
         )
     }
 
@@ -34,7 +34,7 @@ export class FW_Logger {
      */
     public error(...message: unknown[]) {
         mp.console.logError(
-            `[${new Date().toLocaleTimeString()}] [ERROR] ${message.join(' ')}`,
+            `[${new Date().toLocaleTimeString(undefined, { hour: 'numeric', minute: 'numeric', second: 'numeric', fractionalSecondDigits: 2 })}] [ERROR] ${message.join(' ')}`,
         )
     }
 }
