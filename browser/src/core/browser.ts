@@ -75,9 +75,39 @@ export class FW_Browser extends FW_Helper {
     }
 
     /**
-     * Triggers a browser event from the browser with arguments from shared types
+     * Triggers a browser event from the browser with arguments from 'rage-fw-shared-types'
      *
      * Formerly known as ``call`` or ``emit``
+     *
+     * @param eventName - The name of the browser event to trigger
+     * @param [args] - Arguments for the browser event, if present
+     * @returns {void}
+     *
+     * @example
+     * // Triggering a browser event without arguments
+     * fw.event.trigger("browserEventName")
+     *
+     * @example
+     * // Triggering a browser event with arguments
+     * fw.event.trigger("browserEventName", ["message to me"])
+     *
+     * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
+     */
+    public trigger<EventName extends T.FW_BrowserEvent>(
+        eventName: EventName,
+        ...args: T._BrowserEventHasArgs<EventName> extends true
+            ? [T.FW_BrowserArgs<EventName>]
+            : []
+    ): void {
+        this.log_('[RPC](trigger):', eventName, ...args)
+
+        rpc.call<typeof args, EventName>(eventName, args)
+    }
+
+    /**
+     * Triggers an asynchronous browser event from the browser with arguments from 'rage-fw-shared-types', and expects to receive a response from an event
+     *
+     * Formerly known as ``callAsync`` or ``emitAsync``
      *
      * @param eventName - The name of the browser event to trigger
      * @param [args] - Arguments for the browser event, if present
@@ -93,7 +123,7 @@ export class FW_Browser extends FW_Helper {
      *
      * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
      */
-    public async trigger<EventName extends T.FW_BrowserEvent>(
+    public async triggerAsync<EventName extends T.FW_BrowserEvent>(
         eventName: EventName,
         ...args: T._BrowserEventHasArgs<EventName> extends true
             ? [T.FW_BrowserArgs<EventName>]
@@ -101,7 +131,7 @@ export class FW_Browser extends FW_Helper {
     ): Promise<T.FW_BrowserReturn<EventName>> {
         this.log_('[RPC](trigger):', eventName, ...args)
 
-        return await rpc.call<
+        return await rpc.callAsync<
             typeof args,
             EventName,
             T.FW_BrowserReturn<EventName>
@@ -109,9 +139,39 @@ export class FW_Browser extends FW_Helper {
     }
 
     /**
-     * Triggers a server event from the browser with arguments from shared types
+     * Triggers a server event from the browser with arguments from 'rage-fw-shared-types'
      *
      * Formerly known as ``callServer`` or ``emitServer``
+     *
+     * @param eventName - The name of the server event to trigger
+     * @param [args] - Arguments for the server event, if present
+     * @returns {void}
+     *
+     * @example
+     * // Triggering a server event without arguments
+     * fw.event.triggerServer("serverEventName")
+     *
+     * @example
+     * // Triggering a server event with arguments
+     * fw.event.triggerServer("serverEventName", ["message to server"])
+     *
+     * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
+     */
+    public triggerServer<EventName extends T.FW_ServerEvent>(
+        eventName: EventName,
+        ...args: T._ServerEventHasArgs<EventName> extends true
+            ? [T.FW_ServerArgs<EventName>]
+            : []
+    ): void {
+        this.log_('[RPC](triggerServer):', eventName, ...args)
+
+        rpc.callServer<typeof args, EventName>(eventName, args)
+    }
+
+    /**
+     * Triggers an asynchronous server event from the browser with arguments from 'rage-fw-shared-types', and expects to receive a response from an event
+     *
+     * Formerly known as ``callServerAsync`` or ``emitServerAsync``
      *
      * @param eventName - The name of the server event to trigger
      * @param [args] - Arguments for the server event, if present
@@ -127,7 +187,7 @@ export class FW_Browser extends FW_Helper {
      *
      * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
      */
-    public async triggerServer<EventName extends T.FW_ServerEvent>(
+    public async triggerServerAsync<EventName extends T.FW_ServerEvent>(
         eventName: EventName,
         ...args: T._ServerEventHasArgs<EventName> extends true
             ? [T.FW_ServerArgs<EventName>]
@@ -135,7 +195,7 @@ export class FW_Browser extends FW_Helper {
     ): Promise<T.FW_ServerReturn<EventName>> {
         this.log_('[RPC](triggerServer):', eventName, ...args)
 
-        return await rpc.callServer<
+        return await rpc.callServerAsync<
             typeof args,
             EventName,
             T.FW_ServerReturn<EventName>
@@ -143,9 +203,39 @@ export class FW_Browser extends FW_Helper {
     }
 
     /**
-     * Triggers a client event from the browser with arguments from shared types
+     * Triggers a browser event from the browser with arguments from 'rage-fw-shared-types'
      *
      * Formerly known as ``callClient`` or ``emitClient``
+     *
+     * @param eventName - The name of the client event to trigger
+     * @param [args] - Arguments for the client event, if present
+     * @returns {void}
+     *
+     * @example
+     * // Triggering a client event without arguments
+     * fw.event.triggerClient("clientEventName")
+     *
+     * @example
+     * // Triggering a client event with arguments
+     * fw.event.triggerClient("clientEventName", ["message to client"])
+     *
+     * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
+     */
+    public triggerClient<EventName extends T.FW_ClientEvent>(
+        eventName: EventName,
+        ...args: T._ClientEventHasArgs<EventName> extends true
+            ? [T.FW_ClientArgs<EventName>]
+            : []
+    ): void {
+        this.log_('[RPC](triggerClient):', eventName, ...args)
+
+        rpc.callClient<typeof args, EventName>(eventName, args)
+    }
+
+    /**
+     * Triggers an asynchronous client event from the browser with arguments from 'rage-fw-shared-types', and expects to receive a response from an event
+     *
+     * Formerly known as ``callClientAsync`` or ``emitClientAsync``
      *
      * @param eventName - The name of the client event to trigger
      * @param [args] - Arguments for the client event, if present
@@ -161,7 +251,7 @@ export class FW_Browser extends FW_Helper {
      *
      * @see {@link https://git.entityseven.com/entityseven/rage-framework/wiki Wiki}
      */
-    public async triggerClient<EventName extends T.FW_ClientEvent>(
+    public async triggerClientAsync<EventName extends T.FW_ClientEvent>(
         eventName: EventName,
         ...args: T._ClientEventHasArgs<EventName> extends true
             ? [T.FW_ClientArgs<EventName>]
@@ -169,14 +259,10 @@ export class FW_Browser extends FW_Helper {
     ): Promise<T.FW_ClientReturn<EventName>> {
         this.log_('[RPC](triggerClient):', eventName, ...args)
 
-        return await rpc.callClient<
+        return await rpc.callClientAsync<
             typeof args,
             EventName,
             T.FW_ClientReturn<EventName>
         >(eventName, args)
     }
 }
-
-// new Browser()
-//     .register('customCefEvent', async (a, b) => true)
-//     .triggerServer('customServerEvent', ['', 1])

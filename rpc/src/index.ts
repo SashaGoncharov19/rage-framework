@@ -153,7 +153,6 @@ class Rpc extends Wrapper {
     public callClient<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
-        Return = unknown,
     >(eventName: EventName, args?: Arguments): void
     /**
      * Calls a client-side event from server or server. Use 'call' to call client from client
@@ -173,7 +172,6 @@ class Rpc extends Wrapper {
     public callClient<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
-        Return = unknown,
     >(player: PlayerMp, eventName: EventName, args?: Arguments): void
     public callClient(
         playerOrEventName: PlayerMp | string,
@@ -519,7 +517,6 @@ class Rpc extends Wrapper {
     public callBrowser<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
-        Return = unknown,
     >(eventName: EventName, args?: Arguments): void
     /**
      * Calls a browser-side event from client or server. Use 'call' to call browser from browser
@@ -539,7 +536,6 @@ class Rpc extends Wrapper {
     public callBrowser<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
-        Return = unknown,
     >(player: PlayerMp, eventName: EventName, args?: Arguments): void
     public callBrowser(
         playerOrEventName: PlayerMp | string,
@@ -741,7 +737,6 @@ class Rpc extends Wrapper {
     public call<
         Arguments extends unknown[] = unknown[],
         EventName extends string = string,
-        Return = unknown,
     >(eventName: EventName, args?: Arguments): void {
         this.log('call', eventName, args)
         if (this.forceBrowserDevMode_) return
