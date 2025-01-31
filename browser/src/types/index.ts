@@ -1,3 +1,3 @@
-export * from './browser'
-export * from './client'
-export * from './server'
+export type * from './browser'
+export type * from './client'
+export type * from './server'
